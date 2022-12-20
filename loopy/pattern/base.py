@@ -1,5 +1,5 @@
 from ..track import LoopyTrack
-
+import numpy as np
 
 class LoopyPatternCore():
     def __init__(self,
@@ -25,13 +25,26 @@ class LoopyPatternCore():
         self._sr = sr
         self._beats_per_bar, n = [int(x) for x in sig.split('/')]
         self._beat = 1 / n  # 4/4 means 1 quarter note receives 1 beat
+        self._notes = []
+        self._tot_samples = int(num_bars * self._beats_per_bar * 60 * sr / bpm)
                 
     def fit_track(self, track: LoopyTrack):
+        """
+        Checks whether this pattern fits a track.
+        Args:
+            track (LoopyTrack): the target track
+        Returns: bool
+        """
         ret = True
         ret &= (self._sr == track._sr)
         ret &= (self._beats_per_bar == track._beats_per_bar)
         ret &= (self._beat == track._beat)
         return ret
+    
+    def render(self):
+        self._y = np.zeros(self._tot_samples)
+        # TODO
+        return self._y
     
     
 class LoopyPattern():
@@ -50,4 +63,7 @@ class LoopyPattern():
         self._global_pos = global_pos
         self._channel_id = channel_id
         self._core = core
+        
+    def render(self):
+        return self._core.render()
         
