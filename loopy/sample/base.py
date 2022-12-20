@@ -3,7 +3,7 @@ import soundfile as sf
 from playsound import playsound
 import os
 
-class LoopySample():
+class LoopySampleCore():
     def __init__(self,
         source_path: str,
         target_sr: int = 22050,
