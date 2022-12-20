@@ -6,7 +6,7 @@ import os
 class LoopySample():
     def __init__(self,
         source_path: str,
-        target_sr: int = None,
+        target_sr: int = 22050,
         name: str = None,
     ) -> None:
         y, orig_sr = librosa.load(source_path)
