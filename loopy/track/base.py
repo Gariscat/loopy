@@ -6,7 +6,7 @@ from ..pattern import LoopyPatternCore, LoopyPattern
 class LoopyTrack():
     def __init__(self,
         bpm: int = 128,
-        sr: int = 22050,
+        sr: int = 44100,
         sig: str = '4/4',
         length: str = '00:00',
     ) -> None:

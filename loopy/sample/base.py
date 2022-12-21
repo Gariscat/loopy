@@ -2,18 +2,16 @@ import librosa
 import soundfile as sf
 from playsound import playsound
 import os
+import numpy as np
 
 class LoopySampleCore():
     def __init__(self,
         source_path: str,
-        target_sr: int = 22050,
+        target_sr: int = 44100,
         name: str = None,
     ) -> None:
-        y, orig_sr = librosa.load(source_path)
-        # print('original sample rate:', orig_sr)
-        if target_sr is None:
-            target_sr = orig_sr
-        self._y = librosa.resample(y, orig_sr=orig_sr, target_sr=target_sr)
+        y, _ = librosa.load(source_path, sr=target_sr, mono=False)
+        self._y = np.transpose(y, axes=(1, 0))
         self._sr = target_sr
         
         if name is None:

@@ -6,7 +6,7 @@ class LoopyPatternCore():
         num_bars: int,
         bpm: int = 128,
         name: str = None,
-        sr: int = 22050,
+        sr: int = 44100,
         sig: str = '4/4',
         resolution: float = 1/16,
     ) -> None:
