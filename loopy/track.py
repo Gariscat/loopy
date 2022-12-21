@@ -1,9 +1,9 @@
 import librosa
 
 
-from utils import hhmmss2sec
-from channel import LoopyChannel
-from pattern import LoopyPatternCore, LoopyPattern
+from loopy.utils import hhmmss2sec
+from loopy.channel import LoopyChannel
+from loopy.pattern import LoopyPatternCore, LoopyPattern
 
 class LoopyTrack():
     def __init__(self,
