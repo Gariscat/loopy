@@ -42,7 +42,7 @@ class LoopyPatternCore():
         return ret
     
     def render(self):
-        self._y = np.zeros(self._tot_samples)
+        self._y = np.zeros((self._tot_samples, 2))
         # TODO
         return self._y
     
