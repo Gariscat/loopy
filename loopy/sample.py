@@ -14,8 +14,7 @@ class LoopySampleCore():
         self._y = np.transpose(y, axes=(1, 0))
         self._sr = target_sr
         
-        if name is None:
-            name = source_path
+        self._name = source_path if name is None else name
 
     def preview(self):
         tmp_addr = './tmp.wav'

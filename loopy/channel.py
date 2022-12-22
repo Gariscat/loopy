@@ -1,4 +1,3 @@
-from ..track import LoopyTrack
 
 
 class LoopyChannel():

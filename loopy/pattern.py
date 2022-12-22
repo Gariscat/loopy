@@ -1,4 +1,3 @@
-from ..track import LoopyTrack
 import numpy as np
 
 class LoopyPatternCore():
@@ -27,19 +26,6 @@ class LoopyPatternCore():
         self._beat = 1 / n  # 4/4 means 1 quarter note receives 1 beat
         self._notes = []
         self._tot_samples = int(num_bars * self._beats_per_bar * 60 * sr / bpm)
-                
-    def fit_track(self, track: LoopyTrack):
-        """
-        Checks whether this pattern fits a track.
-        Args:
-            track (LoopyTrack): the target track
-        Returns: bool
-        """
-        ret = True
-        ret &= (self._sr == track._sr)
-        ret &= (self._beats_per_bar == track._beats_per_bar)
-        ret &= (self._beat == track._beat)
-        return ret
     
     def render(self):
         self._y = np.zeros((self._tot_samples, 2))
