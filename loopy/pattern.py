@@ -15,7 +15,7 @@ class LoopyPatternCore():
             num_bars (int): number of bars.
             bpm (int, optional): beats per minutes. Defaults to 128.
             name (str, optional): name (label). Defaults to None.
-            sr (int, optional): sapmle rate. Defaults to 22050.
+            sr (int, optional): sapmle rate. Defaults to 44100.
             sig (str, optional): signature. Defaults to '4/4'.
             resolution (float, optional): length of the shortest note. Defaults to 1/16.
         """

@@ -7,11 +7,21 @@ from loopy.pattern import LoopyPatternCore, LoopyPattern
 
 class LoopyTrack():
     def __init__(self,
+        name: str,
         bpm: int = 128,
         sr: int = 44100,
         sig: str = '4/4',
         length: str = '00:00',
     ) -> None:
+        """
+        Defines a track.
+        Args:
+            name (str): name of the track.
+            bpm (int, optional): beats per minutes. Defaults to 128.
+            sr (int, optional): sapmle rate. Defaults to 44100.
+            sig (str, optional): signature. Defaults to '4/4'.
+            length (str, optional): length in MM:SS. Defaults to "00:00".
+        """
         self._bpm = bpm
         self._sr = sr
         self._length = length
