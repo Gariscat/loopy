@@ -60,8 +60,66 @@ class LoopyPreset():
             print('Could not play with PyThon... Please preview it in the folder.')
         # os.remove(tmp_addr)
 
-    def render(self):
-        pass
+    def envelope(self,
+        attack: int,  # unit is ms
+        decay: int,  # unit is ms
+        sustain: float,  # between 0 and 1
+        release: int,  # unit is ms
+        note_value: float,  # e.g. 1/4, 1/8, 1/16, etc.
+        bpm: int,
+        sig: str = '4/4',
+    ):
+        # https://en.wikipedia.org/wiki/Envelope_(music)
+        beat_value = 1 / float(sig[-1])  # 4/4 means 1 quarter note receives 1 beat
+        sec_per_beat = 60 / bpm
+        num_sec_key = min(sec_per_beat * note_value / beat_value, 60 / LOAD_BPM - release / 1000)
+
+        num_sec_a = attack / 1000
+        num_sec_d = decay / 1000
+        num_sec_s = num_sec_key - num_sec_a - num_sec_d
+        num_sec_r = release / 1000
+
+        num_sec_tot = num_sec_key + num_sec_r  # (a+d+s)+r
+
+        if min(num_sec_a, num_sec_d, num_sec_s, num_sec_r) < 0:
+            raise KeyError("Length of part of ADSR is negative")
+
+        p1_idx = int(num_sec_a*LOAD_BPM)
+        p2_idx = int((num_sec_a+num_sec_d)*LOAD_BPM)
+        p3_idx = int((num_sec_a+num_sec_d+num_sec_s)*LOAD_BPM)
+        p4_idx = int(num_sec_tot*LOAD_BPM)
+
+        e = np.zeros((p4_idx, 2))
+        # attack
+        for i in range(0, p1_idx):
+            e[i] = i / p1_idx
+        # decay
+        for i in range(p1_idx, p2_idx):
+            e[i] = 1 - (1-sustain) * (i-p1_idx) / (p2_idx-p1_idx)
+        # sustain
+        for i in range(p2_idx, p3_idx):
+            e[i] = sustain
+        # release
+        for i in range(p3_idx, p4_idx):
+            e[i] = sustain - sustain * (i-p3_idx) / (p4_idx-p3_idx)
+
+        return e, p4_idx
+
+    def render(self,
+        key_name: str,  # C5, A#6, etc.
+        attack: int,  # unit is ms
+        decay: int,  # unit is ms
+        sustain: float,  # between 0 and 1
+        release: int,  # unit is ms
+        note_value: float,  # e.g. 1/4, 1/8, 1/16, etc.
+        bpm: int,
+        sig: str = '4/4',
+    ):
+        envelope, num_samples = envelope(attack, decay, sustain, release, note_value, bpm, sig)
+        y = self._raw_notes[key_name][:num_samples, :]
+        # then apply the envelope to the original waveform
+        ret = envelope * y
+        return ret
 
 preset = LoopyPreset(os.path.join(PRESET_DIR, 'Ultrasonic-LD-Supersaw.wav'))
 preset.preview('A5')
