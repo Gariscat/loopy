@@ -68,6 +68,7 @@ class LoopyPreset():
         note_value: float,  # e.g. 1/4, 1/8, 1/16, etc.
         bpm: int,
         sig: str = '4/4',
+        debug: bool = False,
     ):
         # https://en.wikipedia.org/wiki/Envelope_(music)
         beat_value = 1 / float(sig[-1])  # 4/4 means 1 quarter note receives 1 beat
@@ -84,12 +85,12 @@ class LoopyPreset():
         if min(num_sec_a, num_sec_d, num_sec_s, num_sec_r) < 0:
             raise KeyError("Length of part of ADSR is negative")
 
-        p1_idx = int(num_sec_a*LOAD_BPM)
-        p2_idx = int((num_sec_a+num_sec_d)*LOAD_BPM)
-        p3_idx = int((num_sec_a+num_sec_d+num_sec_s)*LOAD_BPM)
-        p4_idx = int(num_sec_tot*LOAD_BPM)
+        p1_idx = int(num_sec_a*self._sr)
+        p2_idx = int((num_sec_a+num_sec_d)*self._sr)
+        p3_idx = int((num_sec_a+num_sec_d+num_sec_s)*self._sr)
+        p4_idx = int(num_sec_tot*self._sr)
 
-        e = np.zeros((p4_idx, 2))
+        e = np.zeros(p4_idx)
         # attack
         for i in range(0, p1_idx):
             e[i] = i / p1_idx
@@ -103,6 +104,12 @@ class LoopyPreset():
         for i in range(p3_idx, p4_idx):
             e[i] = sustain - sustain * (i-p3_idx) / (p4_idx-p3_idx)
 
+        if debug:
+            import matplotlib.pyplot as plt
+            plt.plot(e)
+            plt.show()
+            plt.close()
+
         return e, p4_idx
 
     def render(self,
@@ -115,11 +122,22 @@ class LoopyPreset():
         bpm: int,
         sig: str = '4/4',
     ):
-        envelope, num_samples = envelope(attack, decay, sustain, release, note_value, bpm, sig)
+        e, num_samples = self.envelope(attack, decay, sustain, release, note_value, bpm, sig)
         y = self._raw_notes[key_name][:num_samples, :]
         # then apply the envelope to the original waveform
-        ret = envelope * y
+        ret = y * np.expand_dims(e, -1)
         return ret
 
-preset = LoopyPreset(os.path.join(PRESET_DIR, 'Ultrasonic-LD-Supersaw.wav'))
-preset.preview('A5')
+preset = LoopyPreset(os.path.join(PRESET_DIR, 'Ultrasonic-LD-LoveAgain.wav'))
+# preset.preview('A5')
+
+preset.envelope(
+    attack=100,
+    decay=50,
+    sustain=0.8,
+    release=50,
+    note_value=1/4,
+    bpm=128,
+    sig='4/4',
+    debug=True
+)
