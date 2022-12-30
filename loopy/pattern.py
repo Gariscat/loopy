@@ -26,6 +26,7 @@ class LoopyPatternCore():
         self._beat = 1 / n  # 4/4 means 1 quarter note receives 1 beat
         self._notes = []
         self._tot_samples = int(num_bars * self._beats_per_bar * 60 * sr / bpm)
+        self._resolution = resolution
     
     def render(self):
         self._y = np.zeros((self._tot_samples, 2))

@@ -1,6 +1,6 @@
 import librosa
 import soundfile as sf
-from playsound import playsound
+from loopy.utils import preview_wave
 import os
 import numpy as np
 
@@ -14,10 +14,10 @@ for i in range(2, 9):
     ]
 assert(len(PIANO_KEYS) == 88)
 
-PRESET_DIR = '../presets'
+PRESET_DIR = 'D:\\Project 2023\\loopy\\presets'
 LOAD_BPM = 64
 
-def modify_preset_dir(target_dir: int):
+def modify_preset_dir(target_dir: str):
     print(f'Cautious: the preset folder path has been changed from {PRESET_DIR} to {target_dir}')
     PRESET_DIR = target_dir
 
@@ -50,16 +50,6 @@ class LoopyPreset():
             # print(st, ed)
             # sf.write(f'{i+1}.wav', y[st:ed], sr)
 
-    def preview(self, note_name: str = None):
-        tmp_addr = 'tmp.wav'
-        y = self._raw_notes[note_name] if note_name in self._raw_notes.keys() else self._y
-        sf.write(tmp_addr, y, self._sr)
-        try:
-            playsound(tmp_addr)
-        except:
-            print('Could not play with PyThon... Please preview it in the folder.')
-        # os.remove(tmp_addr)
-
     def envelope(self,
         attack: int,  # unit is ms
         decay: int,  # unit is ms
@@ -68,7 +58,6 @@ class LoopyPreset():
         note_value: float,  # e.g. 1/4, 1/8, 1/16, etc.
         bpm: int,
         sig: str = '4/4',
-        debug: bool = False,
     ):
         # https://en.wikipedia.org/wiki/Envelope_(music)
         beat_value = 1 / float(sig[-1])  # 4/4 means 1 quarter note receives 1 beat
@@ -104,12 +93,6 @@ class LoopyPreset():
         for i in range(p3_idx, p4_idx):
             e[i] = sustain - sustain * (i-p3_idx) / (p4_idx-p3_idx)
 
-        if debug:
-            import matplotlib.pyplot as plt
-            plt.plot(e)
-            plt.show()
-            plt.close()
-
         return e, p4_idx
 
     def render(self,
@@ -121,23 +104,27 @@ class LoopyPreset():
         note_value: float,  # e.g. 1/4, 1/8, 1/16, etc.
         bpm: int,
         sig: str = '4/4',
+        preview: bool = False,
+        debug: bool = False,
     ):
         e, num_samples = self.envelope(attack, decay, sustain, release, note_value, bpm, sig)
         y = self._raw_notes[key_name][:num_samples, :]
         # then apply the envelope to the original waveform
         ret = y * np.expand_dims(e, -1)
+        if preview:
+            preview_wave(ret, self._sr)
+        if debug:
+            import matplotlib.pyplot as plt
+            fig, axs = plt.subplots(3)
+            fig.suptitle('preview (envelope/raw/wrapped)')
+            axs[0].plot(e)
+            axs[1].plot(y)
+            axs[2].plot(ret)
+            plt.show()
+            plt.close()
         return ret
 
-preset = LoopyPreset(os.path.join(PRESET_DIR, 'Ultrasonic-LD-LoveAgain.wav'))
-# preset.preview('A5')
 
-preset.envelope(
-    attack=100,
-    decay=50,
-    sustain=0.8,
-    release=50,
-    note_value=1/4,
-    bpm=128,
-    sig='4/4',
-    debug=True
-)
+class LoopyNote():
+    def __init__(self) -> None:
+        pass
