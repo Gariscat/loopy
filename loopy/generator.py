@@ -126,5 +126,36 @@ class LoopyPreset():
 
 
 class LoopyNote():
-    def __init__(self) -> None:
-        pass
+    def __init__(self,
+        key_name: str,
+        note_value: float,
+        pos_in_pattern: float,
+        generator: LoopyPreset,
+        attack: int,  # unit is ms
+        decay: int,  # unit is ms
+        sustain: float,  # between 0 and 1
+        release: int,  # unit is ms
+    ) -> None:
+        self._key_name = key_name
+        self._note_value = note_value
+        self._pos_in_pattern = pos_in_pattern
+        self._generator = generator
+
+        self._attack = attack
+        self._decay = decay
+        self._sustain = sustain
+        self._release = release
+    
+    def render(self,
+        bpm: int,
+        sig: str = '4/4',
+    ):
+        return self._generator.render(
+            key_name=self._key_name,
+            attack=self._attack,
+            decay=self._decay,
+            sustain=self._sustain,
+            release=self._release,
+            note_value=self._note_value,
+            bpm=bpm, sig=sig,
+        )
