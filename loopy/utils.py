@@ -17,3 +17,11 @@ def preview_wave(y: np.ndarray, sr: int):
         playsound(tmp_addr)
     except:
         print('Could not play with PyThon... Please preview it in the folder.')
+
+def parse_sig(sig: str = '4/4'):
+    beats_per_bar, n = [int(x) for x in sig.split('/')]
+    beat_value = 1 / n
+    return beats_per_bar, beat_value
+
+def beat2index(pos_in_pattern: float, bpm: int = 128, sr: int = 44100):
+    return int(pos_in_pattern * 60 * sr / bpm)

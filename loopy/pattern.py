@@ -1,4 +1,6 @@
 import numpy as np
+from loopy.generator import LoopyPreset, LoopyNote
+from loopy.utils import parse_sig, beat2index
 
 class LoopyPatternCore():
     def __init__(self,
@@ -22,14 +24,44 @@ class LoopyPatternCore():
         self._bpm = bpm
         self._name = name
         self._sr = sr
-        self._beats_per_bar, n = [int(x) for x in sig.split('/')]
-        self._beat = 1 / n  # 4/4 means 1 quarter note receives 1 beat
+        self._sig = sig
+        self._beats_per_bar, self._beat_value = parse_sig(sig)
+        self._generators = set()
         self._notes = []
         self._tot_samples = int(num_bars * self._beats_per_bar * 60 * sr / bpm)
         self._resolution = resolution
-    
+
+    def add_note(self,
+        key_name: str,
+        note_value: float,
+        pos_in_pattern: float,  # unit is beat
+        generator: LoopyPreset,
+        attack: int,  # unit is ms
+        decay: int,  # unit is ms
+        sustain: float,  # between 0 and 1
+        release: int,  # unit is ms
+    ):
+        note = LoopyNote(
+            key_name=key_name,
+            note_value=note_value,
+            pos_in_pattern=pos_in_pattern,
+            generator=generator,
+            attack=attack,
+            decay=decay,
+            sustain=sustain,
+            release=release,
+        )
+        self._notes.append(note)
+        self._generators.add(generator)
+
     def render(self):
         self._y = np.zeros((self._tot_samples, 2))
+        for note in self._notes:
+            st_index = beat2index(note._pos_in_pattern, bpm=self._bpm, sr=self._sr)
+            note_y = note.render(bpm=self._bpm, sig=self._sig)
+            note_len = note_y.shape[0]
+            ed_index = min(st_index + note_len, self._y.shape[0])
+            self._y[st_index:ed_index, :] += note_y
         # TODO
         return self._y
     

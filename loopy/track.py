@@ -1,7 +1,7 @@
 import librosa
 
 
-from loopy.utils import hhmmss2sec
+from loopy.utils import hhmmss2sec, parse_sig
 from loopy.channel import LoopyChannel
 from loopy.pattern import LoopyPatternCore, LoopyPattern
 
@@ -25,8 +25,7 @@ class LoopyTrack():
         self._bpm = bpm
         self._sr = sr
         self._length = length
-        self._beats_per_bar, n = [int(x) for x in sig.split('/')]
-        self._beat_value = 1 / n  # 4/4 means 1 quarter note receives 1 beat
+        self._beats_per_bar, self._beat_value = parse_sig(sig)
         self._tot_samples = hhmmss2sec(length) * sr
         
         self._pattern_types = []  # list of LoopyPatternCore
@@ -37,7 +36,7 @@ class LoopyTrack():
         """
         Checks whether this pattern fits a track.
         Args:
-            track (LoopyTrack): the target track
+            pattern_type (LoopyPatternCore): the target pattern type
         Returns: bool
         """
         ret = True

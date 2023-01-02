@@ -63,7 +63,7 @@ class LoopyPreset():
         beat_value = 1 / float(sig[-1])  # 4/4 means 1 quarter note receives 1 beat
         sec_per_beat = 60 / bpm
         num_sec_key = min(sec_per_beat * note_value / beat_value, 60 / LOAD_BPM - release / 1000)
-
+        # 60 / LOAD_BPM since the maximum length of the preset for each note is 1 beat
         num_sec_a = attack / 1000
         num_sec_d = decay / 1000
         num_sec_s = num_sec_key - num_sec_a - num_sec_d
@@ -129,7 +129,7 @@ class LoopyNote():
     def __init__(self,
         key_name: str,
         note_value: float,
-        pos_in_pattern: float,
+        pos_in_pattern: float,  # unit is beat
         generator: LoopyPreset,
         attack: int,  # unit is ms
         decay: int,  # unit is ms
