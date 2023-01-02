@@ -1,6 +1,6 @@
 import numpy as np
 from loopy.generator import LoopyPreset, LoopyNote
-from loopy.utils import parse_sig, beat2index
+from loopy.utils import parse_sig, beat2index, add_y
 
 class LoopyPatternCore():
     def __init__(self,
@@ -36,10 +36,10 @@ class LoopyPatternCore():
         note_value: float,
         pos_in_pattern: float,  # unit is beat
         generator: LoopyPreset,
-        attack: int,  # unit is ms
-        decay: int,  # unit is ms
-        sustain: float,  # between 0 and 1
-        release: int,  # unit is ms
+        attack: int = 0,  # unit is ms
+        decay: int = 0,  # unit is ms
+        sustain: float = 1.0,  # between 0 and 1
+        release: int = 0,  # unit is ms
     ):
         note = LoopyNote(
             key_name=key_name,
@@ -59,9 +59,7 @@ class LoopyPatternCore():
         for note in self._notes:
             st_index = beat2index(note._pos_in_pattern, bpm=self._bpm, sr=self._sr)
             note_y = note.render(bpm=self._bpm, sig=self._sig)
-            note_len = note_y.shape[0]
-            ed_index = min(st_index + note_len, self._y.shape[0])
-            self._y[st_index:ed_index, :] += note_y
+            add_y(self._y, note_y, st_index)
         # TODO
         return self._y
     

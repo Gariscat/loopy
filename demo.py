@@ -1,19 +1,16 @@
 from loopy import LoopyPreset
-from loopy.generator import PRESET_DIR
+from loopy import LoopyPatternCore, PRESET_DIR
+from loopy.utils import preview_wave
 import os
 
 preset = LoopyPreset(os.path.join(PRESET_DIR, 'Ultrasonic-LD-Forever.wav'))
 # preset.preview('A5')
 
-preset.render(
-    key_name='C#6',
-    attack=300,
-    decay=50,
-    sustain=0.8,
-    release=50,
-    note_value=1/2,
-    bpm=128,
-    sig='4/4',
-    preview=False,
-    debug=False,
-)
+pattern_type = LoopyPatternCore(num_bars=4)
+pattern_type.add_note('C5', 1/4, 0, preset)
+pattern_type.add_note('C5', 1/4, 1, preset)
+pattern_type.add_note('D5', 1/4, 2, preset)
+pattern_type.add_note('E5', 1/8, 3, preset)
+pattern_type.add_note('G5', 1/8, 3.5, preset)
+
+preview_wave(pattern_type.render())
