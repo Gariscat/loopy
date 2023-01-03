@@ -1,18 +1,9 @@
 import librosa
 import soundfile as sf
-from loopy.utils import preview_wave
+from loopy.utils import preview_wave, PIANO_KEYS
 import os
 import numpy as np
 
-
-PIANO_KEYS = ['A1', 'A#1', 'B1', 'C2']
-for i in range(2, 9):
-    PIANO_KEYS += [
-        f'C#{i}', f'D{i}', f'D#{i}', f'E{i}',
-        f'F{i}', f'F#{i}', f'G{i}', f'G#{i}',
-        f'A{i}', f'A#{i}', f'B{i}', f'C{i+1}'
-    ]
-assert(len(PIANO_KEYS) == 88)
 
 PRESET_DIR = 'D:\\Project 2023\\loopy\\presets'
 LOAD_BPM = 64
