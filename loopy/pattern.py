@@ -1,13 +1,13 @@
 import numpy as np
 from loopy.generator import LoopyPreset, LoopyNote
-from loopy.utils import parse_sig, beat2index, add_y
+from loopy.utils import parse_sig, beat2index, add_y, DEFAULT_SR
 
 class LoopyPatternCore():
     def __init__(self,
         num_bars: int,
         bpm: int = 128,
         name: str = None,
-        sr: int = 44100,
+        sr: int = DEFAULT_SR,
         sig: str = '4/4',
         resolution: float = 1/16,
     ) -> None:

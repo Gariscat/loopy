@@ -7,6 +7,8 @@ required = [
     'librosa>=0.9.2',
     'numpy>=1.19',
     'playsound>=1.3.0',
+    'audio-dspy>=0.0.4',
+    'pedalboard>=0.6'
 ]
 
 

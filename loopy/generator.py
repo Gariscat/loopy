@@ -1,6 +1,6 @@
 import librosa
 import soundfile as sf
-from loopy.utils import preview_wave, PIANO_KEYS
+from loopy.utils import preview_wave, PIANO_KEYS, DEFAULT_SR
 import os
 import numpy as np
 
@@ -19,13 +19,13 @@ def modify_load_bpm(target_bpm: int):
 class LoopyPreset():
     def __init__(self,
         source_path: str,
-        target_sr: int = 44100,
+        sr: int = DEFAULT_SR,
         name: str = None,
         load_bpm: int = LOAD_BPM,
     ) -> None:
-        y, _ = librosa.load(source_path, sr=target_sr, mono=False)
+        y, _ = librosa.load(source_path, sr=sr, mono=False)
         self._y = np.transpose(y, axes=(1, 0))
-        self._sr = target_sr
+        self._sr = sr
         
         self._name = source_path if name is None else name
         self._load_bpm = load_bpm

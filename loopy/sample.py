@@ -3,12 +3,12 @@ import soundfile as sf
 from playsound import playsound
 import os
 import numpy as np
-from loopy.utils import sec2hhmmss
+from loopy.utils import sec2hhmmss, DEFAULT_SR
 
 class LoopySampleCore():
     def __init__(self,
         source_path: str,
-        sr: int = 44100,
+        sr: int = DEFAULT_SR,
         name: str = None,
     ) -> None:
         """

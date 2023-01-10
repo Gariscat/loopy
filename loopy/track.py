@@ -1,7 +1,4 @@
-import librosa
-
-
-from loopy.utils import hhmmss2sec, parse_sig
+from loopy.utils import hhmmss2sec, parse_sig, DEFAULT_SR
 from loopy.channel import LoopyChannel
 from loopy.pattern import LoopyPatternCore, LoopyPattern
 
@@ -9,7 +6,7 @@ class LoopyTrack():
     def __init__(self,
         name: str,
         bpm: int = 128,
-        sr: int = 44100,
+        sr: int = DEFAULT_SR,
         sig: str = '4/4',
         length: str = '00:00',
     ) -> None:
@@ -22,6 +19,7 @@ class LoopyTrack():
             sig (str, optional): signature. Defaults to '4/4'.
             length (str, optional): length in MM:SS. Defaults to "00:00".
         """
+        self._name = name
         self._bpm = bpm
         self._sr = sr
         self._length = length
