@@ -1,6 +1,7 @@
 import numpy as np
 from loopy.generator import LoopyPreset, LoopyNote
 from loopy.utils import parse_sig, beat2index, add_y, DEFAULT_SR
+from loopy.channel import LoopyChannel
 
 class LoopyPatternCore():
     def __init__(self,
@@ -67,20 +68,21 @@ class LoopyPatternCore():
 class LoopyPattern():
     def __init__(self,
         global_pos: int,
-        channel_id: int,
+        channel: LoopyChannel,
         core: LoopyPatternCore,
     ) -> None:
         """
         Defines a specific pattern in the track.
         Args:
             global_pos (int): position in the track (measure id).
-            channel_id (int): channel id that takes in the pattern.
+            channel (LoopyChannel): mixer channel takes in the pattern.
             core (LoopyPatternCore): the skeleton of this pattern.
         """
         self._global_pos = global_pos
-        self._channel_id = channel_id
+        self._channel = LoopyChannel
         self._core = core
         
     def render(self):
-        return self._core.render()
+        core_y = self._core.render()
+        return self._channel(core_y)
         

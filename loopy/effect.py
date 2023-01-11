@@ -1,7 +1,8 @@
 from typing import Any
 import numpy as np
-from loopy.utils import DEFAULT_SR
+from loopy.utils import DEFAULT_SR, beat2index
 from pedalboard import HighpassFilter, LowpassFilter, Reverb
+from math import ceil
 
 class LoopyEffect():
     def __init__(self) -> None:
@@ -12,6 +13,9 @@ class LoopyEffect():
 
     def __call__(self, y: np.ndarray, *args: Any, **kwds: Any) -> np.ndarray:
         return self.forward(y)
+
+    def __str__(self) -> str:
+        return self._params
 
 class LoopyHighpass(LoopyEffect):
     def __init__(self, freq: int) -> None:
@@ -61,3 +65,36 @@ class LoopyReverb(LoopyEffect):
 
     def forward(self, y: np.ndarray):
         return self.reverb.process(y, sample_rate=DEFAULT_SR, reset=True)
+
+class LoopySidechain(LoopyEffect):
+    def __init__(self,
+        length: float = 1.0,  # unit is beat
+        attain: float = 0.125,  # unit is beat
+        interp_order: float = 1,
+    ) -> None:
+        super().__init__()
+        self.add_param('length', length)
+        self.add_param('attain', attain)
+        self.add_param('interp_order', interp_order)
+
+    def forward(self,
+        y: np.ndarray,
+        bpm: int = 128,
+        sr: int = DEFAULT_SR,
+    ):
+        # construct envelope (unit) for one cycle
+        envelope_unit = np.ones(beat2index(self._params['length'], bpm, sr), dtype=float)
+        attain_idx = beat2index(self._params['attain'], bpm, sr)
+        for i in range(attain_idx):
+            envelope_unit[i] = np.power(i/attain_idx, self._params['interp_order'])
+        # repeat the envelope (unit) for the complete envelope
+        num_repeat = ceil(y.shape[0]/envelope_unit.shape[0])
+        envelope = np.concatenate([envelope_unit]*num_repeat)[:y.shape[0]]
+        envelope = np.expand_dims(envelope, axis=-1)  # for element-wise product broadcast
+        # apply the envelope
+        return y * envelope
+
+        """import matplotlib.pylab as plt
+        plt.plot(envelope)
+        plt.show()"""
+

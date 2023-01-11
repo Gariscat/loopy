@@ -1,4 +1,5 @@
-
+from loopy.effect import LoopyEffect
+import numpy as np
 
 class LoopyChannel():
     def __init__(self,
@@ -11,4 +12,10 @@ class LoopyChannel():
         self._name = name
         self._effects = []  # list of LoopyEffect
         
-    
+    def add_effect(self, fx: LoopyEffect):
+        self._effects.append(fx)
+
+    def __call__(self, y: np.ndarray):
+        for fx in self._effects:
+            y = fx(y)
+        return y

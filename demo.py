@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from loopy import LoopyPreset
-from loopy import LoopyPatternCore, PRESET_DIR
+from loopy import LoopyPatternCore, PRESET_DIR, DEFAULT_SR
 from loopy.utils import preview_wave
 import os
 import librosa
@@ -9,7 +9,7 @@ import librosa
 lead = LoopyPreset(os.path.join(PRESET_DIR, 'Ultrasonic-LD-Follow.wav'))
 # preset.preview('A5')
 
-pattern_type = LoopyPatternCore(num_bars=4)
+"""pattern_type = LoopyPatternCore(num_bars=4)
 pattern_type.add_note('G5', 1/4, 0, lead)
 pattern_type.add_note('G5', 1/4, 1, lead)
 pattern_type.add_note('A5', 1/4, 2, lead)
@@ -37,4 +37,7 @@ y_reverb = rv(y)
 
 preview_wave(y)
 preview_wave(y_reverb)
-
+"""
+from loopy import LoopySidechain
+sides = LoopySidechain(interp_order=2)
+sides.forward(np.random.rand(DEFAULT_SR*15, 2))
