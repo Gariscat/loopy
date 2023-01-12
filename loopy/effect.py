@@ -3,6 +3,7 @@ import numpy as np
 from loopy.utils import DEFAULT_SR, beat2index
 from pedalboard import HighpassFilter, LowpassFilter, Reverb
 from math import ceil
+import matplotlib.pylab as plt
 
 class LoopyEffect():
     def __init__(self) -> None:
@@ -12,7 +13,7 @@ class LoopyEffect():
         self._params[k] = v
 
     def __call__(self, y: np.ndarray, *args: Any, **kwds: Any) -> np.ndarray:
-        return self.forward(y)
+        return self.forward(y, *args, **kwds)
 
     def __str__(self) -> str:
         return self._params
@@ -81,6 +82,7 @@ class LoopySidechain(LoopyEffect):
         y: np.ndarray,
         bpm: int = 128,
         sr: int = DEFAULT_SR,
+        debug: bool = False,
     ):
         # construct envelope (unit) for one cycle
         envelope_unit = np.ones(beat2index(self._params['length'], bpm, sr), dtype=float)
@@ -92,9 +94,16 @@ class LoopySidechain(LoopyEffect):
         envelope = np.concatenate([envelope_unit]*num_repeat)[:y.shape[0]]
         envelope = np.expand_dims(envelope, axis=-1)  # for element-wise product broadcast
         # apply the envelope
-        return y * envelope
+        ret = y * envelope
 
-        """import matplotlib.pylab as plt
-        plt.plot(envelope)
-        plt.show()"""
+        if debug:
+            plt.plot(y)
+            plt.show()
+            plt.close()
 
+            plt.plot(envelope)
+            plt.plot(ret)
+            plt.show()
+            plt.close()
+        
+        return ret

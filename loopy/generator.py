@@ -3,6 +3,8 @@ import soundfile as sf
 from loopy.utils import preview_wave, PIANO_KEYS, DEFAULT_SR
 import os
 import numpy as np
+from typing import List
+import warnings
 
 
 PRESET_DIR = 'D:\\Project 2023\\loopy\\presets'
@@ -53,14 +55,19 @@ class LoopyPreset():
         # https://en.wikipedia.org/wiki/Envelope_(music)
         beat_value = 1 / float(sig[-1])  # 4/4 means 1 quarter note receives 1 beat
         sec_per_beat = 60 / bpm
-        num_sec_key = min(sec_per_beat * note_value / beat_value, 60 / LOAD_BPM - release / 1000)
+        num_sec_ads = sec_per_beat * note_value / beat_value
+        num_sec_max = 60 / LOAD_BPM - release / 1000
+        if num_sec_ads > num_sec_max:
+            num_sec_ads = num_sec_max
+            warnings.warn('Requested note length is not exceeds the maxmimum length of this preset.')
+
         # 60 / LOAD_BPM since the maximum length of the preset for each note is 1 beat
         num_sec_a = attack / 1000
         num_sec_d = decay / 1000
-        num_sec_s = num_sec_key - num_sec_a - num_sec_d
+        num_sec_s = num_sec_ads - num_sec_a - num_sec_d
         num_sec_r = release / 1000
 
-        num_sec_tot = num_sec_key + num_sec_r  # (a+d+s)+r
+        num_sec_tot = num_sec_ads + num_sec_r  # (a+d+s)+r
 
         if min(num_sec_a, num_sec_d, num_sec_s, num_sec_r) < 0:
             raise KeyError("Length of part of ADSR is negative")
@@ -88,11 +95,11 @@ class LoopyPreset():
 
     def render(self,
         key_name: str,  # C5, A#6, etc.
+        note_value: float,  # e.g. 1/4, 1/8, 1/16, etc.
         attack: int,  # unit is ms
         decay: int,  # unit is ms
         sustain: float,  # between 0 and 1
         release: int,  # unit is ms
-        note_value: float,  # e.g. 1/4, 1/8, 1/16, etc.
         bpm: int,
         sig: str = '4/4',
         preview: bool = False,
@@ -143,10 +150,10 @@ class LoopyNote():
     ):
         return self._generator.render(
             key_name=self._key_name,
+            note_value=self._note_value,
             attack=self._attack,
             decay=self._decay,
             sustain=self._sustain,
             release=self._release,
-            note_value=self._note_value,
             bpm=bpm, sig=sig,
         )

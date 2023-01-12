@@ -1,7 +1,9 @@
 import numpy as np
-from loopy.generator import LoopyPreset, LoopyNote
-from loopy.utils import parse_sig, beat2index, add_y, DEFAULT_SR
+from loopy.generator import LoopyPreset, LoopyNote, PRESET_DIR
+from loopy.utils import parse_sig, beat2index, add_y, DEFAULT_SR, preview_wave
 from loopy.channel import LoopyChannel
+import os
+from typing import List
 
 class LoopyPatternCore():
     def __init__(self,
@@ -60,8 +62,9 @@ class LoopyPatternCore():
         for note in self._notes:
             st_index = beat2index(note._pos_in_pattern, bpm=self._bpm, sr=self._sr)
             note_y = note.render(bpm=self._bpm, sig=self._sig)
+            ### print(st_index, note_y.shape)
             add_y(self._y, note_y, st_index)
-        # TODO
+
         return self._y
     
     
@@ -85,4 +88,19 @@ class LoopyPattern():
     def render(self):
         core_y = self._core.render()
         return self._channel(core_y)
-        
+
+
+def preview_chord(
+    key_name_list: List[str],
+    preset_name: str = 'Ultrasonic-PD-MG.wav',
+    play_now: bool = True,
+):
+    ch = LoopyPreset(os.path.join(PRESET_DIR, preset_name))
+    pattern_type = LoopyPatternCore(num_bars=1)
+    for key_name in key_name_list:
+        pattern_type.add_note(key_name, note_value=1/4, pos_in_pattern=0, generator=ch)
+    y = pattern_type.render()
+
+    if play_now:
+        preview_wave(y)
+    return y
