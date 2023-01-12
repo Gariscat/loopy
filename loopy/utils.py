@@ -14,7 +14,21 @@ for i in range(1, 8):
         f'A{i}', f'A#{i}', f'B{i}', f'C{i+1}'
     ]
 assert(len(PIANO_KEYS) == 88)
-
+# https://music.stackexchange.com/questions/23146/why-do-major-keys-contain-minor-chords
+SCALE2CHORD_TYPES = {
+    'maj': ['maj', 'min', 'min', 'maj', 'maj', 'min', 'dim',],
+    'min': ['min', 'dim', 'maj', 'min', 'min', 'maj', 'maj',]
+}
+CHORD2POS = {
+    'maj': (0, 4, 7),
+    'min': (0, 3, 7),
+    'dim': (0, 3, 6),
+    'aug': (0, 4, 8),
+}
+SCALE2STEPS = {
+    'maj': (0, 2, 4, 5, 7, 9, 11),
+    'min': (0, 2, 3, 5, 7, 8, 10)
+}
 
 def piano_id2piano_key(piano_id: int):
     # 1-88 to A1-C9
@@ -147,4 +161,26 @@ def seq_note_parser(
         ### print(key_name, note_value.as_integer_ratio(), pos_in_pattern)
         i = j
     return score
-  
+
+
+def get_chord_notes(
+    chord_id: int,  # 1, 2, 3, 4, 5, 6, 7
+    scale_root: str = 'C',
+    scale_type: str = 'maj',
+    root_area: str = '4',  # C3, D3, E3......
+    del_second: bool = False,
+    decr_octave: bool = True,
+    incr_octave: bool = False,
+):
+    assert chord_id in tuple(range(1, 8))
+    chord_type = SCALE2CHORD_TYPES[scale_type][chord_id-1]
+    delta = piano_key2midi_id(scale_root+root_area) + SCALE2STEPS[scale_type][chord_id-1]
+    midi_indices = (np.array(CHORD2POS[chord_type]) + delta).tolist()
+    if del_second:
+        midi_indices.pop(1)
+    if decr_octave:
+        midi_indices.insert(0, midi_indices[0]-12)
+    if incr_octave:
+        midi_indices.insert(-1, midi_indices[-1]+12)
+    notes = [midi_id2piano_key(id) for id in midi_indices]
+    return notes

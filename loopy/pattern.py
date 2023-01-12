@@ -4,6 +4,7 @@ from loopy.utils import parse_sig, beat2index, add_y, DEFAULT_SR, preview_wave
 from loopy.channel import LoopyChannel
 import os
 from typing import List
+from math import ceil
 
 class LoopyPatternCore():
     def __init__(self,
@@ -82,7 +83,7 @@ class LoopyPattern():
             core (LoopyPatternCore): the skeleton of this pattern.
         """
         self._global_pos = global_pos
-        self._channel = LoopyChannel
+        self._channel = channel
         self._core = core
         
     def render(self):
@@ -90,17 +91,22 @@ class LoopyPattern():
         return self._channel(core_y)
 
 
-def preview_chord(
+def preview_notes(
     key_name_list: List[str],
     preset_name: str = 'Ultrasonic-PD-MG.wav',
     play_now: bool = True,
+    as_chord: bool = False,
 ):
     ch = LoopyPreset(os.path.join(PRESET_DIR, preset_name))
-    pattern_type = LoopyPatternCore(num_bars=1)
-    for key_name in key_name_list:
-        pattern_type.add_note(key_name, note_value=1/4, pos_in_pattern=0, generator=ch)
+    if as_chord:
+        pattern_type = LoopyPatternCore(num_bars=1)
+        for key_name in key_name_list:
+            pattern_type.add_note(key_name, note_value=1/4, pos_in_pattern=0, generator=ch)
+    else:
+        pattern_type = LoopyPatternCore(bpm=100, num_bars=ceil(len(key_name_list)/4))
+        for (i, key_name) in enumerate(key_name_list):
+            pattern_type.add_note(key_name, note_value=1/4, pos_in_pattern=i/4, generator=ch)
     y = pattern_type.render()
-
     if play_now:
         preview_wave(y)
     return y

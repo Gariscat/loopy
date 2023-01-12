@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from loopy import LoopyPreset, LoopyPatternCore, PRESET_DIR, DEFAULT_SR, preview_chord, LoopySidechain
-from loopy.utils import preview_wave, seq_note_parser
+from loopy import LoopyPreset, LoopyPatternCore, PRESET_DIR, DEFAULT_SR, preview_notes, LoopySidechain
+from loopy.utils import *
 import os
 import librosa
 """
@@ -45,10 +45,28 @@ seq = [84, 84, 84, 0, 76, 76, 76, 0, 76, 76, 76, 0, 74, 74, 72, 72, 79, 79, 72, 
 notes = seq_note_parser(seq)
 print(notes)
 """
-key_name_list = ('A2', 'A3', 'C4', 'E4', 'G4')
+"""key_name_list = ('A2', 'A3', 'C4', 'E4', 'G4')
 y = preview_chord(key_name_list, play_now=False)
 
 sd = LoopySidechain(attain=0.3, interp_order=2)
 
 y = sd(y)
-preview_wave(y)
+preview_wave(y)"""
+
+y_s = []
+for del_second in (False,):
+    for decr_octave in (True,):
+        for incr_octave in (True,):
+            for chord_id in tuple(range(1, 8)):
+                notes = get_chord_notes(
+                    chord_id=chord_id,
+                    scale_root='C',
+                    scale_type='maj',
+                    del_second=del_second,
+                    decr_octave=decr_octave,
+                    incr_octave=incr_octave
+                )
+                y = preview_notes(notes, play_now=False, as_chord=True)
+                y_s.append(y)
+
+preview_wave(np.concatenate(y_s, axis=0))
