@@ -181,6 +181,6 @@ def get_chord_notes(
     if decr_octave:
         midi_indices.insert(0, midi_indices[0]-12)
     if incr_octave:
-        midi_indices.insert(-1, midi_indices[-1]+12)
+        midi_indices.insert(-1, midi_indices[0]+12)
     notes = [midi_id2piano_key(id) for id in midi_indices]
     return notes

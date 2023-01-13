@@ -93,7 +93,7 @@ class LoopyPattern():
 
 def preview_notes(
     key_name_list: List[str],
-    preset_name: str = 'Ultrasonic-PD-MG.wav',
+    preset_name: str = 'Ultrasonic-PD-Heart.wav',
     play_now: bool = True,
     as_chord: bool = False,
 ):
