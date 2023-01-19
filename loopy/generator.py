@@ -7,16 +7,16 @@ from typing import List
 import warnings
 
 
-PRESET_DIR = 'D:\\Project 2023\\loopy\\presets'
+PRESET_DIR = 'D:\\Project 2023\\presets'
 LOAD_BPM = 64
 
-def modify_preset_dir(target_dir: str):
+"""def modify_preset_dir(target_dir: str):
     print(f'Cautious: the preset folder path has been changed from {PRESET_DIR} to {target_dir}')
     PRESET_DIR = target_dir
 
 def modify_load_bpm(target_bpm: int):
     print(f'Cautious: the BPM for preset loading has been changed from {LOAD_BPM} to {target_bpm}')
-    LOAD_BPM = target_bpm
+    LOAD_BPM = target_bpm"""
 
 class LoopyPreset():
     def __init__(self,

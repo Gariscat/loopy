@@ -171,6 +171,7 @@ def get_chord_notes(
     del_second: bool = False,
     decr_octave: bool = True,
     incr_octave: bool = False,
+    decor_notes: List[str] = [],
 ):
     assert chord_id in tuple(range(1, 8))
     chord_type = SCALE2CHORD_TYPES[scale_type][chord_id-1]
@@ -182,5 +183,14 @@ def get_chord_notes(
         midi_indices.insert(0, midi_indices[0]-12)
     if incr_octave:
         midi_indices.insert(-1, midi_indices[0]+12)
+    for decor_note in decor_notes:
+        if decor_note == '7':
+            midi_indices.append(midi_indices[0]+11)
+        elif decor_note == '4':
+            midi_indices.append(midi_indices[0]+5)
+        elif decor_note == '2':
+            midi_indices.append(midi_indices[0]+2)
+    midi_indices.sort()
+    print(midi_indices)
     notes = [midi_id2piano_key(id) for id in midi_indices]
     return notes

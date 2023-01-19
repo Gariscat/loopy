@@ -55,8 +55,8 @@ preview_wave(y)"""
 
 y_s = []
 for del_second in (False,):
-    for decr_octave in (True,):
-        for incr_octave in (True,):
+    for decr_octave in (False,):
+        for incr_octave in (False,):
             """
             for chord_id in tuple(range(1, 8)):
                 notes = get_chord_notes(
@@ -71,17 +71,18 @@ for del_second in (False,):
                 y = preview_notes(notes, play_now=False, as_chord=True)
                 y_s.append(y)
             """
-            for chord_id in [4, 5, 3, 6, 2, 5, 1, 3]:
+            for chord_id in [6, 4, 1, 5]:
                 notes = get_chord_notes(
                     chord_id=chord_id,
-                    scale_root='D#',
+                    scale_root='C',
                     scale_type='maj',
                     root_area='3',
                     del_second=del_second,
                     decr_octave=decr_octave,
-                    incr_octave=incr_octave
+                    incr_octave=incr_octave,
+                    decor_notes=['2']
                 )
-                y = preview_notes(notes, play_now=False, as_chord=True)
+                y = preview_notes(notes, play_now=False, as_chord=False, preset_name='Ultrasonic-PD-FarAway.wav')
                 y_s.append(y)
 
 

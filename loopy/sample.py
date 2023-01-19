@@ -5,6 +5,13 @@ import os
 import numpy as np
 from loopy.utils import sec2hhmmss, DEFAULT_SR
 
+
+SAMPLE_DIR = 'C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs'
+
+"""def modify_sample_dir(target_dir: str):
+    print(f'Cautious: the sample folder path has been changed from {SAMPLE_DIR} to {target_dir}')
+    SAMPLE_DIR = target_dir"""
+
 class LoopySampleCore():
     def __init__(self,
         source_path: str,
@@ -25,15 +32,6 @@ class LoopySampleCore():
         
         self._name = source_path if name is None else name
 
-    def preview(self):
-        tmp_addr = 'tmp.wav'
-        sf.write(tmp_addr, self._y, self._sr)
-        try:
-            playsound(tmp_addr)
-        except:
-            print('Could not play with PyThon... Please preview it in the folder.')
-        # os.remove(tmp_addr)
-
     def render(self):
         return self._y
 
@@ -50,7 +48,7 @@ class LoopySample():
             channel_id (int): channel id that takes in the sample.
             core (LoopySampleCore): the skeleton of this sample.
         """
-        self._global_pos = global_pos
+        self.global_pos = global_pos
         self._channel_id = channel_id
         self._core = core
         
