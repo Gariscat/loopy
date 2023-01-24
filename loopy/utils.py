@@ -13,6 +13,7 @@ for i in range(1, 8):
         f'F{i}', f'F#{i}', f'G{i}', f'G#{i}',
         f'A{i}', f'A#{i}', f'B{i}', f'C{i+1}'
     ]
+del i
 assert(len(PIANO_KEYS) == 88)
 # https://music.stackexchange.com/questions/23146/why-do-major-keys-contain-minor-chords
 SCALE2CHORD_TYPES = {
@@ -194,3 +195,14 @@ def get_chord_notes(
     print(midi_indices)
     notes = [midi_id2piano_key(id) for id in midi_indices]
     return notes
+
+
+def pos2index(
+    global_pos: int,
+    local_pos: float,
+    sr: int = DEFAULT_SR,
+    sig: str = '4/4',
+    bpm: int = 128,
+):
+    beats_per_bar, _ = parse_sig(sig)
+    return int((global_pos * beats_per_bar + local_pos) * 60 * sr / bpm)

@@ -4,6 +4,7 @@ from playsound import playsound
 import os
 import numpy as np
 from loopy.utils import sec2hhmmss, DEFAULT_SR
+from loopy import LoopyChannel
 
 
 SAMPLE_DIR = 'C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs'
@@ -38,21 +39,27 @@ class LoopySampleCore():
 class LoopySample():
     def __init__(self,
         global_pos: int,
-        channel_id: int,
         core: LoopySampleCore,
+        channel: LoopyChannel = None,
+        local_pos: float = 0,
     ) -> None:
         """
         Defines a specific sample in the track.
         Args:
             global_pos (int): position in the track (measure id).
-            channel_id (int): channel id that takes in the sample.
-            core (LoopySampleCore): the skeleton of this sample.
+            core (LoopyPatternCore): the skeleton of this sample.
+            channel (LoopyChannel, optional): mixer channel takes in the pattern. Defaults to None.
+            local_pos (float, optional): in-measure position (unit: beat). Defaults to 0.
         """
-        self.global_pos = global_pos
-        self._channel_id = channel_id
+        self._global_pos = global_pos
+        self._channel = channel
         self._core = core
+        self._loacl_pos = local_pos
         
     def render(self):
-        return self._core.render()
+        if self._channel is None:
+            return self._core.render()
+        else:
+            return self._channel(self._core.render())
 
 

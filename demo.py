@@ -82,7 +82,7 @@ for del_second in (False,):
                     incr_octave=incr_octave,
                     decor_notes=['2']
                 )
-                y = preview_notes(notes, play_now=False, as_chord=False, preset_name='Ultrasonic-PD-FarAway.wav')
+                y = preview_notes(notes, play_now=False, as_chord=True, preset_name='Ultrasonic-PD-FarAway.wav')
                 y_s.append(y)
 
 

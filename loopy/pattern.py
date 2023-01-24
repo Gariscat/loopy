@@ -72,23 +72,28 @@ class LoopyPatternCore():
 class LoopyPattern():
     def __init__(self,
         global_pos: int,
-        channel: LoopyChannel,
         core: LoopyPatternCore,
+        channel: LoopyChannel = None,
+        local_pos: float = 0,
     ) -> None:
         """
         Defines a specific pattern in the track.
         Args:
             global_pos (int): position in the track (measure id).
-            channel (LoopyChannel): mixer channel takes in the pattern.
             core (LoopyPatternCore): the skeleton of this pattern.
+            channel (LoopyChannel, optional): mixer channel takes in the pattern. Defaults to None.
+            local_pos (float, optional): in-measure position (unit: beat). Defaults to 0.
         """
         self._global_pos = global_pos
         self._channel = channel
         self._core = core
+        self._loacl_pos = local_pos
         
     def render(self):
-        core_y = self._core.render()
-        return self._channel(core_y)
+        if self._channel is None:
+            return self._core.render()
+        else:
+            return self._channel(self._core.render())
 
 
 def preview_notes(
