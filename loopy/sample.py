@@ -4,7 +4,7 @@ from playsound import playsound
 import os
 import numpy as np
 from loopy.utils import sec2hhmmss, DEFAULT_SR
-from loopy import LoopyChannel
+from loopy.channel import LoopyChannel
 
 
 SAMPLE_DIR = 'C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs'
@@ -29,7 +29,7 @@ class LoopySampleCore():
         y, _ = librosa.load(source_path, sr=sr, mono=False)
         self._y = np.transpose(y, axes=(1, 0))
         self._sr = sr
-        self._length = sec2hhmmss(self._y/self._sr)
+        self._length = sec2hhmmss(self._y.shape[0]/self._sr)
         
         self._name = source_path if name is None else name
 
@@ -54,12 +54,11 @@ class LoopySample():
         self._global_pos = global_pos
         self._channel = channel
         self._core = core
-        self._loacl_pos = local_pos
+        self._local_pos = local_pos
         
     def render(self):
         if self._channel is None:
             return self._core.render()
         else:
             return self._channel(self._core.render())
-
 

@@ -1,9 +1,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from loopy import LoopyPreset, LoopyPatternCore, PRESET_DIR, DEFAULT_SR, preview_notes, LoopySidechain
+from loopy import LoopyTrack, LoopyPreset, LoopyPatternCore, PRESET_DIR, DEFAULT_SR, preview_notes, LoopySidechain
 from loopy.utils import *
 import os
 import librosa
+from loopy.template import *
 """
 lead = LoopyPreset(os.path.join(PRESET_DIR, 'Ultrasonic-LD-Stars.wav'))
 # preset.preview('A5')
@@ -53,24 +54,13 @@ sd = LoopySidechain(attain=0.3, interp_order=2)
 y = sd(y)
 preview_wave(y)"""
 
-y_s = []
+
+
+"""y_s = []
 for del_second in (False,):
     for decr_octave in (False,):
         for incr_octave in (False,):
-            """
-            for chord_id in tuple(range(1, 8)):
-                notes = get_chord_notes(
-                    chord_id=chord_id,
-                    scale_root='D',
-                    scale_type='maj',
-                    root_area='3',
-                    del_second=del_second,
-                    decr_octave=decr_octave,
-                    incr_octave=incr_octave
-                )
-                y = preview_notes(notes, play_now=False, as_chord=True)
-                y_s.append(y)
-            """
+            
             for chord_id in [6, 4, 1, 5]:
                 notes = get_chord_notes(
                     chord_id=chord_id,
@@ -86,4 +76,8 @@ for del_second in (False,):
                 y_s.append(y)
 
 
-preview_wave(np.concatenate(y_s, axis=0))
+preview_wave(np.concatenate(y_s, axis=0))"""
+
+track = LoopyTrack('test', length='00:30')
+add_kick(track)
+preview_wave(track.render())

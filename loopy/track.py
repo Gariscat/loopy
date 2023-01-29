@@ -1,7 +1,9 @@
 from loopy.utils import hhmmss2sec, parse_sig, DEFAULT_SR, pos2index, add_y
-from loopy import LoopyChannel
-from loopy import LoopyPatternCore, LoopySampleCore, LoopyPattern, LoopySample
+from loopy.channel import LoopyChannel
+from loopy.pattern import LoopyPatternCore, LoopyPattern
+from loopy.sample import LoopySampleCore, LoopySample
 import numpy as np
+from math import ceil
 
 class LoopyTrack():
     def __init__(self,
@@ -24,8 +26,9 @@ class LoopyTrack():
         self._bpm = bpm
         self._sr = sr
         self._length = length
+        self._sig = sig
         self._beats_per_bar, self._beat_value = parse_sig(sig)
-        self._tot_samples = hhmmss2sec(length) * sr
+        self._tot_samples = int(ceil(hhmmss2sec(length) * sr))
         
         self._pattern_types = set()  # set of LoopyPatternCore
         self._sample_types = set()  # set of LoopySampleCore
