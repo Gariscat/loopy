@@ -5,18 +5,22 @@ from loopy import SAMPLE_DIR
 import os
 
 ### CHANNELS
-
-kick_channel = LoopyChannel(
-    name='kick',
-    effects=[LoopyBalance(mag=-6.0)]
+DEFAULT_CHANNELS = dict()
+DEFAULT_CHANNELS['drop_kick'] = LoopyChannel(
+    name='drop_kick',
+    effects=[LoopyBalance(db=-6.0)]
 )
-clap_channel = LoopyChannel(
-    name='clap',
-    effects=[LoopyHighpass(freq=500), LoopyBalance(mag=-12.0)]
+DEFAULT_CHANNELS['drop_clap']  = LoopyChannel(
+    name='drop_clap',
+    effects=[LoopyHighpass(freq=500), LoopyBalance(db=-18.0)]
 )
-ambience_channel = LoopyChannel(
-    name='ambience',
-    effects=[LoopyHighpass(freq=500), LoopyBalance(mag=-18.0)]
+DEFAULT_CHANNELS['drop_hat']  = LoopyChannel(
+    name='drop_hat',
+    effects=[LoopyHighpass(freq=500), LoopyBalance(db=-18.0)]
+)
+DEFAULT_CHANNELS['drop_amb'] = LoopyChannel(
+    name='drop_amb',
+    effects=[LoopyHighpass(freq=500), LoopyBalance(db=-24.0)]
 )
 
 ### SAMPLES
@@ -26,7 +30,7 @@ def add_kick(
     num_bars: int = 16,
     source_path: str = 'OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav',
     sig: str = '4/4',
-    channel: LoopyChannel = kick_channel,
+    channel: LoopyChannel = DEFAULT_CHANNELS['drop_kick'],
     blank_every: int = 8,
 ):
     beats_per_bar, _ = parse_sig(sig)
@@ -46,9 +50,9 @@ def add_kick(
 def add_clap(
     track: LoopyTrack,
     num_bars: int = 16,
-    source_path: str = 'OXO Progressive House Essential Drums\\OXO - Claps\\Progressive House Essential - Claps 06.wav',
+    source_path: str = 'OXO Progressive House Essential Drums\\OXO - Claps\\Progressive House Essential - Drop Claps 02.wav',
     sig: str = '4/4',
-    channel: LoopyChannel = clap_channel,
+    channel: LoopyChannel = DEFAULT_CHANNELS['drop_clap'],
     blank_every: int = 8,
 ):
     beats_per_bar, _ = parse_sig(sig)
@@ -56,12 +60,28 @@ def add_clap(
     for global_pos in range(num_bars):
         if (global_pos + 1) % blank_every == 0:  # blank convention every 8 bars
             continue
-        for local_pos in range(beats_per_bar):
-            track.add_sample(
-                sample_type=core,
-                global_pos=global_pos,
-                local_pos=local_pos,
-                channel=channel
-            )
-    
-    
+        track.add_sample(
+            sample_type=core,
+            global_pos=global_pos,
+            local_pos=0,
+            channel=channel
+        )
+   
+def add_hat(
+    track: LoopyTrack,
+    num_bars: int = 16,
+    source_path: str = 'OXO Progressive House Essential Drums\\OXO - Cymbals\\Progressive House Essential - Hi-hat Loop 02.wav',
+    sig: str = '4/4',
+    channel: LoopyChannel = DEFAULT_CHANNELS['drop_hat'],
+    blank_every: int = 8,
+):
+    beats_per_bar, _ = parse_sig(sig)
+    core = LoopySampleCore(os.path.join(SAMPLE_DIR, source_path))
+    for global_pos in range(0, num_bars, 2):
+        track.add_sample(
+            sample_type=core,
+            global_pos=global_pos,
+            local_pos=0,
+            channel=channel
+        )
+"""""" 

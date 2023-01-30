@@ -81,6 +81,7 @@ preview_wave(np.concatenate(y_s, axis=0))"""
 track = LoopyTrack('test', length='00:15')
 add_kick(track, num_bars=8)
 add_clap(track, num_bars=8)
+add_hat(track, num_bars=8)
 
 y = track.render()
 """plt.plot(y)

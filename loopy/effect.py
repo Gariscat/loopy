@@ -113,12 +113,12 @@ class LoopySidechain(LoopyEffect):
 
 class LoopyBalance(LoopyEffect):
     def __init__(self,
-        mag: float = 1.0  # unit is dB
+        db: float = 1.0  # unit is dB
     ) -> None:
         super().__init__()
-        self.add_param('mag', mag)
+        self.add_param('db', db)
     
-        self.gain = Gain(gain_db=self._params['mag'])
+        self.gain = Gain(gain_db=self._params['db'])
     
     def forward(self, y: np.ndarray):
         return self.gain.process(y, sample_rate=DEFAULT_SR, reset=True)

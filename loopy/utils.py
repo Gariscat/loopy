@@ -118,7 +118,7 @@ def add_y(target_y: np.ndarray, source_y: np.ndarray, st_index: int):
     source_len = source_y.shape[0]
     ed_index = min(st_index + source_len, target_y.shape[0])
     # print(st_index, ed_index)
-    target_y[st_index:ed_index, :] += source_y
+    target_y[st_index:ed_index, :] += source_y[:ed_index-st_index, :]
 
 
 def seq_note_parser(
