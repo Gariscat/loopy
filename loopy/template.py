@@ -16,7 +16,7 @@ DEFAULT_CHANNELS['drop_clap']  = LoopyChannel(
 )
 DEFAULT_CHANNELS['drop_hat']  = LoopyChannel(
     name='drop_hat',
-    effects=[LoopyHighpass(freq=500), LoopyBalance(db=-18.0)]
+    effects=[LoopyHighpass(freq=1000), LoopyBalance(db=-24.0)]
 )
 DEFAULT_CHANNELS['drop_amb'] = LoopyChannel(
     name='drop_amb',
@@ -56,7 +56,7 @@ def add_clap(
     blank_every: int = 8,
 ):
     beats_per_bar, _ = parse_sig(sig)
-    core = LoopySampleCore(os.path.join(SAMPLE_DIR, source_path))
+    core = LoopySampleCore(os.path.join(SAMPLE_DIR, source_path), truncate=4)
     for global_pos in range(num_bars):
         if (global_pos + 1) % blank_every == 0:  # blank convention every 8 bars
             continue
@@ -76,8 +76,10 @@ def add_hat(
     blank_every: int = 8,
 ):
     beats_per_bar, _ = parse_sig(sig)
-    core = LoopySampleCore(os.path.join(SAMPLE_DIR, source_path))
-    for global_pos in range(0, num_bars, 2):
+    core = LoopySampleCore(os.path.join(SAMPLE_DIR, source_path), truncate=4)
+    for global_pos in range(num_bars):
+        if (global_pos + 1) % blank_every == 0:  # blank convention every 8 bars
+            continue
         track.add_sample(
             sample_type=core,
             global_pos=global_pos,

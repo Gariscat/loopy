@@ -3,7 +3,7 @@ import soundfile as sf
 from playsound import playsound
 import os
 import numpy as np
-from loopy.utils import sec2hhmmss, DEFAULT_SR
+from loopy.utils import sec2hhmmss, DEFAULT_SR, parse_sig
 from loopy.channel import LoopyChannel
 
 
@@ -16,18 +16,33 @@ SAMPLE_DIR = 'C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs'
 class LoopySampleCore():
     def __init__(self,
         source_path: str,
+        bpm: int = 128,
         sr: int = DEFAULT_SR,
+        sig: str = '4/4',
         name: str = None,
+        truncate: int = None,
     ) -> None:
         """
         Defines the skeleton of a sample.
         Args:
             source_path (str): path to the file.
+            bpm (int, optional): beats per minutes. Defaults to 128.
             sr (int, optional): sapmle rate. Defaults to 44100.
+            sig (str, optional): signature. Defaults to '4/4'.
             name (str, optional): name of the sample. Defaults to None.
+            truncate (int, optinal): use first n beats only. Defaults is None.
         """
+        self._bpm = bpm
+        self._sig = sig
+        self._beats_per_bar, self._beat_value = parse_sig(sig)
+
         y, _ = librosa.load(source_path, sr=sr, mono=False)
         self._y = np.transpose(y, axes=(1, 0))
+
+        if truncate is not None:
+            lim = int(60 * sr * truncate / bpm)
+            self._y = self._y[:lim, :]
+
         self._sr = sr
         self._length = sec2hhmmss(self._y.shape[0]/self._sr)
         
