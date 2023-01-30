@@ -1,16 +1,16 @@
 from loopy.effect import LoopyEffect
 import numpy as np
+from typing import List
 
 class LoopyChannel():
     def __init__(self,
-        channel_id,
         # sr: int = 44100,
-        name: str = None,
+        name: str,
+        effects: List[LoopyEffect] = []
     ) -> None:
-        self._channel_id = channel_id
         # self._sr = sr
         self._name = name
-        self._effects = []  # list of LoopyEffect
+        self._effects = effects  # list of LoopyEffect
         
     def add_effect(self, fx: LoopyEffect):
         self._effects.append(fx)
@@ -19,3 +19,11 @@ class LoopyChannel():
         for fx in self._effects:
             y = fx(y)
         return y
+
+
+def merge_channels(name: str, channels: List[LoopyChannel]):
+    ret = LoopyChannel(name)
+    for channel in channels:
+        for fx in channel._effects:
+            ret.add_effect(fx)
+    return ret

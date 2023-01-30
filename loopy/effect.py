@@ -1,9 +1,10 @@
 from typing import Any
 import numpy as np
 from loopy.utils import DEFAULT_SR, beat2index
-from pedalboard import HighpassFilter, LowpassFilter, Reverb
+from pedalboard import HighpassFilter, LowpassFilter, Reverb, Gain
 from math import ceil
 import matplotlib.pylab as plt
+
 
 class LoopyEffect():
     def __init__(self) -> None:
@@ -17,6 +18,7 @@ class LoopyEffect():
 
     def __str__(self) -> str:
         return self._params
+
 
 class LoopyHighpass(LoopyEffect):
     def __init__(self, freq: int) -> None:
@@ -107,3 +109,16 @@ class LoopySidechain(LoopyEffect):
             plt.close()
         
         return ret
+
+
+class LoopyBalance(LoopyEffect):
+    def __init__(self,
+        mag: float = 1.0  # unit is dB
+    ) -> None:
+        super().__init__()
+        self.add_param('mag', mag)
+    
+        self.gain = Gain(gain_db=self._params['mag'])
+    
+    def forward(self, y: np.ndarray):
+        return self.gain.process(y, sample_rate=DEFAULT_SR, reset=True)

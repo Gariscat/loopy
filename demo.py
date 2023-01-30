@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from loopy import LoopyTrack, LoopyPreset, LoopyPatternCore, PRESET_DIR, DEFAULT_SR, preview_notes, LoopySidechain
+from loopy import LoopyTrack, LoopyPreset, LoopyPatternCore, PRESET_DIR, DEFAULT_SR, preview_notes, LoopySidechain, LoopyBalance
 from loopy.utils import *
 import os
 import librosa
@@ -78,6 +78,12 @@ for del_second in (False,):
 
 preview_wave(np.concatenate(y_s, axis=0))"""
 
-track = LoopyTrack('test', length='00:30')
-add_kick(track)
-preview_wave(track.render())
+track = LoopyTrack('test', length='00:15')
+add_kick(track, num_bars=8)
+add_clap(track, num_bars=8)
+
+y = track.render()
+"""plt.plot(y)
+plt.show()
+plt.close()"""
+preview_wave(y)

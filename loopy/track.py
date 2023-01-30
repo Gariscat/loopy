@@ -121,3 +121,6 @@ class LoopyTrack():
             )
         
         return self._y
+
+    def add_channel(self, channel: LoopyChannel):
+        self._channels.append(channel)
