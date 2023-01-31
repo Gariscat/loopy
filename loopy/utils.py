@@ -159,7 +159,7 @@ def note_seq_parser(
     note_seq: List[int],
     sig: str = '4/4',
     resolution: float = 1/16,
-    max_value: float = 1/2,
+    max_value: float = 1/4,
     input_id_type: str = 'midi',
     rest_id: int = 0,
 ) -> List[Tuple[str, float, float]]:
@@ -171,12 +171,12 @@ def note_seq_parser(
         note_seq (List[int]): the sequence of integers.
         sig (str, optional): signature. Defaults to '4/4'.
         resolution (float, optional): length of the shortest note (one integer). Defaults to 1/16.
-        max_value (float, optional): maximum value of parsed note. Defaults to 1/2.
+        max_value (float, optional): maximum value of parsed note. Defaults to 1/4.
         input_id_type (str, optional): meaning of input integers (midi or piano). Defaults to 'midi'.
         rest_id (int, optional): the integer for rests. Defaults to 0.
 
     Returns:
-        List[Tuple[str, float, float]]: a list of notes
+        score: (List[Tuple[str, float, float]]): a list of notes
     """
     _, beat_value = parse_sig(sig)
 
@@ -205,7 +205,7 @@ def chord_seq_parser(
     note_seq: List[int] = None,
     sig: str = '4/4',
     resolution: float = 1/16,
-    max_value: float = 1/2,
+    max_value: float = 1/4,
     rest_id: int = 0,
     scale_root: str = 'C',
     scale_type: str = 'maj',
@@ -214,7 +214,7 @@ def chord_seq_parser(
     decr_octave: bool = True,
     incr_octave: bool = False,
     decor_map: Dict[int, List[int]] = dict(),
-) -> List[Tuple[str, float, float]]:
+):
     """
     Parse a sequence of integers into a sequence of chords, conditioning on a melody.
     Assume the sequence starts in the beginning of a pattern.
@@ -224,16 +224,17 @@ def chord_seq_parser(
         note_seq (List[int], optional): the sequence of integers for melody.
         sig (str, optional): signature. Defaults to '4/4'.
         resolution (float, optional): length of the shortest note (one integer). Defaults to 1/16.
-        max_value (float, optional): maximum value of parsed note. Defaults to 1/2.
+        max_value (float, optional): maximum value of parsed note. Defaults to 1/4.
         rest_id (int, optional): the integer for rests. Defaults to 0.
         decor_map (Dict[int, List[int]], optional): the mapping from chord index to the recipe of decoration notes. Defaults to None.
     Returns:
-        List[Tuple[str, float, float]]: a list of chord notes
+        score (List[Tuple[str, float, float]]): a list of chord notes
+        roots (List[Tuple[str, float, float]]): a list of root notes
     """
     _, beat_value = parse_sig(sig)
     if note_seq is None:
         note_seq = [-1] * len(chord_seq)
-    score = []
+    score, roots = [], []
     i, j, n = 0, 0, len(chord_seq)
     while i < n:
         while j < n and chord_seq[i] == chord_seq[j] and j-i < max_value / resolution and note_seq[j] != rest_id:
@@ -241,7 +242,7 @@ def chord_seq_parser(
         if note_seq[i] == rest_id:
             i, j = i+1, i+1
             continue
-        print(i, j, chord_seq[i:j])
+        # print(i, j, chord_seq[i:j])
         note_value = resolution * (j - i)
         pos_in_pattern = resolution * i / beat_value
         decor_notes = decor_map[chord_seq[i]] if chord_seq[i] in decor_map.keys() else []
@@ -257,11 +258,12 @@ def chord_seq_parser(
         )
         for key_name in key_names:
             score += [(key_name, note_value, pos_in_pattern)]
+        roots += [(key_names[0], note_value, pos_in_pattern)]
         # key_name = convert_func(chord_seq[i])
         # score += [(key_name, note_value, pos_in_pattern)]
         ### print(key_name, note_value.as_integer_ratio(), pos_in_pattern)
         i = j
-    return score
+    return score, roots
 
 
 def pos2index(

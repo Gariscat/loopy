@@ -101,7 +101,7 @@ assert len(melody_line) == len(chord_line)
 
 melody_notes = note_seq_parser(melody_line)
 print(melody_notes)
-chord_notes = chord_seq_parser(chord_line, melody_line)
+chord_notes, roots = chord_seq_parser(chord_line)
 print(chord_notes)
 
 lead = LoopyPreset(os.path.join(PRESET_DIR, 'Ultrasonic-LD-Forever.wav'))
