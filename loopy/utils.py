@@ -189,7 +189,7 @@ def note_seq_parser(
         while j < n and note_seq[i] == note_seq[j] and j-i < max_value / resolution:
             j += 1
         if note_seq[i] == rest_id:
-            i += 1
+            i, j = i+1, i+1
             continue
         note_value = resolution * (j - i)
         pos_in_pattern = resolution * i / beat_value
@@ -239,8 +239,9 @@ def chord_seq_parser(
         while j < n and chord_seq[i] == chord_seq[j] and j-i < max_value / resolution and note_seq[j] != rest_id:
             j += 1
         if note_seq[i] == rest_id:
-            i += 1
+            i, j = i+1, i+1
             continue
+        print(i, j, chord_seq[i:j])
         note_value = resolution * (j - i)
         pos_in_pattern = resolution * i / beat_value
         decor_notes = decor_map[chord_seq[i]] if chord_seq[i] in decor_map.keys() else []
