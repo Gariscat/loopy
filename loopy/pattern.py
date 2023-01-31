@@ -3,7 +3,7 @@ from loopy.generator import LoopyPreset, LoopyNote, PRESET_DIR
 from loopy.utils import parse_sig, beat2index, add_y, DEFAULT_SR, preview_wave
 from loopy.channel import LoopyChannel
 import os
-from typing import List
+from typing import List, Tuple
 from math import ceil
 
 class LoopyPatternCore():
@@ -57,6 +57,26 @@ class LoopyPatternCore():
         )
         self._notes.append(note)
         self._generators.add(generator)
+
+    def add_notes(self,
+        notes: List[Tuple[str, float, float]],
+        generator: LoopyPreset,
+        attack: int = 0,  # unit is ms
+        decay: int = 0,  # unit is ms
+        sustain: float = 1.0,  # between 0 and 1
+        release: int = 0,  # unit is ms
+    ):
+        for key_name, note_value, pos_in_pattern in notes:
+            self.add_note(
+                key_name=key_name,
+                note_value=note_value,
+                pos_in_pattern=pos_in_pattern,
+                generator=generator,
+                attack=attack,
+                decay=decay,
+                sustain=sustain,
+                release=release,
+            )
 
     def render(self):
         self._y = np.zeros((self._tot_samples, 2))

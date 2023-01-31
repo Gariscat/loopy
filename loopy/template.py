@@ -12,7 +12,7 @@ DEFAULT_CHANNELS['drop_kick'] = LoopyChannel(
 )
 DEFAULT_CHANNELS['drop_clap']  = LoopyChannel(
     name='drop_clap',
-    effects=[LoopyHighpass(freq=500), LoopyBalance(db=-18.0)]
+    effects=[LoopyHighpass(freq=500), LoopyBalance(db=-20.0)]
 )
 DEFAULT_CHANNELS['drop_hat']  = LoopyChannel(
     name='drop_hat',

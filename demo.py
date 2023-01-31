@@ -55,8 +55,8 @@ y = sd(y)
 preview_wave(y)"""
 
 
-
-"""y_s = []
+"""
+y_s = []
 for del_second in (False,):
     for decr_octave in (False,):
         for incr_octave in (False,):
@@ -70,13 +70,15 @@ for del_second in (False,):
                     del_second=del_second,
                     decr_octave=decr_octave,
                     incr_octave=incr_octave,
-                    decor_notes=['2']
+                    decor_notes=[2]
                 )
-                y = preview_notes(notes, play_now=False, as_chord=True, preset_name='Ultrasonic-PD-FarAway.wav')
+                y = preview_notes(notes, play_now=False, as_chord=True, preset_name='Ultrasonic-PD-MG.wav')
                 y_s.append(y)
 
 
-preview_wave(np.concatenate(y_s, axis=0))"""
+preview_wave(np.concatenate(y_s, axis=0))
+"""
+"""
 
 track = LoopyTrack('test', length='00:15')
 add_kick(track, num_bars=8)
@@ -84,9 +86,24 @@ add_clap(track, num_bars=8)
 add_hat(track, num_bars=8)
 
 y = track.render()
-"""plt.plot(y)
-plt.show()
-plt.close()"""
 preview_wave(y)
 
 
+"""
+
+melody_line = [72, 72, 72, 72, 72, 72, 72, 72, 76, 76, 76, 76, 76, 76, 76, 76, 79, 79, 79, 79, 79, 79, 79, 79, 77, 77, 77, 77, 77, 77, 77, 77, 76, 76, 76, 76, 76, 76, 76, 76, 81, 81, 81, 81, 81, 81, 81, 81, 83, 83, 83, 83, 83, 83, 83, 83, 79, 79, 79, 79, 79, 79, 79, 79, 84, 84, 84, 84, 84, 84, 84, 84, 83, 83, 83, 83, 83, 83, 83, 83, 79, 79, 79, 79, 79, 79, 79, 79, 76, 76, 76, 76, 76, 76, 76, 76, 72, 72, 72, 72, 72, 72, 72, 72, 74, 74, 74, 74, 74, 74, 74, 74, 76, 76, 76, 76, 76, 76, 76, 76, 74, 74, 74, 74, 74, 74, 74, 74]
+chord_line = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
+
+assert len(melody_line) == len(chord_line)
+
+melody_notes = note_seq_parser(melody_line)
+chord_notes = chord_seq_parser(chord_line, melody_line)
+
+lead = LoopyPreset(os.path.join(PRESET_DIR, 'Ultrasonic-LD-Forever.wav'))
+chord = LoopyPreset(os.path.join(PRESET_DIR, 'Ultrasonic-PD-MG.wav'))
+
+pattern_core = LoopyPatternCore(num_bars=8)
+pattern_core.add_notes(melody_notes, lead)
+pattern_core.add_notes(chord_notes, chord)
+
+preview_wave(pattern_core.render())
