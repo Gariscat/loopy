@@ -91,8 +91,7 @@ preview_wave(y)
 
 """
 
-melody_line = [79, 79, 0, 79, 79, 0, 79, 79, 0, 79, 79, 0, 72, 72, 67, 67, 77, 77, 0, 77, 77, 0, 76, 76, 0, 76, 76, 0, 74, 74, 72, 72, 79, 79, 0, 79, 79, 0, 79, 79, 0, 79, 79, 0, 72, 72, 84, 84, 83, 83, 0, 83, 83, 0, 79, 79, 0, 79, 79, 0, 74, 74, 76, 76, 79, 79, 0, 79, 79, 0, 79, 79, 0, 79, 79, 0, 72, 72, 67, 67, 77, 77, 77, 77, 77, 77, 76, 76, 76, 76, 76, 76, 74, 74, 72, 72, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 72, 72, 84, 84, 83, 83, 83, 83, 83, 83, 79, 
-79, 79, 79, 79, 79, 71, 71, 72, 72]
+melody_line = [79, 79, 76, 76, 72, 72, 79, 79, 76, 76, 72, 72, 79, 79, 76, 76, 77, 77, 76, 76, 72, 72, 77, 77, 76, 76, 72, 72, 77, 77, 76, 76, 76, 76, 72, 72, 67, 67, 76, 76, 72, 72, 67, 67, 76, 76, 72, 72, 74, 74, 72, 72, 67, 67, 74, 74, 72, 72, 67, 67, 74, 74, 76, 76, 79, 79, 76, 76, 72, 72, 79, 79, 76, 76, 72, 72, 79, 79, 76, 76, 77, 77, 76, 76, 72, 72, 77, 77, 76, 76, 72, 72, 77, 77, 76, 76, 76, 76, 72, 72, 67, 67, 76, 76, 72, 72, 67, 67, 76, 76, 72, 72, 74, 74, 72, 72, 67, 67, 74, 74, 72, 72, 67, 67, 74, 74, 76, 76]
 
 chord_line = [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 
 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
@@ -101,14 +100,31 @@ assert len(melody_line) == len(chord_line)
 
 melody_notes = note_seq_parser(melody_line)
 print(melody_notes)
-chord_notes, roots = chord_seq_parser(chord_line)
-print(chord_notes)
+chord_notes, bass_notes = chord_seq_parser(chord_line)
+print(bass_notes)
 
 lead = LoopyPreset(os.path.join(PRESET_DIR, 'Ultrasonic-LD-Forever.wav'))
 chord = LoopyPreset(os.path.join(PRESET_DIR, 'Ultrasonic-PD-FarAway.wav'))
+bass = LoopyPreset(os.path.join(PRESET_DIR, 'Ultrasonic-BS-Home.wav'))
 
-pattern_core = LoopyPatternCore(num_bars=8)
-pattern_core.add_notes(melody_notes, lead)
-pattern_core.add_notes(chord_notes, chord)
+ld_core = LoopyPatternCore(num_bars=8)
+ld_core.add_notes(melody_notes, lead)
 
-preview_wave(pattern_core.render())
+cb_core = LoopyPatternCore(num_bars=8)
+
+cb_core.add_notes(chord_notes, chord)
+cb_core.add_notes(bass_notes, bass)
+
+
+sidechain = LoopyChannel(name='sidechain', effects=[LoopyBalance(-6.0), LoopySidechain()])
+
+track = LoopyTrack(name='exp', length='00:15')
+
+add_kick(track=track, num_bars=8)
+add_clap(track=track, num_bars=8)
+add_hat(track=track, num_bars=8)
+
+track.add_pattern(ld_core, 0, 0, sidechain)
+track.add_pattern(cb_core, 0, 0, sidechain)
+
+preview_wave(track.render())

@@ -30,6 +30,11 @@ SCALE2STEPS = {
     'min': (0, 2, 3, 5, 7, 8, 10)
 }
 
+def octave_shift(key_name: str, delta: int):
+    target_area = int(key_name[-1]) + delta
+    assert target_area > 0
+    return key_name[0] + str(target_area)
+
 def piano_id2piano_key(piano_id: int):
     # 1-88 to A1-C9
     return PIANO_KEYS[piano_id-1]

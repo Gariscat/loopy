@@ -107,7 +107,7 @@ class LoopyPattern():
         self._global_pos = global_pos
         self._channel = channel
         self._core = core
-        self._loacl_pos = local_pos
+        self._local_pos = local_pos
         
     def render(self):
         if self._channel is None:

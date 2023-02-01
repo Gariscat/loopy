@@ -34,7 +34,7 @@ class LoopyTrack():
         self._sample_types = set()  # set of LoopySampleCore
         self._patterns = []  # list of LoopyPattern
         self._samples = []  # list of LoopySample
-        self._channels = []  # list of LoopyChannel
+        self._channels = set()  # set of LoopyChannel
     
     def fit_pattern(self, pattern_type: LoopyPatternCore):
         """
@@ -46,7 +46,7 @@ class LoopyTrack():
         ret = True
         ret &= (self._sr == pattern_type._sr)
         ret &= (self._beats_per_bar == pattern_type._beats_per_bar)
-        ret &= (self._beat == pattern_type._beat)
+        ret &= (self._beat_value == pattern_type._beat_value)
         return ret
 
     def fit_sample(self, sample_type: LoopySampleCore):
@@ -73,6 +73,7 @@ class LoopyTrack():
         )
 
         self._patterns.append(pattern)
+        self._channels.add(channel)
     
     def add_sample(self, sample_type: LoopySampleCore, global_pos: int, local_pos: float, channel: LoopyChannel = None):
         if not self.fit_sample(sample_type):
@@ -88,6 +89,7 @@ class LoopyTrack():
         )
 
         self._samples.append(sample)
+        self._channels.add(channel)
         
     def render(self):
         self._y = np.zeros((self._tot_samples, 2))
