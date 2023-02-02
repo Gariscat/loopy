@@ -1,13 +1,12 @@
 import librosa
 import soundfile as sf
-from loopy.utils import preview_wave, PIANO_KEYS, DEFAULT_SR
+from loopy.utils import preview_wave, PIANO_KEYS, DEFAULT_SR, PRESET_DIR
 import os
 import numpy as np
 from typing import List
 import warnings
 
 
-PRESET_DIR = 'D:\\Project 2023\\presets'
 LOAD_BPM = 64
 
 """def modify_preset_dir(target_dir: str):

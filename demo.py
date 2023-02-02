@@ -6,7 +6,7 @@ import os
 import librosa
 from loopy.template import *
 """
-lead = LoopyPreset(os.path.join(PRESET_DIR, 'Ultrasonic-LD-Stars.wav'))
+lead = LoopyPreset(find_preset('Ultrasonic-LD-Stars.wav'))
 # preset.preview('A5')
 
 pattern_type = LoopyPatternCore(num_bars=4)
@@ -103,9 +103,10 @@ print(melody_notes)
 chord_notes, bass_notes = chord_seq_parser(chord_line)
 print(bass_notes)
 
-lead = LoopyPreset(os.path.join(PRESET_DIR, 'Ultrasonic-LD-Forever.wav'))
-chord = LoopyPreset(os.path.join(PRESET_DIR, 'Ultrasonic-PD-FarAway.wav'))
-bass = LoopyPreset(os.path.join(PRESET_DIR, 'Ultrasonic-BS-Home.wav'))
+lead = LoopyPreset(find_preset('Ultrasonic-LD-Forever.wav'))
+
+chord = LoopyPreset(find_preset('Ultrasonic-PD-FarAway.wav'))
+bass = LoopyPreset(find_preset('Ultrasonic-BS-Home.wav'))
 
 ld_core = LoopyPatternCore(num_bars=8)
 ld_core.add_notes(melody_notes, lead)
@@ -116,7 +117,7 @@ cb_core.add_notes(chord_notes, chord)
 cb_core.add_notes(bass_notes, bass)
 
 
-sidechain = LoopyChannel(name='sidechain', effects=[LoopyBalance(-6.0), LoopySidechain()])
+sidechain = LoopyChannel(name='sidechain', effects=[LoopyBalance(-6.0), LoopySidechain(attain=1/3)])
 
 track = LoopyTrack(name='exp', length='00:15')
 

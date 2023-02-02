@@ -1,8 +1,9 @@
 from loopy import LoopyTrack, LoopySampleCore, LoopyPatternCore, LoopySample, LoopyPattern, LoopyChannel
 from loopy.effect import *
-from loopy.utils import DEFAULT_SR, parse_sig
+from loopy.utils import *
 from loopy import SAMPLE_DIR
 import os
+from typing import List
 
 ### CHANNELS
 DEFAULT_CHANNELS = dict()
@@ -22,8 +23,6 @@ DEFAULT_CHANNELS['drop_amb'] = LoopyChannel(
     name='drop_amb',
     effects=[LoopyHighpass(freq=500), LoopyBalance(db=-24.0)]
 )
-
-### SAMPLES
 
 def add_kick(
     track: LoopyTrack,
@@ -86,4 +85,38 @@ def add_hat(
             local_pos=0,
             channel=channel
         )
-"""""" 
+### SAMPLES
+
+def prog_house(
+    melody_line: List[int],
+    chord_line: List[int],
+    style: str = 'Tobu',
+    name: str = 'exp',
+    bpm: int = 128,
+) -> LoopyTrack:
+    melody_notes = note_seq_parser(melody_line)
+    chord_notes, bass_notes = chord_seq_parser(chord_line)
+    track = LoopyTrack(name=name, bpm=bpm, length='00:15')
+
+    if style == 'Tobu':
+        lead_names = ['Forever', 'Stars', 'SweetDivine', 'Blue']
+        chord_names = ['Massive', 'Supersaws']
+        bass_names = ['Home', 'Perfect']
+        sub_names = ['SUBBASS']
+    """    
+    elif style == 'MatisseSadko':
+        lead_names = ['Forever', 'Stars', 'SweetDivine', 'Blue']
+        chord_names = ['Massive', 'Supersaws']
+        bass_names = ['Home', 'Perfect']
+        sub_names = ['SUBBASS']
+    elif style == 'Dubvision':
+        lead_names = ['Forever', 'Stars', 'SweetDivine', 'Blue']
+        chord_names = ['Massive', 'Supersaws']
+        bass_names = ['Home', 'Perfect']
+        sub_names = ['SUBBASS']
+    elif style == 'MartinGarrix':
+        lead_names = ['Forever', 'Stars', 'SweetDivine', 'Blue']
+        chord_names = ['Massive', 'Supersaws']
+        bass_names = ['Home', 'Perfect']
+        sub_names = ['SUBBASS']
+    """
