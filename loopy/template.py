@@ -95,10 +95,12 @@ def prog_house(
     bpm: int = 128,
     preview: bool = False,
     chord_sync: bool = False,
+    scale_root: str = 'C',
+    scale_type: str = 'maj',
 ) -> LoopyTrack:
     assert len(melody_line) == len(chord_line)
     melody_notes = note_seq_parser(melody_line)
-    chord_notes, bass_notes = chord_seq_parser(chord_line, melody_line if chord_sync else None)
+    chord_notes, bass_notes = chord_seq_parser(chord_line, melody_line if chord_sync else None, scale_root=scale_root, scale_type=scale_type)
     sub_notes = [(octave_shift(k, -1), _, __) for k, _, __ in bass_notes]
     
     track = LoopyTrack(name=name, bpm=bpm, length='00:15')
@@ -108,17 +110,20 @@ def prog_house(
         chord_names = ['Massive', 'Supersaws']
         bass_names = ['Home', 'Perfect']
         sub_names = ['SUBBASS']
-    """    
+        balance = {'lead': -9, 'chord': -15, 'bass': -6, 'sub': -9}
+    elif style == 'Dubvision':
+        lead_names = ['Forever', 'Follow', 'Fire']
+        chord_names = ['Massive', 'MG']
+        bass_names = ['Home']
+        sub_names = ['SUBBASS']
+        balance = {'lead': -9, 'chord': -12, 'bass': -12, 'sub': -3}
+    """
     elif style == 'MatisseSadko':
         lead_names = ['Forever', 'Stars', 'SweetDivine', 'Blue']
         chord_names = ['Massive', 'Supersaws']
         bass_names = ['Home', 'Perfect']
         sub_names = ['SUBBASS']
-    elif style == 'Dubvision':
-        lead_names = ['Forever', 'Stars', 'SweetDivine', 'Blue']
-        chord_names = ['Massive', 'Supersaws']
-        bass_names = ['Home', 'Perfect']
-        sub_names = ['SUBBASS']
+    
     elif style == 'MartinGarrix':
         lead_names = ['Forever', 'Stars', 'SweetDivine', 'Blue']
         chord_names = ['Massive', 'Supersaws']
@@ -130,6 +135,7 @@ def prog_house(
     ch_core = LoopyPatternCore(num_bars=8)
     bs_core = LoopyPatternCore(num_bars=8)
     sb_core = LoopyPatternCore(num_bars=8)
+    
 
     for i, lead_name in enumerate(lead_names):
         generator = LoopyPreset(
@@ -164,7 +170,7 @@ def prog_house(
         name='LEAD',
         effects=[
             LoopyHighpass(500),
-            LoopyBalance(-9.0),
+            LoopyBalance(balance['lead']),
             LoopySidechain(attain=1/2, interp_order=2, mag=0.5),
             LoopyReverb(wet_level=0.5),
         ]
@@ -174,7 +180,7 @@ def prog_house(
         name='CHORD',
         effects=[
             LoopyHighpass(200),
-            LoopyBalance(-15.0),
+            LoopyBalance(balance['chord']),
             LoopySidechain(attain=1/2, interp_order=2, mag=0.9),
         ]
     )
@@ -184,7 +190,7 @@ def prog_house(
         effects=[
             LoopyHighpass(200),
             LoopyLowpass(5000),
-            LoopyBalance(-6.0),
+            LoopyBalance(balance['bass']),
             LoopySidechain(attain=1/2, interp_order=2, mag=0.9),
         ]
     )
@@ -194,7 +200,7 @@ def prog_house(
         effects=[
             LoopyHighpass(30),
             LoopyLowpass(100),
-            LoopyBalance(-9.0),
+            LoopyBalance(balance['sub']),
             LoopySidechain(attain=1/2, interp_order=2, mag=1),
         ]
     )

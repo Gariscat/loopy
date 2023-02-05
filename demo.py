@@ -91,10 +91,30 @@ preview_wave(y)
 
 """
 
-melody_line = '76 76 76 00 76 76 74 74 76 76 81 81 72 72 74 74 74 00 67 67 72 72 74 74 00 00 67 67 72 72 74 74 76 76 76 76 76 76 74 74 76 76 79 79 67 67 72 72 72 00 72 72 71 71 72 72 72 00 72 72 71 71 67 67 76 76 76 00 76 76 74 74 76 76 81 81 72 72 74 74 74 00 67 67 72 72 74 74 74 00 67 67 72 72 74 74 76 76 76 76 76 76 74 74 76 76 84 84 83 83 84 84 84 00 84 84 83 83 84 84 84 00 84 84 83 83 79 79 '
-melody_line = [int(x) for x in melody_line.split()]
-chord_line = '01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 05 05 05 05 05 05 05 05 05 05 05 05 05 05 05 05 06 06 06 06 06 06 06 06 06 06 06 06 06 06 06 06 04 04 04 04 04 04 04 04 04 04 04 04 04 04 04 04 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 05 05 05 05 05 05 05 05 05 05 05 05 05 05 05 05 06 06 06 06 06 06 06 06 06 06 06 06 06 06 06 06 04 04 04 04 04 04 04 04 04 04 04 04 04 04 04 04 '
-chord_line = [int(x) for x in chord_line.split()]
+melody_line = '84 84 84 84 00 00 86 86 86 86 00 00 00 00 86 00 86 86 84 00 84 84 81 81 81 81 00 00 00 00 89 00 89 89 88 00 88 88 86 86 86 86 00 00 00 00 86 00 86 86 84 84 86 86 81 81 81 81 00 00 00 00 00 00'
+melody_line = [int(x)-11 if int(x) else 0 for x in melody_line.split()] * 2
+chord_line = []
 
-prog_house(melody_line, chord_line, chord_sync=True, preview=True)
+chord_line += [6] * 16
+chord_line += [4] * 8
+chord_line += [1] * 8
+chord_line += [5] * 8
+chord_line += [6] * 8
+chord_line += [4] * 8
+chord_line += [5] * 8
 
+chord_line += [6] * 16
+chord_line += [4] * 8
+chord_line += [1] * 8
+chord_line += [5] * 8
+chord_line += [6] * 8
+chord_line += [4] * 8
+chord_line += [5] * 8
+
+
+prog_track = prog_house(melody_line, chord_line, chord_sync=False, scale_root='F#', scale_type='maj', preview=False, style='Tobu')
+
+# print(prog_track._samples, prog_track._patterns)
+notes = prog_track._pattern_types.pop()._notes
+for note in notes:
+    print(note)

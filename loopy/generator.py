@@ -156,3 +156,7 @@ class LoopyNote():
             release=self._release,
             bpm=bpm, sig=sig,
         )
+
+    def __str__(self):
+        note_info_short = {'key_name': self._key_name, 'note_value': self._note_value, 'pos_in_pattern': self._pos_in_pattern}
+        return str(note_info_short)

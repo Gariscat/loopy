@@ -1,0 +1,2 @@
+1. accurate chord parser
+2. rule-based melody generator

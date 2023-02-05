@@ -4,6 +4,8 @@ from loopy.pattern import LoopyPatternCore, LoopyPattern
 from loopy.sample import LoopySampleCore, LoopySample
 import numpy as np
 from math import ceil
+import os
+import soundfile as sf
 
 class LoopyTrack():
     def __init__(self,
@@ -129,3 +131,7 @@ class LoopyTrack():
 
     def add_channel(self, channel: LoopyChannel):
         self._channels.append(channel)
+
+    def save(self, target_dir: str = os.getcwd()):
+        target_path = os.path.join(target_dir, self._name+'.wav')
+        sf.write(target_path, self.render(), self._sr)
