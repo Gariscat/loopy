@@ -6,7 +6,7 @@ class LoopyChannel():
     def __init__(self,
         # sr: int = 44100,
         name: str,
-        effects: List[LoopyEffect] = []
+        effects: List[LoopyEffect] = [],
     ) -> None:
         # self._sr = sr
         self._name = name

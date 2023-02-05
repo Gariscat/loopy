@@ -35,6 +35,8 @@ class LoopyTrack():
         self._patterns = []  # list of LoopyPattern
         self._samples = []  # list of LoopySample
         self._channels = set()  # set of LoopyChannel
+        self._generators = dict()
+        self._master_channel = LoopyChannel(name='master')
     
     def fit_pattern(self, pattern_type: LoopyPatternCore):
         """
@@ -74,6 +76,7 @@ class LoopyTrack():
 
         self._patterns.append(pattern)
         self._channels.add(channel)
+        self._generators.update(pattern_type._generators)
     
     def add_sample(self, sample_type: LoopySampleCore, global_pos: int, local_pos: float, channel: LoopyChannel = None):
         if not self.fit_sample(sample_type):

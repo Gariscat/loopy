@@ -41,6 +41,8 @@ def octave_shift(key_name: Union[str, List[str]], delta: int):
         ret = []
         for x in key_name:
             target_area = int(x[-1]) + delta
+            if target_area <= 0:
+                print(x[-1], target_area)
             assert target_area > 0
             ret += [x[0] + str(target_area)]
         return ret

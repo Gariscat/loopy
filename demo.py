@@ -96,7 +96,9 @@ melody_line = [79, 79, 76, 76, 72, 72, 79, 79, 76, 76, 72, 72, 79, 79, 76, 76, 7
 chord_line = [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 
 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
 
-assert len(melody_line) == len(chord_line)
+prog_house(melody_line, chord_line, preview=True)
+
+"""assert len(melody_line) == len(chord_line)
 
 melody_notes = note_seq_parser(melody_line)
 print(melody_notes)
@@ -128,4 +130,4 @@ add_hat(track=track, num_bars=8)
 track.add_pattern(ld_core, 0, 0, sidechain)
 track.add_pattern(cb_core, 0, 0, sidechain)
 
-preview_wave(track.render())
+preview_wave(track.render())"""

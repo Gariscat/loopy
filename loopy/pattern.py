@@ -30,7 +30,7 @@ class LoopyPatternCore():
         self._sr = sr
         self._sig = sig
         self._beats_per_bar, self._beat_value = parse_sig(sig)
-        self._generators = set()
+        self._generators = dict()
         self._notes = []
         self._tot_samples = int(num_bars * self._beats_per_bar * 60 * sr / bpm)
         self._resolution = resolution
@@ -56,7 +56,7 @@ class LoopyPatternCore():
             release=release,
         )
         self._notes.append(note)
-        self._generators.add(generator)
+        self._generators[generator._name] = generator
 
     def add_notes(self,
         notes: List[Tuple[str, float, float]],

@@ -74,17 +74,20 @@ class LoopySidechain(LoopyEffect):
         length: float = 1.0,  # unit is beat
         attain: float = 0.125,  # unit is beat
         interp_order: float = 1,
+        mag: float = 1,
     ) -> None:
         super().__init__()
         self.add_param('length', length)
         self.add_param('attain', attain)
         self.add_param('interp_order', interp_order)
+        self.add_param('mag', mag)
 
     def forward(self,
         y: np.ndarray,
         bpm: int = 128,
         sr: int = DEFAULT_SR,
         debug: bool = False,
+        
     ):
         # construct envelope (unit) for one cycle
         envelope_unit = np.ones(beat2index(self._params['length'], bpm, sr), dtype=float)
@@ -108,7 +111,7 @@ class LoopySidechain(LoopyEffect):
             plt.show()
             plt.close()
         
-        return ret
+        return ret * self._params['mag'] + y * (1 - self._params['mag'])
 
 
 class LoopyBalance(LoopyEffect):

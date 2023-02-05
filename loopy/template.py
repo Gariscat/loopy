@@ -1,4 +1,4 @@
-from loopy import LoopyTrack, LoopySampleCore, LoopyPatternCore, LoopySample, LoopyPattern, LoopyChannel
+from loopy import LoopyTrack, LoopySampleCore, LoopyPatternCore, LoopySample, LoopyPattern, LoopyChannel, LoopyPreset
 from loopy.effect import *
 from loopy.utils import *
 from loopy import SAMPLE_DIR
@@ -93,13 +93,17 @@ def prog_house(
     style: str = 'Tobu',
     name: str = 'exp',
     bpm: int = 128,
+    preview: bool = False,
 ) -> LoopyTrack:
+    assert len(melody_line) == len(chord_line)
     melody_notes = note_seq_parser(melody_line)
     chord_notes, bass_notes = chord_seq_parser(chord_line)
+    sub_notes = [(octave_shift(k, -1), _, __) for k, _, __ in bass_notes]
+    
     track = LoopyTrack(name=name, bpm=bpm, length='00:15')
 
     if style == 'Tobu':
-        lead_names = ['Forever', 'Stars', 'SweetDivine', 'Blue']
+        lead_names = ['Forever', 'Stars', 'Blue']
         chord_names = ['Massive', 'Supersaws']
         bass_names = ['Home', 'Perfect']
         sub_names = ['SUBBASS']
@@ -120,3 +124,90 @@ def prog_house(
         bass_names = ['Home', 'Perfect']
         sub_names = ['SUBBASS']
     """
+
+    ld_core = LoopyPatternCore(num_bars=8)
+    ch_core = LoopyPatternCore(num_bars=8)
+    bs_core = LoopyPatternCore(num_bars=8)
+    sb_core = LoopyPatternCore(num_bars=8)
+
+    for i, lead_name in enumerate(lead_names):
+        generator = LoopyPreset(
+            source_path=find_preset(f'Ultrasonic-LD-{lead_name}.wav'),
+            name=f'LEAD-{i}',
+        )
+        ld_core.add_notes(melody_notes, generator)
+
+    for i, chord_name in enumerate(chord_names):
+        generator = LoopyPreset(
+            source_path=find_preset(f'Ultrasonic-PD-{chord_name}.wav'),
+            name=f'CHORD-{i}',
+        )
+        ch_core.add_notes(chord_notes, generator)
+
+    for i, bass_name in enumerate(bass_names):
+        generator = LoopyPreset(
+            source_path=find_preset(f'Ultrasonic-BS-{bass_name}.wav'),
+            name=f'BASS-{i}',
+        )
+        bs_core.add_notes(bass_notes, generator)
+
+    for i, sub_name in enumerate(sub_names):
+        generator = LoopyPreset(
+            source_path=find_preset(f'Ultrasonic-BS-{sub_name}.wav'),
+            name=f'SUB-{i}',
+        )
+        sb_core.add_notes(sub_notes, generator)
+    
+
+    lead_channel = LoopyChannel(
+        name='LEAD',
+        effects=[
+            LoopyHighpass(500),
+            LoopyBalance(-9.0),
+            LoopySidechain(attain=2/5, interp_order=2, mag=0.5),
+            LoopyReverb(wet_level=0.5),
+        ]
+    )
+
+    chord_channel = LoopyChannel(
+        name='CHORD',
+        effects=[
+            LoopyHighpass(200),
+            LoopyBalance(-15.0),
+            LoopySidechain(attain=2/5, interp_order=2, mag=0.9),
+        ]
+    )
+
+    bass_channel = LoopyChannel(
+        name='BASS',
+        effects=[
+            LoopyHighpass(200),
+            LoopyLowpass(2000),
+            LoopyBalance(-6.0),
+            LoopySidechain(attain=2/5, interp_order=2, mag=0.9),
+        ]
+    )
+
+    sub_channel = LoopyChannel(
+        name='SUB',
+        effects=[
+            LoopyHighpass(30),
+            LoopyLowpass(100),
+            LoopyBalance(-9.0),
+            LoopySidechain(attain=2/5, interp_order=2, mag=1),
+        ]
+    )
+
+    track.add_pattern(ld_core, 0, 0, lead_channel)
+    track.add_pattern(ch_core, 0, 0, chord_channel)
+    track.add_pattern(bs_core, 0, 0, bass_channel)
+    track.add_pattern(sb_core, 0, 0, sub_channel)
+
+    add_kick(track=track, num_bars=8)
+    add_clap(track=track, num_bars=8)
+    add_hat(track=track, num_bars=8)
+
+    if preview:
+        preview_wave(track.render())
+
+    return track
