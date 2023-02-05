@@ -91,43 +91,10 @@ preview_wave(y)
 
 """
 
-melody_line = [79, 79, 76, 76, 72, 72, 79, 79, 76, 76, 72, 72, 79, 79, 76, 76, 77, 77, 76, 76, 72, 72, 77, 77, 76, 76, 72, 72, 77, 77, 76, 76, 76, 76, 72, 72, 67, 67, 76, 76, 72, 72, 67, 67, 76, 76, 72, 72, 74, 74, 72, 72, 67, 67, 74, 74, 72, 72, 67, 67, 74, 74, 76, 76, 79, 79, 76, 76, 72, 72, 79, 79, 76, 76, 72, 72, 79, 79, 76, 76, 77, 77, 76, 76, 72, 72, 77, 77, 76, 76, 72, 72, 77, 77, 76, 76, 76, 76, 72, 72, 67, 67, 76, 76, 72, 72, 67, 67, 76, 76, 72, 72, 74, 74, 72, 72, 67, 67, 74, 74, 72, 72, 67, 67, 74, 74, 76, 76]
+melody_line = '76 76 76 00 76 76 74 74 76 76 81 81 72 72 74 74 74 00 67 67 72 72 74 74 00 00 67 67 72 72 74 74 76 76 76 76 76 76 74 74 76 76 79 79 67 67 72 72 72 00 72 72 71 71 72 72 72 00 72 72 71 71 67 67 76 76 76 00 76 76 74 74 76 76 81 81 72 72 74 74 74 00 67 67 72 72 74 74 74 00 67 67 72 72 74 74 76 76 76 76 76 76 74 74 76 76 84 84 83 83 84 84 84 00 84 84 83 83 84 84 84 00 84 84 83 83 79 79 '
+melody_line = [int(x) for x in melody_line.split()]
+chord_line = '01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 05 05 05 05 05 05 05 05 05 05 05 05 05 05 05 05 06 06 06 06 06 06 06 06 06 06 06 06 06 06 06 06 04 04 04 04 04 04 04 04 04 04 04 04 04 04 04 04 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 05 05 05 05 05 05 05 05 05 05 05 05 05 05 05 05 06 06 06 06 06 06 06 06 06 06 06 06 06 06 06 06 04 04 04 04 04 04 04 04 04 04 04 04 04 04 04 04 '
+chord_line = [int(x) for x in chord_line.split()]
 
-chord_line = [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 
-5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
+prog_house(melody_line, chord_line, chord_sync=True, preview=True)
 
-prog_house(melody_line, chord_line, preview=True)
-
-"""assert len(melody_line) == len(chord_line)
-
-melody_notes = note_seq_parser(melody_line)
-print(melody_notes)
-chord_notes, bass_notes = chord_seq_parser(chord_line)
-print(bass_notes)
-
-lead = LoopyPreset(find_preset('Ultrasonic-LD-Forever.wav'))
-
-chord = LoopyPreset(find_preset('Ultrasonic-PD-FarAway.wav'))
-bass = LoopyPreset(find_preset('Ultrasonic-BS-Home.wav'))
-
-ld_core = LoopyPatternCore(num_bars=8)
-ld_core.add_notes(melody_notes, lead)
-
-cb_core = LoopyPatternCore(num_bars=8)
-
-cb_core.add_notes(chord_notes, chord)
-cb_core.add_notes(bass_notes, bass)
-
-
-sidechain = LoopyChannel(name='sidechain', effects=[LoopyBalance(-6.0), LoopySidechain(attain=1/3)])
-
-track = LoopyTrack(name='exp', length='00:15')
-
-add_kick(track=track, num_bars=8)
-add_clap(track=track, num_bars=8)
-add_hat(track=track, num_bars=8)
-
-track.add_pattern(ld_core, 0, 0, sidechain)
-track.add_pattern(cb_core, 0, 0, sidechain)
-
-preview_wave(track.render())"""

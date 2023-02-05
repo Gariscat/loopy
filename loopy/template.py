@@ -13,11 +13,11 @@ DEFAULT_CHANNELS['drop_kick'] = LoopyChannel(
 )
 DEFAULT_CHANNELS['drop_clap']  = LoopyChannel(
     name='drop_clap',
-    effects=[LoopyHighpass(freq=500), LoopyBalance(db=-20.0)]
+    effects=[LoopyHighpass(freq=500), LoopyBalance(db=-21.0)]
 )
 DEFAULT_CHANNELS['drop_hat']  = LoopyChannel(
     name='drop_hat',
-    effects=[LoopyHighpass(freq=1000), LoopyBalance(db=-24.0)]
+    effects=[LoopyHighpass(freq=1000), LoopyBalance(db=-21.0)]
 )
 DEFAULT_CHANNELS['drop_amb'] = LoopyChannel(
     name='drop_amb',
@@ -94,10 +94,11 @@ def prog_house(
     name: str = 'exp',
     bpm: int = 128,
     preview: bool = False,
+    chord_sync: bool = False,
 ) -> LoopyTrack:
     assert len(melody_line) == len(chord_line)
     melody_notes = note_seq_parser(melody_line)
-    chord_notes, bass_notes = chord_seq_parser(chord_line)
+    chord_notes, bass_notes = chord_seq_parser(chord_line, melody_line if chord_sync else None)
     sub_notes = [(octave_shift(k, -1), _, __) for k, _, __ in bass_notes]
     
     track = LoopyTrack(name=name, bpm=bpm, length='00:15')
@@ -164,7 +165,7 @@ def prog_house(
         effects=[
             LoopyHighpass(500),
             LoopyBalance(-9.0),
-            LoopySidechain(attain=2/5, interp_order=2, mag=0.5),
+            LoopySidechain(attain=1/2, interp_order=2, mag=0.5),
             LoopyReverb(wet_level=0.5),
         ]
     )
@@ -174,7 +175,7 @@ def prog_house(
         effects=[
             LoopyHighpass(200),
             LoopyBalance(-15.0),
-            LoopySidechain(attain=2/5, interp_order=2, mag=0.9),
+            LoopySidechain(attain=1/2, interp_order=2, mag=0.9),
         ]
     )
 
@@ -182,9 +183,9 @@ def prog_house(
         name='BASS',
         effects=[
             LoopyHighpass(200),
-            LoopyLowpass(2000),
+            LoopyLowpass(5000),
             LoopyBalance(-6.0),
-            LoopySidechain(attain=2/5, interp_order=2, mag=0.9),
+            LoopySidechain(attain=1/2, interp_order=2, mag=0.9),
         ]
     )
 
@@ -194,7 +195,7 @@ def prog_house(
             LoopyHighpass(30),
             LoopyLowpass(100),
             LoopyBalance(-9.0),
-            LoopySidechain(attain=2/5, interp_order=2, mag=1),
+            LoopySidechain(attain=1/2, interp_order=2, mag=1),
         ]
     )
 
