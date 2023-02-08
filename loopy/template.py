@@ -110,7 +110,7 @@ def prog_house(
         chord_names = ['Massive', 'Supersaws']
         bass_names = ['Home', 'Perfect']
         sub_names = ['SUBBASS']
-        balance = {'lead': -9, 'chord': -15, 'bass': -6, 'sub': -9}
+        balance = {'lead': -9, 'chord': -15, 'bass': -9, 'sub': -6}
     elif style == 'Dubvision':
         lead_names = ['Forever', 'Follow', 'Fire']
         chord_names = ['Massive', 'MG']
@@ -204,11 +204,11 @@ def prog_house(
             LoopySidechain(attain=1/2, interp_order=2, mag=1),
         ]
     )
-
-    track.add_pattern(ld_core, 0, 0, lead_channel)
-    track.add_pattern(ch_core, 0, 0, chord_channel)
-    track.add_pattern(bs_core, 0, 0, bass_channel)
-    track.add_pattern(sb_core, 0, 0, sub_channel)
+    cores = (ld_core, ch_core, bs_core, sb_core)
+    channels = (lead_channel, chord_channel, bass_channel, sub_channel)
+    
+    for core, channel in zip(cores, channels):
+        track.add_pattern(core, 0, 0, channel)
 
     add_kick(track=track, num_bars=8)
     add_clap(track=track, num_bars=8)

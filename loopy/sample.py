@@ -35,6 +35,8 @@ class LoopySampleCore():
         self._bpm = bpm
         self._sig = sig
         self._beats_per_bar, self._beat_value = parse_sig(sig)
+        self._source_path = source_path
+        self._truncate = truncate
 
         y, _ = librosa.load(source_path, sr=sr, mono=False)
         self._y = np.transpose(y, axes=(1, 0))
@@ -50,6 +52,16 @@ class LoopySampleCore():
 
     def render(self):
         return self._y
+
+    def __dict__(self):
+        return {
+            'bpm': self._bpm,
+            'sr': self._sr,
+            'sig': self._sig,
+            'source_path': self._source_path,
+            'name': self._name,
+            'truncate': self._truncate,
+        }
 
 class LoopySample():
     def __init__(self,
@@ -77,3 +89,10 @@ class LoopySample():
         else:
             return self._channel(self._core.render())
 
+    def __dict__(self):
+        return {
+            'global_pos': self._global_pos,
+            'channel': self._channel.__dict__(),
+            'core': self._core.__dict__(),
+            'local_pos': self._local_pos,
+        }

@@ -6,6 +6,7 @@ import numpy as np
 from math import ceil
 import os
 import soundfile as sf
+import json
 
 class LoopyTrack():
     def __init__(self,
@@ -30,15 +31,15 @@ class LoopyTrack():
         self._length = length
         self._sig = sig
         self._beats_per_bar, self._beat_value = parse_sig(sig)
-        self._tot_samples = int(ceil(hhmmss2sec(length) * sr))
+        self._tot_samples = int(hhmmss2sec(length) * sr)
         
         self._pattern_types = set()  # set of LoopyPatternCore
         self._sample_types = set()  # set of LoopySampleCore
         self._patterns = []  # list of LoopyPattern
         self._samples = []  # list of LoopySample
         self._channels = set()  # set of LoopyChannel
-        self._generators = dict()
-        self._master_channel = LoopyChannel(name='master')
+        self._generators = set()
+        # self._master_channel = LoopyChannel(name='master')
     
     def fit_pattern(self, pattern_type: LoopyPatternCore):
         """
@@ -132,6 +133,23 @@ class LoopyTrack():
     def add_channel(self, channel: LoopyChannel):
         self._channels.append(channel)
 
-    def save(self, target_dir: str = os.getcwd()):
+    def save_audio(self, target_dir: str = os.getcwd()):
         target_path = os.path.join(target_dir, self._name+'.wav')
         sf.write(target_path, self.render(), self._sr)
+
+    def save(self):
+        info = {
+            'name': self._name,
+            'bpm': self._bpm,
+            'sr': self._sr,
+            'length': self._length,
+            'sig': self._sig,
+            'generators': [generator.__dict__() for generator in self._generators],
+            'patterns': [pattern.__dict__() for pattern in self._patterns],
+            'samples': [sample.__dict__() for sample in self._samples],
+            'channels': [channel.__dict__() for channel in self._channels],
+        }
+        # print(info)
+        with open(f'{self._name}.json', 'w') as f:
+            json.dump(info, f)
+    

@@ -30,7 +30,7 @@ class LoopyPatternCore():
         self._sr = sr
         self._sig = sig
         self._beats_per_bar, self._beat_value = parse_sig(sig)
-        self._generators = dict()
+        self._generators = set()
         self._notes = []
         self._tot_samples = int(num_bars * self._beats_per_bar * 60 * sr / bpm)
         self._resolution = resolution
@@ -56,7 +56,7 @@ class LoopyPatternCore():
             release=release,
         )
         self._notes.append(note)
-        self._generators[generator._name] = generator
+        self._generators.add(generator)
 
     def add_notes(self,
         notes: List[Tuple[str, float, float]],
@@ -87,6 +87,9 @@ class LoopyPatternCore():
             add_y(self._y, note_y, st_index)
 
         return self._y
+
+    def __dict__(self):
+        return {'notes': [note.__dict__() for note in self._notes]}
     
     
 class LoopyPattern():
@@ -115,10 +118,18 @@ class LoopyPattern():
         else:
             return self._channel(self._core.render())
 
+    def __dict__(self):
+        return {
+            'global_pos': self._global_pos,
+            'channel': self._channel.__dict__(),
+            'core': self._core.__dict__(),
+            'local_pos': self._local_pos,
+        }
+
 
 def preview_notes(
     key_name_list: List[str],
-    preset_name: str = 'Ultrasonic-PD-Heart.wav',
+    preset_name: str = 'Ultrasonic-PD-Wind.wav',
     play_now: bool = True,
     as_chord: bool = False,
 ):
@@ -126,7 +137,10 @@ def preview_notes(
     if as_chord:
         pattern_type = LoopyPatternCore(num_bars=1)
         for key_name in key_name_list:
-            pattern_type.add_note(key_name, note_value=1/4, pos_in_pattern=0, generator=ch)
+            pattern_type.add_note(key_name, note_value=1/4, pos_in_pattern=0, generator=ch, attack=50)
+            pattern_type.add_note(key_name, note_value=1/4, pos_in_pattern=1, generator=ch, attack=50)
+            pattern_type.add_note(key_name, note_value=1/4, pos_in_pattern=2, generator=ch, attack=50)
+            pattern_type.add_note(key_name, note_value=1/4, pos_in_pattern=3, generator=ch, attack=50)
     else:
         pattern_type = LoopyPatternCore(bpm=100, num_bars=ceil(len(key_name_list)/2))
         for (i, key_name) in enumerate(key_name_list):

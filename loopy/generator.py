@@ -27,7 +27,7 @@ class LoopyPreset():
         y, _ = librosa.load(source_path, sr=sr, mono=False)
         self._y = np.transpose(y, axes=(1, 0))
         self._sr = sr
-        
+        self._source_path = source_path
         self._name = source_path if name is None else name
         self._load_bpm = load_bpm
 
@@ -121,6 +121,14 @@ class LoopyPreset():
             plt.close()
         return ret
 
+    def __dict__(self):
+        return {
+            'source_path': self._source_path,
+            'sr': self._sr,
+            'name': self._name,
+            'load_bpm': self._load_bpm,
+        }
+
 
 class LoopyNote():
     def __init__(self,
@@ -157,6 +165,24 @@ class LoopyNote():
             bpm=bpm, sig=sig,
         )
 
-    def __str__(self):
-        note_info_short = {'key_name': self._key_name, 'note_value': self._note_value, 'pos_in_pattern': self._pos_in_pattern}
-        return str(note_info_short)
+    def short_info(self):
+        note_info_short = {
+            'key_name': self._key_name,
+            'note_value': self._note_value,
+            'pos_in_pattern': self._pos_in_pattern,
+            'generator': self._generator._name,
+        }
+        return note_info_short
+
+    def __str__(self) -> str:
+        return str(self.short_info())
+
+    def __dict__(self):
+        info = self.short_info()
+        info.update({
+            'attack': self._attack,
+            'decay': self._decay,
+            'sustain': self._sustain,
+            'release': self._release,
+        })
+        return info

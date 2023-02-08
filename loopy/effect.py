@@ -19,10 +19,14 @@ class LoopyEffect():
     def __str__(self) -> str:
         return self._params
 
+    def __dict__(self):
+        return self.__str__()
+
 
 class LoopyHighpass(LoopyEffect):
     def __init__(self, freq: int) -> None:
         super().__init__()
+        self.add_param('name', 'highpass')
         self.add_param('cutoff', freq)
         self.filter = HighpassFilter(freq)
 
@@ -33,6 +37,7 @@ class LoopyHighpass(LoopyEffect):
 class LoopyLowpass(LoopyEffect):
     def __init__(self, freq: int) -> None:
         super().__init__()
+        self.add_param('name', 'lowpass')
         self.add_param('cutoff', freq)
         self.filter = LowpassFilter(freq)
 
@@ -50,6 +55,7 @@ class LoopyReverb(LoopyEffect):
         freeze_mode: float = 0.0,
     ) -> None:
         super().__init__()
+        self.add_param('name', 'reverb')
         self.add_param('room_size', room_size)
         self.add_param('damping', damping)
         self.add_param('wet_level', wet_level)
@@ -77,6 +83,7 @@ class LoopySidechain(LoopyEffect):
         mag: float = 1,
     ) -> None:
         super().__init__()
+        self.add_param('name', 'sidechain')
         self.add_param('length', length)
         self.add_param('attain', attain)
         self.add_param('interp_order', interp_order)
@@ -102,12 +109,13 @@ class LoopySidechain(LoopyEffect):
         ret = y * envelope
 
         if debug:
-            plt.plot(y)
+            plt.plot(y[:, 0], c='mediumblue', label='inst_mono')
+            plt.legend()
             plt.show()
             plt.close()
 
-            plt.plot(envelope)
-            plt.plot(ret)
+            plt.plot(envelope, c='slateblue', label='envelope')
+            plt.legend()
             plt.show()
             plt.close()
         
@@ -119,6 +127,7 @@ class LoopyBalance(LoopyEffect):
         db: float = 1.0  # unit is dB
     ) -> None:
         super().__init__()
+        self.add_param('name', 'balance')
         self.add_param('db', db)
     
         self.gain = Gain(gain_db=self._params['db'])

@@ -20,6 +20,12 @@ class LoopyChannel():
             y = fx(y)
         return y
 
+    def __dict__(self):
+        return {
+            'name': self._name,
+            'effects': [effect.__dict__() for effect in self._effects]
+        }
+
 
 def merge_channels(name: str, channels: List[LoopyChannel]):
     ret = LoopyChannel(name)

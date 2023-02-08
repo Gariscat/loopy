@@ -5,6 +5,7 @@ from loopy.utils import *
 import os
 import librosa
 from loopy.template import *
+from tqdm import tqdm
 """
 lead = LoopyPreset(find_preset('Ultrasonic-LD-Stars.wav'))
 # preset.preview('A5')
@@ -90,8 +91,31 @@ preview_wave(y)
 
 
 """
+"""
+from loopy import LoopySidechain
+sides = LoopySidechain(attain=0.5, interp_order=2)
+balance = LoopyBalance(-6)
+inst = sides.forward(preview_notes(key_name_list=get_chord_notes(chord_id=1), play_now=True, as_chord=True), debug=True)
+inst = balance(inst)
 
-melody_line = '84 84 84 84 00 00 86 86 86 86 00 00 00 00 86 00 86 86 84 00 84 84 81 81 81 81 00 00 00 00 89 00 89 89 88 00 88 88 86 86 86 86 00 00 00 00 86 00 86 86 84 84 86 86 81 81 81 81 00 00 00 00 00 00'
+track = LoopyTrack('plot', length='00:1.875')
+add_kick(track, num_bars=1)
+kick = track.render()
+plt.plot(kick[:, 0], c='mediumorchid', label='kick_drum')
+plt.legend()
+plt.show()
+plt.close()
+
+y = kick + inst
+plt.plot(y[:, 0], c='darkorchid', label='mix')
+plt.legend()
+plt.show()
+plt.close()
+exit()
+"""
+
+
+"""melody_line = '84 84 84 84 00 00 86 86 86 86 00 00 00 00 86 00 86 86 84 00 84 84 81 81 81 81 00 00 00 00 89 00 89 89 88 00 88 88 86 86 86 86 00 00 00 00 86 00 86 86 84 84 86 86 81 81 81 81 00 00 00 00 00 00'
 melody_line = [int(x)-11 if int(x) else 0 for x in melody_line.split()] * 2
 chord_line = []
 
@@ -109,12 +133,22 @@ chord_line += [1] * 8
 chord_line += [5] * 8
 chord_line += [6] * 8
 chord_line += [4] * 8
-chord_line += [5] * 8
+chord_line += [5] * 8"""
 
+with open('raw_80.txt', 'r') as f:
+    lines = f.readlines()
+    melody_line, chord_line = None, None
+    for i, line in tqdm(enumerate(lines), total=len(lines)):
+        if i % 4 == 1:
+            melody_line = [int(x) for x in line.strip().split()]
+        elif i % 4 == 2:
+            chord_line = [int(x) for x in line.strip().split()]
 
-prog_track = prog_house(melody_line, chord_line, chord_sync=False, scale_root='F#', scale_type='maj', preview=False, style='Tobu')
+        if melody_line and chord_line:
+            prog_track = prog_house(melody_line, chord_line, chord_sync=True, preview=False, style='Tobu', name='exp')
+            prog_track.save_audio(target_dir='D:\\Project 2023\\renders')
+            melody_line, chord_line = None, None
 
-# print(prog_track._samples, prog_track._patterns)
-notes = prog_track._pattern_types.pop()._notes
-for note in notes:
-    print(note)
+            
+            prog_track.save()
+
