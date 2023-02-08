@@ -1,3 +1,0 @@
-0. Save track!
-1. accurate chord parser
-2. rule-based melody generator
