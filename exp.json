@@ -1,0 +1,5362 @@
+{
+  "name": "exp",
+  "bpm": 128,
+  "sr": 44100,
+  "length": "00:15",
+  "sig": "4/4",
+  "generators": [
+    {
+      "source_path": "D:\\Project 2023\\presets\\Ultrasonic-PD-Supersaws.wav",
+      "sr": 44100,
+      "name": "CHORD-1",
+      "load_bpm": 64
+    },
+    {
+      "source_path": "D:\\Project 2023\\presets\\Ultrasonic-LD-Blue.wav",
+      "sr": 44100,
+      "name": "LEAD-2",
+      "load_bpm": 64
+    },
+    {
+      "source_path": "D:\\Project 2023\\presets\\Ultrasonic-PD-Massive.wav",
+      "sr": 44100,
+      "name": "CHORD-0",
+      "load_bpm": 64
+    },
+    {
+      "source_path": "D:\\Project 2023\\presets\\Ultrasonic-BS-Perfect.wav",
+      "sr": 44100,
+      "name": "BASS-1",
+      "load_bpm": 64
+    },
+    {
+      "source_path": "D:\\Project 2023\\presets\\Ultrasonic-BS-Home.wav",
+      "sr": 44100,
+      "name": "BASS-0",
+      "load_bpm": 64
+    },
+    {
+      "source_path": "D:\\Project 2023\\presets\\Ultrasonic-LD-Forever.wav",
+      "sr": 44100,
+      "name": "LEAD-0",
+      "load_bpm": 64
+    },
+    {
+      "source_path": "D:\\Project 2023\\presets\\Ultrasonic-BS-SUBBASS.wav",
+      "sr": 44100,
+      "name": "SUB-0",
+      "load_bpm": 64
+    },
+    {
+      "source_path": "D:\\Project 2023\\presets\\Ultrasonic-LD-Stars.wav",
+      "sr": 44100,
+      "name": "LEAD-1",
+      "load_bpm": 64
+    }
+  ],
+  "patterns": [
+    {
+      "global_pos": 0,
+      "channel": {
+        "name": "LEAD",
+        "effects": [
+          {
+            "name": "highpass",
+            "cutoff": 500
+          },
+          {
+            "name": "balance",
+            "db": -9
+          },
+          {
+            "name": "sidechain",
+            "length": 1,
+            "attain": 0.5,
+            "interp_order": 2,
+            "mag": 0.5
+          },
+          {
+            "name": "reverb",
+            "room_size": 0.5,
+            "damping": 0.5,
+            "wet_level": 0.5,
+            "dry_level": 0.4,
+            "width": 1,
+            "freeze_mode": 0
+          }
+        ]
+      },
+      "core": {
+        "notes": [
+          {
+            "key_name": "E5",
+            "note_value": 0.1875,
+            "pos_in_pattern": 0,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.125,
+            "pos_in_pattern": 0.75,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.25,
+            "pos_in_pattern": 1.25,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.1875,
+            "pos_in_pattern": 2.25,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E5",
+            "note_value": 0.25,
+            "pos_in_pattern": 4,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.125,
+            "pos_in_pattern": 5,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.1875,
+            "pos_in_pattern": 5.5,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.125,
+            "pos_in_pattern": 6.5,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.125,
+            "pos_in_pattern": 7,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.125,
+            "pos_in_pattern": 7.5,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.25,
+            "pos_in_pattern": 8,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.125,
+            "pos_in_pattern": 9,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.25,
+            "pos_in_pattern": 10,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.125,
+            "pos_in_pattern": 11,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.25,
+            "pos_in_pattern": 11.5,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 12.5,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 13.5,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.0625,
+            "pos_in_pattern": 14.5,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.1875,
+            "pos_in_pattern": 14.75,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.125,
+            "pos_in_pattern": 15.5,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.125,
+            "pos_in_pattern": 16,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.125,
+            "pos_in_pattern": 16.5,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F4",
+            "note_value": 0.25,
+            "pos_in_pattern": 17,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F4",
+            "note_value": 0.25,
+            "pos_in_pattern": 18,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F4",
+            "note_value": 0.0625,
+            "pos_in_pattern": 19,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 20,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.125,
+            "pos_in_pattern": 21,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.25,
+            "pos_in_pattern": 21.5,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.0625,
+            "pos_in_pattern": 22.5,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.25,
+            "pos_in_pattern": 23,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 24,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 25,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 26,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 27,
+            "generator": "LEAD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E5",
+            "note_value": 0.1875,
+            "pos_in_pattern": 0,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.125,
+            "pos_in_pattern": 0.75,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.25,
+            "pos_in_pattern": 1.25,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.1875,
+            "pos_in_pattern": 2.25,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E5",
+            "note_value": 0.25,
+            "pos_in_pattern": 4,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.125,
+            "pos_in_pattern": 5,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.1875,
+            "pos_in_pattern": 5.5,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.125,
+            "pos_in_pattern": 6.5,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.125,
+            "pos_in_pattern": 7,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.125,
+            "pos_in_pattern": 7.5,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.25,
+            "pos_in_pattern": 8,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.125,
+            "pos_in_pattern": 9,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.25,
+            "pos_in_pattern": 10,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.125,
+            "pos_in_pattern": 11,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.25,
+            "pos_in_pattern": 11.5,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 12.5,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 13.5,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.0625,
+            "pos_in_pattern": 14.5,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.1875,
+            "pos_in_pattern": 14.75,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.125,
+            "pos_in_pattern": 15.5,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.125,
+            "pos_in_pattern": 16,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.125,
+            "pos_in_pattern": 16.5,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F4",
+            "note_value": 0.25,
+            "pos_in_pattern": 17,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F4",
+            "note_value": 0.25,
+            "pos_in_pattern": 18,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F4",
+            "note_value": 0.0625,
+            "pos_in_pattern": 19,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 20,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.125,
+            "pos_in_pattern": 21,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.25,
+            "pos_in_pattern": 21.5,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.0625,
+            "pos_in_pattern": 22.5,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.25,
+            "pos_in_pattern": 23,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 24,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 25,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 26,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 27,
+            "generator": "LEAD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E5",
+            "note_value": 0.1875,
+            "pos_in_pattern": 0,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.125,
+            "pos_in_pattern": 0.75,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.25,
+            "pos_in_pattern": 1.25,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.1875,
+            "pos_in_pattern": 2.25,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E5",
+            "note_value": 0.25,
+            "pos_in_pattern": 4,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.125,
+            "pos_in_pattern": 5,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.1875,
+            "pos_in_pattern": 5.5,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.125,
+            "pos_in_pattern": 6.5,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.125,
+            "pos_in_pattern": 7,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.125,
+            "pos_in_pattern": 7.5,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.25,
+            "pos_in_pattern": 8,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.125,
+            "pos_in_pattern": 9,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.25,
+            "pos_in_pattern": 10,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.125,
+            "pos_in_pattern": 11,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.25,
+            "pos_in_pattern": 11.5,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 12.5,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 13.5,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.0625,
+            "pos_in_pattern": 14.5,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.1875,
+            "pos_in_pattern": 14.75,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.125,
+            "pos_in_pattern": 15.5,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.125,
+            "pos_in_pattern": 16,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.125,
+            "pos_in_pattern": 16.5,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F4",
+            "note_value": 0.25,
+            "pos_in_pattern": 17,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F4",
+            "note_value": 0.25,
+            "pos_in_pattern": 18,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F4",
+            "note_value": 0.0625,
+            "pos_in_pattern": 19,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 20,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.125,
+            "pos_in_pattern": 21,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.25,
+            "pos_in_pattern": 21.5,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.0625,
+            "pos_in_pattern": 22.5,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.25,
+            "pos_in_pattern": 23,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 24,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 25,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 26,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 27,
+            "generator": "LEAD-2",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          }
+        ]
+      },
+      "local_pos": 0
+    },
+    {
+      "global_pos": 0,
+      "channel": {
+        "name": "CHORD",
+        "effects": [
+          {
+            "name": "highpass",
+            "cutoff": 200
+          },
+          {
+            "name": "balance",
+            "db": -15
+          },
+          {
+            "name": "sidechain",
+            "length": 1,
+            "attain": 0.5,
+            "interp_order": 2,
+            "mag": 0.9
+          }
+        ]
+      },
+      "core": {
+        "notes": [
+          {
+            "key_name": "F3",
+            "note_value": 0.25,
+            "pos_in_pattern": 0,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F4",
+            "note_value": 0.25,
+            "pos_in_pattern": 0,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.25,
+            "pos_in_pattern": 0,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 0,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F3",
+            "note_value": 0.25,
+            "pos_in_pattern": 1,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F4",
+            "note_value": 0.25,
+            "pos_in_pattern": 1,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.25,
+            "pos_in_pattern": 1,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 1,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F3",
+            "note_value": 0.25,
+            "pos_in_pattern": 2,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F4",
+            "note_value": 0.25,
+            "pos_in_pattern": 2,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.25,
+            "pos_in_pattern": 2,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 2,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.25,
+            "pos_in_pattern": 4,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.25,
+            "pos_in_pattern": 4,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.25,
+            "pos_in_pattern": 4,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.25,
+            "pos_in_pattern": 4,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.25,
+            "pos_in_pattern": 5,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.25,
+            "pos_in_pattern": 5,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.25,
+            "pos_in_pattern": 5,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.25,
+            "pos_in_pattern": 5,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.0625,
+            "pos_in_pattern": 6,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.0625,
+            "pos_in_pattern": 6,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.0625,
+            "pos_in_pattern": 6,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.0625,
+            "pos_in_pattern": 6,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.25,
+            "pos_in_pattern": 6.5,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.25,
+            "pos_in_pattern": 6.5,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.25,
+            "pos_in_pattern": 6.5,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.25,
+            "pos_in_pattern": 6.5,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.125,
+            "pos_in_pattern": 7.5,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.125,
+            "pos_in_pattern": 7.5,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.125,
+            "pos_in_pattern": 7.5,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.125,
+            "pos_in_pattern": 7.5,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E3",
+            "note_value": 0.25,
+            "pos_in_pattern": 8,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E4",
+            "note_value": 0.25,
+            "pos_in_pattern": 8,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.25,
+            "pos_in_pattern": 8,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.25,
+            "pos_in_pattern": 8,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E3",
+            "note_value": 0.125,
+            "pos_in_pattern": 9,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E4",
+            "note_value": 0.125,
+            "pos_in_pattern": 9,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.125,
+            "pos_in_pattern": 9,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.125,
+            "pos_in_pattern": 9,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E3",
+            "note_value": 0.25,
+            "pos_in_pattern": 10,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E4",
+            "note_value": 0.25,
+            "pos_in_pattern": 10,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.25,
+            "pos_in_pattern": 10,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.25,
+            "pos_in_pattern": 10,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E3",
+            "note_value": 0.25,
+            "pos_in_pattern": 11,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E4",
+            "note_value": 0.25,
+            "pos_in_pattern": 11,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.25,
+            "pos_in_pattern": 11,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.25,
+            "pos_in_pattern": 11,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A3",
+            "note_value": 0.25,
+            "pos_in_pattern": 12,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.25,
+            "pos_in_pattern": 12,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 12,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E5",
+            "note_value": 0.25,
+            "pos_in_pattern": 12,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A3",
+            "note_value": 0.25,
+            "pos_in_pattern": 13,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.25,
+            "pos_in_pattern": 13,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 13,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E5",
+            "note_value": 0.25,
+            "pos_in_pattern": 13,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A3",
+            "note_value": 0.25,
+            "pos_in_pattern": 14,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.25,
+            "pos_in_pattern": 14,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 14,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E5",
+            "note_value": 0.25,
+            "pos_in_pattern": 14,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A3",
+            "note_value": 0.25,
+            "pos_in_pattern": 15,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.25,
+            "pos_in_pattern": 15,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 15,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E5",
+            "note_value": 0.25,
+            "pos_in_pattern": 15,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F3",
+            "note_value": 0.25,
+            "pos_in_pattern": 16,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F4",
+            "note_value": 0.25,
+            "pos_in_pattern": 16,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.25,
+            "pos_in_pattern": 16,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 16,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F3",
+            "note_value": 0.25,
+            "pos_in_pattern": 17,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F4",
+            "note_value": 0.25,
+            "pos_in_pattern": 17,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.25,
+            "pos_in_pattern": 17,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 17,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F3",
+            "note_value": 0.25,
+            "pos_in_pattern": 18,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F4",
+            "note_value": 0.25,
+            "pos_in_pattern": 18,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.25,
+            "pos_in_pattern": 18,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 18,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F3",
+            "note_value": 0.0625,
+            "pos_in_pattern": 19,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F4",
+            "note_value": 0.0625,
+            "pos_in_pattern": 19,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.0625,
+            "pos_in_pattern": 19,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.0625,
+            "pos_in_pattern": 19,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.25,
+            "pos_in_pattern": 20,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.25,
+            "pos_in_pattern": 20,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.25,
+            "pos_in_pattern": 20,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.25,
+            "pos_in_pattern": 20,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.25,
+            "pos_in_pattern": 21,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.25,
+            "pos_in_pattern": 21,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.25,
+            "pos_in_pattern": 21,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.25,
+            "pos_in_pattern": 21,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.1875,
+            "pos_in_pattern": 22,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.1875,
+            "pos_in_pattern": 22,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.1875,
+            "pos_in_pattern": 22,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.1875,
+            "pos_in_pattern": 22,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.25,
+            "pos_in_pattern": 23,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.25,
+            "pos_in_pattern": 23,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.25,
+            "pos_in_pattern": 23,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.25,
+            "pos_in_pattern": 23,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C3",
+            "note_value": 0.25,
+            "pos_in_pattern": 24,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C4",
+            "note_value": 0.25,
+            "pos_in_pattern": 24,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E4",
+            "note_value": 0.25,
+            "pos_in_pattern": 24,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.25,
+            "pos_in_pattern": 24,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C3",
+            "note_value": 0.25,
+            "pos_in_pattern": 25,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C4",
+            "note_value": 0.25,
+            "pos_in_pattern": 25,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E4",
+            "note_value": 0.25,
+            "pos_in_pattern": 25,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.25,
+            "pos_in_pattern": 25,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C3",
+            "note_value": 0.25,
+            "pos_in_pattern": 26,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C4",
+            "note_value": 0.25,
+            "pos_in_pattern": 26,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E4",
+            "note_value": 0.25,
+            "pos_in_pattern": 26,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.25,
+            "pos_in_pattern": 26,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C3",
+            "note_value": 0.25,
+            "pos_in_pattern": 27,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C4",
+            "note_value": 0.25,
+            "pos_in_pattern": 27,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E4",
+            "note_value": 0.25,
+            "pos_in_pattern": 27,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.25,
+            "pos_in_pattern": 27,
+            "generator": "CHORD-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F3",
+            "note_value": 0.25,
+            "pos_in_pattern": 0,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F4",
+            "note_value": 0.25,
+            "pos_in_pattern": 0,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.25,
+            "pos_in_pattern": 0,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 0,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F3",
+            "note_value": 0.25,
+            "pos_in_pattern": 1,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F4",
+            "note_value": 0.25,
+            "pos_in_pattern": 1,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.25,
+            "pos_in_pattern": 1,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 1,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F3",
+            "note_value": 0.25,
+            "pos_in_pattern": 2,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F4",
+            "note_value": 0.25,
+            "pos_in_pattern": 2,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.25,
+            "pos_in_pattern": 2,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 2,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.25,
+            "pos_in_pattern": 4,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.25,
+            "pos_in_pattern": 4,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.25,
+            "pos_in_pattern": 4,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.25,
+            "pos_in_pattern": 4,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.25,
+            "pos_in_pattern": 5,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.25,
+            "pos_in_pattern": 5,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.25,
+            "pos_in_pattern": 5,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.25,
+            "pos_in_pattern": 5,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.0625,
+            "pos_in_pattern": 6,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.0625,
+            "pos_in_pattern": 6,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.0625,
+            "pos_in_pattern": 6,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.0625,
+            "pos_in_pattern": 6,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.25,
+            "pos_in_pattern": 6.5,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.25,
+            "pos_in_pattern": 6.5,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.25,
+            "pos_in_pattern": 6.5,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.25,
+            "pos_in_pattern": 6.5,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.125,
+            "pos_in_pattern": 7.5,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.125,
+            "pos_in_pattern": 7.5,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.125,
+            "pos_in_pattern": 7.5,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.125,
+            "pos_in_pattern": 7.5,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E3",
+            "note_value": 0.25,
+            "pos_in_pattern": 8,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E4",
+            "note_value": 0.25,
+            "pos_in_pattern": 8,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.25,
+            "pos_in_pattern": 8,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.25,
+            "pos_in_pattern": 8,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E3",
+            "note_value": 0.125,
+            "pos_in_pattern": 9,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E4",
+            "note_value": 0.125,
+            "pos_in_pattern": 9,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.125,
+            "pos_in_pattern": 9,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.125,
+            "pos_in_pattern": 9,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E3",
+            "note_value": 0.25,
+            "pos_in_pattern": 10,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E4",
+            "note_value": 0.25,
+            "pos_in_pattern": 10,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.25,
+            "pos_in_pattern": 10,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.25,
+            "pos_in_pattern": 10,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E3",
+            "note_value": 0.25,
+            "pos_in_pattern": 11,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E4",
+            "note_value": 0.25,
+            "pos_in_pattern": 11,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.25,
+            "pos_in_pattern": 11,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.25,
+            "pos_in_pattern": 11,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A3",
+            "note_value": 0.25,
+            "pos_in_pattern": 12,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.25,
+            "pos_in_pattern": 12,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 12,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E5",
+            "note_value": 0.25,
+            "pos_in_pattern": 12,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A3",
+            "note_value": 0.25,
+            "pos_in_pattern": 13,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.25,
+            "pos_in_pattern": 13,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 13,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E5",
+            "note_value": 0.25,
+            "pos_in_pattern": 13,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A3",
+            "note_value": 0.25,
+            "pos_in_pattern": 14,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.25,
+            "pos_in_pattern": 14,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 14,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E5",
+            "note_value": 0.25,
+            "pos_in_pattern": 14,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A3",
+            "note_value": 0.25,
+            "pos_in_pattern": 15,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.25,
+            "pos_in_pattern": 15,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 15,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E5",
+            "note_value": 0.25,
+            "pos_in_pattern": 15,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F3",
+            "note_value": 0.25,
+            "pos_in_pattern": 16,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F4",
+            "note_value": 0.25,
+            "pos_in_pattern": 16,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.25,
+            "pos_in_pattern": 16,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 16,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F3",
+            "note_value": 0.25,
+            "pos_in_pattern": 17,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F4",
+            "note_value": 0.25,
+            "pos_in_pattern": 17,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.25,
+            "pos_in_pattern": 17,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 17,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F3",
+            "note_value": 0.25,
+            "pos_in_pattern": 18,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F4",
+            "note_value": 0.25,
+            "pos_in_pattern": 18,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.25,
+            "pos_in_pattern": 18,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.25,
+            "pos_in_pattern": 18,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F3",
+            "note_value": 0.0625,
+            "pos_in_pattern": 19,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F4",
+            "note_value": 0.0625,
+            "pos_in_pattern": 19,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A4",
+            "note_value": 0.0625,
+            "pos_in_pattern": 19,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C5",
+            "note_value": 0.0625,
+            "pos_in_pattern": 19,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.25,
+            "pos_in_pattern": 20,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.25,
+            "pos_in_pattern": 20,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.25,
+            "pos_in_pattern": 20,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.25,
+            "pos_in_pattern": 20,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.25,
+            "pos_in_pattern": 21,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.25,
+            "pos_in_pattern": 21,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.25,
+            "pos_in_pattern": 21,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.25,
+            "pos_in_pattern": 21,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.1875,
+            "pos_in_pattern": 22,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.1875,
+            "pos_in_pattern": 22,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.1875,
+            "pos_in_pattern": 22,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.1875,
+            "pos_in_pattern": 22,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.25,
+            "pos_in_pattern": 23,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.25,
+            "pos_in_pattern": 23,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "B4",
+            "note_value": 0.25,
+            "pos_in_pattern": 23,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "D5",
+            "note_value": 0.25,
+            "pos_in_pattern": 23,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C3",
+            "note_value": 0.25,
+            "pos_in_pattern": 24,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C4",
+            "note_value": 0.25,
+            "pos_in_pattern": 24,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E4",
+            "note_value": 0.25,
+            "pos_in_pattern": 24,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.25,
+            "pos_in_pattern": 24,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C3",
+            "note_value": 0.25,
+            "pos_in_pattern": 25,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C4",
+            "note_value": 0.25,
+            "pos_in_pattern": 25,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E4",
+            "note_value": 0.25,
+            "pos_in_pattern": 25,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.25,
+            "pos_in_pattern": 25,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C3",
+            "note_value": 0.25,
+            "pos_in_pattern": 26,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C4",
+            "note_value": 0.25,
+            "pos_in_pattern": 26,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E4",
+            "note_value": 0.25,
+            "pos_in_pattern": 26,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.25,
+            "pos_in_pattern": 26,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C3",
+            "note_value": 0.25,
+            "pos_in_pattern": 27,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C4",
+            "note_value": 0.25,
+            "pos_in_pattern": 27,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E4",
+            "note_value": 0.25,
+            "pos_in_pattern": 27,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G4",
+            "note_value": 0.25,
+            "pos_in_pattern": 27,
+            "generator": "CHORD-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          }
+        ]
+      },
+      "local_pos": 0
+    },
+    {
+      "global_pos": 0,
+      "channel": {
+        "name": "BASS",
+        "effects": [
+          {
+            "name": "highpass",
+            "cutoff": 200
+          },
+          {
+            "name": "lowpass",
+            "cutoff": 5000
+          },
+          {
+            "name": "balance",
+            "db": -9
+          },
+          {
+            "name": "sidechain",
+            "length": 1,
+            "attain": 0.5,
+            "interp_order": 2,
+            "mag": 0.9
+          }
+        ]
+      },
+      "core": {
+        "notes": [
+          {
+            "key_name": "F3",
+            "note_value": 0.25,
+            "pos_in_pattern": 0,
+            "generator": "BASS-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F3",
+            "note_value": 0.25,
+            "pos_in_pattern": 1,
+            "generator": "BASS-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F3",
+            "note_value": 0.25,
+            "pos_in_pattern": 2,
+            "generator": "BASS-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.25,
+            "pos_in_pattern": 4,
+            "generator": "BASS-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.25,
+            "pos_in_pattern": 5,
+            "generator": "BASS-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.0625,
+            "pos_in_pattern": 6,
+            "generator": "BASS-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.25,
+            "pos_in_pattern": 6.5,
+            "generator": "BASS-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.125,
+            "pos_in_pattern": 7.5,
+            "generator": "BASS-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E3",
+            "note_value": 0.25,
+            "pos_in_pattern": 8,
+            "generator": "BASS-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E3",
+            "note_value": 0.125,
+            "pos_in_pattern": 9,
+            "generator": "BASS-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E3",
+            "note_value": 0.25,
+            "pos_in_pattern": 10,
+            "generator": "BASS-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E3",
+            "note_value": 0.25,
+            "pos_in_pattern": 11,
+            "generator": "BASS-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A3",
+            "note_value": 0.25,
+            "pos_in_pattern": 12,
+            "generator": "BASS-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A3",
+            "note_value": 0.25,
+            "pos_in_pattern": 13,
+            "generator": "BASS-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A3",
+            "note_value": 0.25,
+            "pos_in_pattern": 14,
+            "generator": "BASS-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A3",
+            "note_value": 0.25,
+            "pos_in_pattern": 15,
+            "generator": "BASS-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F3",
+            "note_value": 0.25,
+            "pos_in_pattern": 16,
+            "generator": "BASS-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F3",
+            "note_value": 0.25,
+            "pos_in_pattern": 17,
+            "generator": "BASS-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F3",
+            "note_value": 0.25,
+            "pos_in_pattern": 18,
+            "generator": "BASS-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F3",
+            "note_value": 0.0625,
+            "pos_in_pattern": 19,
+            "generator": "BASS-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.25,
+            "pos_in_pattern": 20,
+            "generator": "BASS-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.25,
+            "pos_in_pattern": 21,
+            "generator": "BASS-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.1875,
+            "pos_in_pattern": 22,
+            "generator": "BASS-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.25,
+            "pos_in_pattern": 23,
+            "generator": "BASS-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C3",
+            "note_value": 0.25,
+            "pos_in_pattern": 24,
+            "generator": "BASS-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C3",
+            "note_value": 0.25,
+            "pos_in_pattern": 25,
+            "generator": "BASS-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C3",
+            "note_value": 0.25,
+            "pos_in_pattern": 26,
+            "generator": "BASS-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C3",
+            "note_value": 0.25,
+            "pos_in_pattern": 27,
+            "generator": "BASS-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F3",
+            "note_value": 0.25,
+            "pos_in_pattern": 0,
+            "generator": "BASS-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F3",
+            "note_value": 0.25,
+            "pos_in_pattern": 1,
+            "generator": "BASS-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F3",
+            "note_value": 0.25,
+            "pos_in_pattern": 2,
+            "generator": "BASS-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.25,
+            "pos_in_pattern": 4,
+            "generator": "BASS-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.25,
+            "pos_in_pattern": 5,
+            "generator": "BASS-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.0625,
+            "pos_in_pattern": 6,
+            "generator": "BASS-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.25,
+            "pos_in_pattern": 6.5,
+            "generator": "BASS-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.125,
+            "pos_in_pattern": 7.5,
+            "generator": "BASS-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E3",
+            "note_value": 0.25,
+            "pos_in_pattern": 8,
+            "generator": "BASS-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E3",
+            "note_value": 0.125,
+            "pos_in_pattern": 9,
+            "generator": "BASS-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E3",
+            "note_value": 0.25,
+            "pos_in_pattern": 10,
+            "generator": "BASS-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E3",
+            "note_value": 0.25,
+            "pos_in_pattern": 11,
+            "generator": "BASS-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A3",
+            "note_value": 0.25,
+            "pos_in_pattern": 12,
+            "generator": "BASS-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A3",
+            "note_value": 0.25,
+            "pos_in_pattern": 13,
+            "generator": "BASS-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A3",
+            "note_value": 0.25,
+            "pos_in_pattern": 14,
+            "generator": "BASS-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A3",
+            "note_value": 0.25,
+            "pos_in_pattern": 15,
+            "generator": "BASS-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F3",
+            "note_value": 0.25,
+            "pos_in_pattern": 16,
+            "generator": "BASS-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F3",
+            "note_value": 0.25,
+            "pos_in_pattern": 17,
+            "generator": "BASS-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F3",
+            "note_value": 0.25,
+            "pos_in_pattern": 18,
+            "generator": "BASS-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F3",
+            "note_value": 0.0625,
+            "pos_in_pattern": 19,
+            "generator": "BASS-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.25,
+            "pos_in_pattern": 20,
+            "generator": "BASS-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.25,
+            "pos_in_pattern": 21,
+            "generator": "BASS-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.1875,
+            "pos_in_pattern": 22,
+            "generator": "BASS-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G3",
+            "note_value": 0.25,
+            "pos_in_pattern": 23,
+            "generator": "BASS-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C3",
+            "note_value": 0.25,
+            "pos_in_pattern": 24,
+            "generator": "BASS-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C3",
+            "note_value": 0.25,
+            "pos_in_pattern": 25,
+            "generator": "BASS-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C3",
+            "note_value": 0.25,
+            "pos_in_pattern": 26,
+            "generator": "BASS-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C3",
+            "note_value": 0.25,
+            "pos_in_pattern": 27,
+            "generator": "BASS-1",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          }
+        ]
+      },
+      "local_pos": 0
+    },
+    {
+      "global_pos": 0,
+      "channel": {
+        "name": "SUB",
+        "effects": [
+          {
+            "name": "highpass",
+            "cutoff": 30
+          },
+          {
+            "name": "lowpass",
+            "cutoff": 100
+          },
+          {
+            "name": "balance",
+            "db": -6
+          },
+          {
+            "name": "sidechain",
+            "length": 1,
+            "attain": 0.5,
+            "interp_order": 2,
+            "mag": 1
+          }
+        ]
+      },
+      "core": {
+        "notes": [
+          {
+            "key_name": "F2",
+            "note_value": 0.25,
+            "pos_in_pattern": 0,
+            "generator": "SUB-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F2",
+            "note_value": 0.25,
+            "pos_in_pattern": 1,
+            "generator": "SUB-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F2",
+            "note_value": 0.25,
+            "pos_in_pattern": 2,
+            "generator": "SUB-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G2",
+            "note_value": 0.25,
+            "pos_in_pattern": 4,
+            "generator": "SUB-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G2",
+            "note_value": 0.25,
+            "pos_in_pattern": 5,
+            "generator": "SUB-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G2",
+            "note_value": 0.0625,
+            "pos_in_pattern": 6,
+            "generator": "SUB-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G2",
+            "note_value": 0.25,
+            "pos_in_pattern": 6.5,
+            "generator": "SUB-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G2",
+            "note_value": 0.125,
+            "pos_in_pattern": 7.5,
+            "generator": "SUB-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E2",
+            "note_value": 0.25,
+            "pos_in_pattern": 8,
+            "generator": "SUB-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E2",
+            "note_value": 0.125,
+            "pos_in_pattern": 9,
+            "generator": "SUB-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E2",
+            "note_value": 0.25,
+            "pos_in_pattern": 10,
+            "generator": "SUB-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "E2",
+            "note_value": 0.25,
+            "pos_in_pattern": 11,
+            "generator": "SUB-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A2",
+            "note_value": 0.25,
+            "pos_in_pattern": 12,
+            "generator": "SUB-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A2",
+            "note_value": 0.25,
+            "pos_in_pattern": 13,
+            "generator": "SUB-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A2",
+            "note_value": 0.25,
+            "pos_in_pattern": 14,
+            "generator": "SUB-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "A2",
+            "note_value": 0.25,
+            "pos_in_pattern": 15,
+            "generator": "SUB-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F2",
+            "note_value": 0.25,
+            "pos_in_pattern": 16,
+            "generator": "SUB-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F2",
+            "note_value": 0.25,
+            "pos_in_pattern": 17,
+            "generator": "SUB-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F2",
+            "note_value": 0.25,
+            "pos_in_pattern": 18,
+            "generator": "SUB-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "F2",
+            "note_value": 0.0625,
+            "pos_in_pattern": 19,
+            "generator": "SUB-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G2",
+            "note_value": 0.25,
+            "pos_in_pattern": 20,
+            "generator": "SUB-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G2",
+            "note_value": 0.25,
+            "pos_in_pattern": 21,
+            "generator": "SUB-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G2",
+            "note_value": 0.1875,
+            "pos_in_pattern": 22,
+            "generator": "SUB-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "G2",
+            "note_value": 0.25,
+            "pos_in_pattern": 23,
+            "generator": "SUB-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C2",
+            "note_value": 0.25,
+            "pos_in_pattern": 24,
+            "generator": "SUB-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C2",
+            "note_value": 0.25,
+            "pos_in_pattern": 25,
+            "generator": "SUB-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C2",
+            "note_value": 0.25,
+            "pos_in_pattern": 26,
+            "generator": "SUB-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          },
+          {
+            "key_name": "C2",
+            "note_value": 0.25,
+            "pos_in_pattern": 27,
+            "generator": "SUB-0",
+            "attack": 0,
+            "decay": 0,
+            "sustain": 1,
+            "release": 0
+          }
+        ]
+      },
+      "local_pos": 0
+    }
+  ],
+  "samples": [
+    {
+      "global_pos": 0,
+      "channel": {
+        "name": "drop_kick",
+        "effects": [
+          {
+            "name": "balance",
+            "db": -6
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "truncate": null
+      },
+      "local_pos": 0
+    },
+    {
+      "global_pos": 0,
+      "channel": {
+        "name": "drop_kick",
+        "effects": [
+          {
+            "name": "balance",
+            "db": -6
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "truncate": null
+      },
+      "local_pos": 1
+    },
+    {
+      "global_pos": 0,
+      "channel": {
+        "name": "drop_kick",
+        "effects": [
+          {
+            "name": "balance",
+            "db": -6
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "truncate": null
+      },
+      "local_pos": 2
+    },
+    {
+      "global_pos": 0,
+      "channel": {
+        "name": "drop_kick",
+        "effects": [
+          {
+            "name": "balance",
+            "db": -6
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "truncate": null
+      },
+      "local_pos": 3
+    },
+    {
+      "global_pos": 1,
+      "channel": {
+        "name": "drop_kick",
+        "effects": [
+          {
+            "name": "balance",
+            "db": -6
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "truncate": null
+      },
+      "local_pos": 0
+    },
+    {
+      "global_pos": 1,
+      "channel": {
+        "name": "drop_kick",
+        "effects": [
+          {
+            "name": "balance",
+            "db": -6
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "truncate": null
+      },
+      "local_pos": 1
+    },
+    {
+      "global_pos": 1,
+      "channel": {
+        "name": "drop_kick",
+        "effects": [
+          {
+            "name": "balance",
+            "db": -6
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "truncate": null
+      },
+      "local_pos": 2
+    },
+    {
+      "global_pos": 1,
+      "channel": {
+        "name": "drop_kick",
+        "effects": [
+          {
+            "name": "balance",
+            "db": -6
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "truncate": null
+      },
+      "local_pos": 3
+    },
+    {
+      "global_pos": 2,
+      "channel": {
+        "name": "drop_kick",
+        "effects": [
+          {
+            "name": "balance",
+            "db": -6
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "truncate": null
+      },
+      "local_pos": 0
+    },
+    {
+      "global_pos": 2,
+      "channel": {
+        "name": "drop_kick",
+        "effects": [
+          {
+            "name": "balance",
+            "db": -6
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "truncate": null
+      },
+      "local_pos": 1
+    },
+    {
+      "global_pos": 2,
+      "channel": {
+        "name": "drop_kick",
+        "effects": [
+          {
+            "name": "balance",
+            "db": -6
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "truncate": null
+      },
+      "local_pos": 2
+    },
+    {
+      "global_pos": 2,
+      "channel": {
+        "name": "drop_kick",
+        "effects": [
+          {
+            "name": "balance",
+            "db": -6
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "truncate": null
+      },
+      "local_pos": 3
+    },
+    {
+      "global_pos": 3,
+      "channel": {
+        "name": "drop_kick",
+        "effects": [
+          {
+            "name": "balance",
+            "db": -6
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "truncate": null
+      },
+      "local_pos": 0
+    },
+    {
+      "global_pos": 3,
+      "channel": {
+        "name": "drop_kick",
+        "effects": [
+          {
+            "name": "balance",
+            "db": -6
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "truncate": null
+      },
+      "local_pos": 1
+    },
+    {
+      "global_pos": 3,
+      "channel": {
+        "name": "drop_kick",
+        "effects": [
+          {
+            "name": "balance",
+            "db": -6
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "truncate": null
+      },
+      "local_pos": 2
+    },
+    {
+      "global_pos": 3,
+      "channel": {
+        "name": "drop_kick",
+        "effects": [
+          {
+            "name": "balance",
+            "db": -6
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "truncate": null
+      },
+      "local_pos": 3
+    },
+    {
+      "global_pos": 4,
+      "channel": {
+        "name": "drop_kick",
+        "effects": [
+          {
+            "name": "balance",
+            "db": -6
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "truncate": null
+      },
+      "local_pos": 0
+    },
+    {
+      "global_pos": 4,
+      "channel": {
+        "name": "drop_kick",
+        "effects": [
+          {
+            "name": "balance",
+            "db": -6
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "truncate": null
+      },
+      "local_pos": 1
+    },
+    {
+      "global_pos": 4,
+      "channel": {
+        "name": "drop_kick",
+        "effects": [
+          {
+            "name": "balance",
+            "db": -6
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "truncate": null
+      },
+      "local_pos": 2
+    },
+    {
+      "global_pos": 4,
+      "channel": {
+        "name": "drop_kick",
+        "effects": [
+          {
+            "name": "balance",
+            "db": -6
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "truncate": null
+      },
+      "local_pos": 3
+    },
+    {
+      "global_pos": 5,
+      "channel": {
+        "name": "drop_kick",
+        "effects": [
+          {
+            "name": "balance",
+            "db": -6
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "truncate": null
+      },
+      "local_pos": 0
+    },
+    {
+      "global_pos": 5,
+      "channel": {
+        "name": "drop_kick",
+        "effects": [
+          {
+            "name": "balance",
+            "db": -6
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "truncate": null
+      },
+      "local_pos": 1
+    },
+    {
+      "global_pos": 5,
+      "channel": {
+        "name": "drop_kick",
+        "effects": [
+          {
+            "name": "balance",
+            "db": -6
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "truncate": null
+      },
+      "local_pos": 2
+    },
+    {
+      "global_pos": 5,
+      "channel": {
+        "name": "drop_kick",
+        "effects": [
+          {
+            "name": "balance",
+            "db": -6
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "truncate": null
+      },
+      "local_pos": 3
+    },
+    {
+      "global_pos": 6,
+      "channel": {
+        "name": "drop_kick",
+        "effects": [
+          {
+            "name": "balance",
+            "db": -6
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "truncate": null
+      },
+      "local_pos": 0
+    },
+    {
+      "global_pos": 6,
+      "channel": {
+        "name": "drop_kick",
+        "effects": [
+          {
+            "name": "balance",
+            "db": -6
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "truncate": null
+      },
+      "local_pos": 1
+    },
+    {
+      "global_pos": 6,
+      "channel": {
+        "name": "drop_kick",
+        "effects": [
+          {
+            "name": "balance",
+            "db": -6
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "truncate": null
+      },
+      "local_pos": 2
+    },
+    {
+      "global_pos": 6,
+      "channel": {
+        "name": "drop_kick",
+        "effects": [
+          {
+            "name": "balance",
+            "db": -6
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Kick\\Progressive House Essential - Kick 02.wav",
+        "truncate": null
+      },
+      "local_pos": 3
+    },
+    {
+      "global_pos": 0,
+      "channel": {
+        "name": "drop_clap",
+        "effects": [
+          {
+            "name": "highpass",
+            "cutoff": 500
+          },
+          {
+            "name": "balance",
+            "db": -21
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Claps\\Progressive House Essential - Drop Claps 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Claps\\Progressive House Essential - Drop Claps 02.wav",
+        "truncate": 4
+      },
+      "local_pos": 0
+    },
+    {
+      "global_pos": 1,
+      "channel": {
+        "name": "drop_clap",
+        "effects": [
+          {
+            "name": "highpass",
+            "cutoff": 500
+          },
+          {
+            "name": "balance",
+            "db": -21
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Claps\\Progressive House Essential - Drop Claps 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Claps\\Progressive House Essential - Drop Claps 02.wav",
+        "truncate": 4
+      },
+      "local_pos": 0
+    },
+    {
+      "global_pos": 2,
+      "channel": {
+        "name": "drop_clap",
+        "effects": [
+          {
+            "name": "highpass",
+            "cutoff": 500
+          },
+          {
+            "name": "balance",
+            "db": -21
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Claps\\Progressive House Essential - Drop Claps 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Claps\\Progressive House Essential - Drop Claps 02.wav",
+        "truncate": 4
+      },
+      "local_pos": 0
+    },
+    {
+      "global_pos": 3,
+      "channel": {
+        "name": "drop_clap",
+        "effects": [
+          {
+            "name": "highpass",
+            "cutoff": 500
+          },
+          {
+            "name": "balance",
+            "db": -21
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Claps\\Progressive House Essential - Drop Claps 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Claps\\Progressive House Essential - Drop Claps 02.wav",
+        "truncate": 4
+      },
+      "local_pos": 0
+    },
+    {
+      "global_pos": 4,
+      "channel": {
+        "name": "drop_clap",
+        "effects": [
+          {
+            "name": "highpass",
+            "cutoff": 500
+          },
+          {
+            "name": "balance",
+            "db": -21
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Claps\\Progressive House Essential - Drop Claps 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Claps\\Progressive House Essential - Drop Claps 02.wav",
+        "truncate": 4
+      },
+      "local_pos": 0
+    },
+    {
+      "global_pos": 5,
+      "channel": {
+        "name": "drop_clap",
+        "effects": [
+          {
+            "name": "highpass",
+            "cutoff": 500
+          },
+          {
+            "name": "balance",
+            "db": -21
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Claps\\Progressive House Essential - Drop Claps 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Claps\\Progressive House Essential - Drop Claps 02.wav",
+        "truncate": 4
+      },
+      "local_pos": 0
+    },
+    {
+      "global_pos": 6,
+      "channel": {
+        "name": "drop_clap",
+        "effects": [
+          {
+            "name": "highpass",
+            "cutoff": 500
+          },
+          {
+            "name": "balance",
+            "db": -21
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Claps\\Progressive House Essential - Drop Claps 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Claps\\Progressive House Essential - Drop Claps 02.wav",
+        "truncate": 4
+      },
+      "local_pos": 0
+    },
+    {
+      "global_pos": 0,
+      "channel": {
+        "name": "drop_hat",
+        "effects": [
+          {
+            "name": "highpass",
+            "cutoff": 1000
+          },
+          {
+            "name": "balance",
+            "db": -21
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Cymbals\\Progressive House Essential - Hi-hat Loop 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Cymbals\\Progressive House Essential - Hi-hat Loop 02.wav",
+        "truncate": 4
+      },
+      "local_pos": 0
+    },
+    {
+      "global_pos": 1,
+      "channel": {
+        "name": "drop_hat",
+        "effects": [
+          {
+            "name": "highpass",
+            "cutoff": 1000
+          },
+          {
+            "name": "balance",
+            "db": -21
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Cymbals\\Progressive House Essential - Hi-hat Loop 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Cymbals\\Progressive House Essential - Hi-hat Loop 02.wav",
+        "truncate": 4
+      },
+      "local_pos": 0
+    },
+    {
+      "global_pos": 2,
+      "channel": {
+        "name": "drop_hat",
+        "effects": [
+          {
+            "name": "highpass",
+            "cutoff": 1000
+          },
+          {
+            "name": "balance",
+            "db": -21
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Cymbals\\Progressive House Essential - Hi-hat Loop 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Cymbals\\Progressive House Essential - Hi-hat Loop 02.wav",
+        "truncate": 4
+      },
+      "local_pos": 0
+    },
+    {
+      "global_pos": 3,
+      "channel": {
+        "name": "drop_hat",
+        "effects": [
+          {
+            "name": "highpass",
+            "cutoff": 1000
+          },
+          {
+            "name": "balance",
+            "db": -21
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Cymbals\\Progressive House Essential - Hi-hat Loop 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Cymbals\\Progressive House Essential - Hi-hat Loop 02.wav",
+        "truncate": 4
+      },
+      "local_pos": 0
+    },
+    {
+      "global_pos": 4,
+      "channel": {
+        "name": "drop_hat",
+        "effects": [
+          {
+            "name": "highpass",
+            "cutoff": 1000
+          },
+          {
+            "name": "balance",
+            "db": -21
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Cymbals\\Progressive House Essential - Hi-hat Loop 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Cymbals\\Progressive House Essential - Hi-hat Loop 02.wav",
+        "truncate": 4
+      },
+      "local_pos": 0
+    },
+    {
+      "global_pos": 5,
+      "channel": {
+        "name": "drop_hat",
+        "effects": [
+          {
+            "name": "highpass",
+            "cutoff": 1000
+          },
+          {
+            "name": "balance",
+            "db": -21
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Cymbals\\Progressive House Essential - Hi-hat Loop 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Cymbals\\Progressive House Essential - Hi-hat Loop 02.wav",
+        "truncate": 4
+      },
+      "local_pos": 0
+    },
+    {
+      "global_pos": 6,
+      "channel": {
+        "name": "drop_hat",
+        "effects": [
+          {
+            "name": "highpass",
+            "cutoff": 1000
+          },
+          {
+            "name": "balance",
+            "db": -21
+          }
+        ]
+      },
+      "core": {
+        "bpm": 128,
+        "sr": 44100,
+        "sig": "4/4",
+        "source_path": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Cymbals\\Progressive House Essential - Hi-hat Loop 02.wav",
+        "name": "C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs\\OXO Progressive House Essential Drums\\OXO - Cymbals\\Progressive House Essential - Hi-hat Loop 02.wav",
+        "truncate": 4
+      },
+      "local_pos": 0
+    }
+  ],
+  "channels": [
+    {
+      "name": "LEAD",
+      "effects": [
+        {
+          "name": "highpass",
+          "cutoff": 500
+        },
+        {
+          "name": "balance",
+          "db": -9
+        },
+        {
+          "name": "sidechain",
+          "length": 1,
+          "attain": 0.5,
+          "interp_order": 2,
+          "mag": 0.5
+        },
+        {
+          "name": "reverb",
+          "room_size": 0.5,
+          "damping": 0.5,
+          "wet_level": 0.5,
+          "dry_level": 0.4,
+          "width": 1,
+          "freeze_mode": 0
+        }
+      ]
+    },
+    {
+      "name": "CHORD",
+      "effects": [
+        {
+          "name": "highpass",
+          "cutoff": 200
+        },
+        {
+          "name": "balance",
+          "db": -15
+        },
+        {
+          "name": "sidechain",
+          "length": 1,
+          "attain": 0.5,
+          "interp_order": 2,
+          "mag": 0.9
+        }
+      ]
+    },
+    {
+      "name": "drop_kick",
+      "effects": [
+        {
+          "name": "balance",
+          "db": -6
+        }
+      ]
+    },
+    {
+      "name": "BASS",
+      "effects": [
+        {
+          "name": "highpass",
+          "cutoff": 200
+        },
+        {
+          "name": "lowpass",
+          "cutoff": 5000
+        },
+        {
+          "name": "balance",
+          "db": -9
+        },
+        {
+          "name": "sidechain",
+          "length": 1,
+          "attain": 0.5,
+          "interp_order": 2,
+          "mag": 0.9
+        }
+      ]
+    },
+    {
+      "name": "drop_clap",
+      "effects": [
+        {
+          "name": "highpass",
+          "cutoff": 500
+        },
+        {
+          "name": "balance",
+          "db": -21
+        }
+      ]
+    },
+    {
+      "name": "SUB",
+      "effects": [
+        {
+          "name": "highpass",
+          "cutoff": 30
+        },
+        {
+          "name": "lowpass",
+          "cutoff": 100
+        },
+        {
+          "name": "balance",
+          "db": -6
+        },
+        {
+          "name": "sidechain",
+          "length": 1,
+          "attain": 0.5,
+          "interp_order": 2,
+          "mag": 1
+        }
+      ]
+    },
+    {
+      "name": "drop_hat",
+      "effects": [
+        {
+          "name": "highpass",
+          "cutoff": 1000
+        },
+        {
+          "name": "balance",
+          "db": -21
+        }
+      ]
+    }
+  ]
+}
