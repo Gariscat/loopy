@@ -108,7 +108,7 @@ def prog_house(
         bass_names = ['Home', 'Perfect']
         sub_names = ['SUBBASS']
         balance = {'lead': -7, 'chord': -14, 'bass': -3, 'sub': -3}
-        reverb = {'wet': 0.5}
+        reverb = {'wet': 0.5, 'dry': 0.4}
         if decor_map is None:
             decor_map = {
                 6: [10],
@@ -121,8 +121,8 @@ def prog_house(
         chord_names = ['Diamond', 'SummerNights', 'Social']
         bass_names = ['Home', 'Dark']
         sub_names = ['SUBBASS']
-        balance = {'lead': -9, 'chord': -14, 'bass': -4, 'sub': -6}
-        reverb = {'wet': 1.0}
+        balance = {'lead': -10, 'chord': -16, 'bass': -4, 'sub': -6}
+        reverb = {'wet': 1.0, 'dry': 0.4}
         if decor_map is None:
             decor_map={
                 4: [11],
@@ -202,7 +202,7 @@ def prog_house(
             LoopyHighpass(300),
             LoopyBalance(balance['lead']),
             LoopySidechain(attain=1/2, interp_order=2, mag=0.7),
-            LoopyReverb(wet_level=reverb['wet']),
+            LoopyReverb(wet_level=reverb['wet'], dry_level=reverb['dry']),
         ]
     )
 
@@ -222,7 +222,7 @@ def prog_house(
             LoopyHighpass(200),
             LoopyLowpass(5000),
             LoopyBalance(balance['bass']),
-            LoopySidechain(attain=1/2, interp_order=2, mag=0.9),
+            LoopySidechain(attain=1/2, interp_order=2, mag=1),
         ]
     )
 
