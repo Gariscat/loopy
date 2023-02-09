@@ -4,6 +4,7 @@ from loopy.utils import *
 from loopy import SAMPLE_DIR
 import os
 from typing import List
+from copy import deepcopy
 
 ### CHANNELS
 DEFAULT_CHANNELS = dict()
@@ -102,11 +103,11 @@ def prog_house(
 ) -> LoopyTrack:
 
     if style == 'Tobu':
-        lead_names = ['Dream', 'Stars', 'Blue']
-        chord_names = ['Massive', 'Supersaws']
+        lead_names = ['Dream', 'Stars', 'Blue', 'SweetDivine',]
+        chord_names = ['Massive', 'Supersaws', 'Diamond', 'FarAway']
         bass_names = ['Home', 'Perfect']
         sub_names = ['SUBBASS']
-        balance = {'lead': -9, 'chord': -15, 'bass': -9, 'sub': -6}
+        balance = {'lead': -7, 'chord': -14, 'bass': -3, 'sub': -3}
         reverb = {'wet': 0.5}
         if decor_map is None:
             decor_map = {
@@ -116,11 +117,11 @@ def prog_house(
                 1: [2],
             }
     elif style == 'Dubvision':
-        lead_names = ['Shine', 'Forever', 'Stars', 'Blue', 'Supersaw',]
+        lead_names = ['Follow', 'Forever', 'Stars', 'SweetDivine', 'Supersaw',]
         chord_names = ['Diamond', 'SummerNights', 'Social']
         bass_names = ['Home', 'Dark']
         sub_names = ['SUBBASS']
-        balance = {'lead': -11, 'chord': -18, 'bass': -9, 'sub': -3}
+        balance = {'lead': -9, 'chord': -14, 'bass': -4, 'sub': -6}
         reverb = {'wet': 1.0}
         if decor_map is None:
             decor_map={
@@ -200,7 +201,7 @@ def prog_house(
         effects=[
             LoopyHighpass(300),
             LoopyBalance(balance['lead']),
-            LoopySidechain(attain=1/2, interp_order=2, mag=0.5),
+            LoopySidechain(attain=1/2, interp_order=2, mag=0.7),
             LoopyReverb(wet_level=reverb['wet']),
         ]
     )
@@ -241,7 +242,7 @@ def prog_house(
     """
     for core, channel in zip(cores, channels):
         track.add_pattern(core, 0, 0, channel)
-
+    
     add_kick(track=track, num_bars=8)
     add_clap(track=track, num_bars=8)
     add_hat(track=track, num_bars=8)

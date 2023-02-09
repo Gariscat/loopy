@@ -171,10 +171,10 @@ chord_line = [int(x) if int(x) else 0 for x in chord_line.split()]
 
 
 # print(len(melody_line), len(chord_line))
-
+"""
 prog_track = prog_house(melody_line, chord_line, chord_sync=False, preview=False, style='Tobu', name='tobu', scale_root='C', root_area='4')
-prog_track.save_audio(target_dir='D:\\Project 2023\\loopy')
-
+prog_track.save_audio(target_dir='D:\\Project 2023\\loopy', gain=6.5)
+"""
 
 
 melody_line_1 = '84 84 84 00 84 84 00 91 91 00 84 84 84 00 84 84 83 83 83 00 84 84 00 91 91 00 83 83 83 00 83 83 84 84 84 00 84 84 00 91 91 00 84 84 83 83 84 84 95 95 95 00 96 96 00 91 91 00 84 84 89 89 88 88 '
@@ -195,4 +195,4 @@ chord_line += [5] * 16
 # print(len(melody_line), len(chord_line))
 
 prog_track = prog_house(melody_line, chord_line, chord_sync=False, preview=False, style='Dubvision', name='dubvision', scale_root='A', root_area='3')
-prog_track.save_audio(target_dir='D:\\Project 2023\\loopy')
+prog_track.save_audio(target_dir='D:\\Project 2023\\loopy', gain=6.)

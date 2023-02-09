@@ -22,6 +22,9 @@ class LoopyEffect():
     def __dict__(self):
         return self.__str__()
 
+    def reset(self):
+        pass
+
 
 class LoopyHighpass(LoopyEffect):
     def __init__(self, freq: int) -> None:
@@ -34,6 +37,9 @@ class LoopyHighpass(LoopyEffect):
         y_filted = self.filter.process(y, sample_rate=DEFAULT_SR, reset=True)
         return y_filted
 
+    def reset(self):
+        self.filter.reset()
+
 class LoopyLowpass(LoopyEffect):
     def __init__(self, freq: int) -> None:
         super().__init__()
@@ -44,6 +50,9 @@ class LoopyLowpass(LoopyEffect):
     def forward(self, y: np.ndarray):
         y_filted = self.filter.process(y, sample_rate=DEFAULT_SR, reset=True)
         return y_filted
+
+    def reset(self):
+        self.filter.reset()
 
 class LoopyReverb(LoopyEffect):
     def __init__(self,
@@ -74,6 +83,9 @@ class LoopyReverb(LoopyEffect):
 
     def forward(self, y: np.ndarray):
         return self.reverb.process(y, sample_rate=DEFAULT_SR, reset=True)
+
+    def reset(self):
+        self.reverb.reset()
 
 class LoopySidechain(LoopyEffect):
     def __init__(self,
@@ -134,3 +146,6 @@ class LoopyBalance(LoopyEffect):
     
     def forward(self, y: np.ndarray):
         return self.gain.process(y, sample_rate=DEFAULT_SR, reset=True)
+
+    def reset(self):
+        self.gain.reset()

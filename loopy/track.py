@@ -2,6 +2,7 @@ from loopy.utils import hhmmss2sec, parse_sig, DEFAULT_SR, pos2index, add_y
 from loopy.channel import LoopyChannel
 from loopy.pattern import LoopyPatternCore, LoopyPattern
 from loopy.sample import LoopySampleCore, LoopySample
+from loopy.effect import LoopyBalance
 import numpy as np
 from math import ceil
 import os
@@ -39,7 +40,7 @@ class LoopyTrack():
         self._samples = []  # list of LoopySample
         self._channels = set()  # set of LoopyChannel
         self._generators = set()
-        # self._master_channel = LoopyChannel(name='master')
+        self._master_channel = LoopyChannel(name='master')
     
     def fit_pattern(self, pattern_type: LoopyPatternCore):
         """
@@ -97,7 +98,7 @@ class LoopyTrack():
         self._samples.append(sample)
         self._channels.add(channel)
         
-    def render(self):
+    def render(self, gain: int = 6.0):
         self._y = np.zeros((self._tot_samples, 2))
         
         for pattern in self._patterns:
@@ -128,14 +129,15 @@ class LoopyTrack():
                 st_index=st_index
             )
         
-        return self._y
+        self._master_channel.add_effect(LoopyBalance(gain))
+        return self._master_channel(self._y)
 
     def add_channel(self, channel: LoopyChannel):
         self._channels.append(channel)
 
-    def save_audio(self, target_dir: str = os.getcwd()):
+    def save_audio(self, target_dir: str = os.getcwd(), gain: int = 6.):
         target_path = os.path.join(target_dir, self._name+'.wav')
-        sf.write(target_path, self.render(), self._sr)
+        sf.write(target_path, self.render(gain), self._sr)
 
     def save(self):
         info = {

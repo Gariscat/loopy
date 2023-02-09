@@ -18,6 +18,7 @@ class LoopyChannel():
     def __call__(self, y: np.ndarray):
         for fx in self._effects:
             y = fx(y)
+            fx.reset()
         return y
 
     def __dict__(self):
