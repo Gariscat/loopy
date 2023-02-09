@@ -98,7 +98,39 @@ def prog_house(
     scale_root: str = 'C',
     scale_type: str = 'maj',
     root_area: str = '4',
+    decor_map: dict = None,
 ) -> LoopyTrack:
+
+    if style == 'Tobu':
+        lead_names = ['Dream', 'Stars', 'Blue']
+        chord_names = ['Massive', 'Supersaws']
+        bass_names = ['Home', 'Perfect']
+        sub_names = ['SUBBASS']
+        balance = {'lead': -9, 'chord': -15, 'bass': -9, 'sub': -6}
+        reverb = {'wet': 0.5}
+        if decor_map is None:
+            decor_map = {
+                6: [10],
+                4: [11],
+                5: [],
+                1: [2],
+            }
+    elif style == 'Dubvision':
+        lead_names = ['Shine', 'Forever', 'Stars', 'Blue', 'Supersaw',]
+        chord_names = ['Diamond', 'SummerNights', 'Social']
+        bass_names = ['Home', 'Dark']
+        sub_names = ['SUBBASS']
+        balance = {'lead': -11, 'chord': -18, 'bass': -9, 'sub': -3}
+        reverb = {'wet': 1.0}
+        if decor_map is None:
+            decor_map={
+                4: [11],
+                5: [9],
+                6: [10],
+                1: [2],
+                2: [5],
+                3: [8],
+            }
     assert len(melody_line) == len(chord_line)
     melody_notes = note_seq_parser(melody_line)
     chord_notes, bass_notes = chord_seq_parser(
@@ -106,24 +138,14 @@ def prog_house(
         melody_line if chord_sync else None,
         scale_root=scale_root,
         scale_type=scale_type,
-        root_area=root_area
+        root_area=root_area,
+        
     )
     sub_notes = [(octave_shift(k, -1), _, __) for k, _, __ in bass_notes]
     
     track = LoopyTrack(name=name, bpm=bpm, length='00:15')
 
-    if style == 'Tobu':
-        lead_names = ['Forever', 'Stars', 'Blue']
-        chord_names = ['Massive', 'Supersaws']
-        bass_names = ['Home', 'Perfect']
-        sub_names = ['SUBBASS']
-        balance = {'lead': -9, 'chord': -15, 'bass': -9, 'sub': -6}
-    elif style == 'Dubvision':
-        lead_names = ['Forever', 'Follow', 'Stars']
-        chord_names = ['Diamond', 'SummerNights', 'Social']
-        bass_names = ['Home', 'Dark']
-        sub_names = ['SUBBASS']
-        balance = {'lead': -12, 'chord': -14, 'bass': -7, 'sub': -3}
+    
     """
     elif style == 'MatisseSadko':
         lead_names = ['Forever', 'Stars', 'SweetDivine', 'Blue']
@@ -176,10 +198,10 @@ def prog_house(
     lead_channel = LoopyChannel(
         name='LEAD',
         effects=[
-            LoopyHighpass(500),
+            LoopyHighpass(300),
             LoopyBalance(balance['lead']),
             LoopySidechain(attain=1/2, interp_order=2, mag=0.5),
-            LoopyReverb(wet_level=0.5),
+            LoopyReverb(wet_level=reverb['wet']),
         ]
     )
 
@@ -214,7 +236,9 @@ def prog_house(
     )
     cores = (ld_core, ch_core, bs_core, sb_core)
     channels = (lead_channel, chord_channel, bass_channel, sub_channel)
-    
+    """
+    track.add_pattern(ch_core, 0, 0, chord_channel)
+    """
     for core, channel in zip(cores, channels):
         track.add_pattern(core, 0, 0, channel)
 

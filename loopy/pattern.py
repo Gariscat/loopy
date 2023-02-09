@@ -61,7 +61,7 @@ class LoopyPatternCore():
     def add_notes(self,
         notes: List[Tuple[str, float, float]],
         generator: LoopyPreset,
-        attack: int = 0,  # unit is ms
+        attack: int = 10,  # unit is ms
         decay: int = 0,  # unit is ms
         sustain: float = 1.0,  # between 0 and 1
         release: int = 0,  # unit is ms
