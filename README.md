@@ -1,7 +1,7 @@
 <img src="https://github.com/Gariscat/EMInf/blob/main/logo.png" alt="logo" width="384"/>
 
 # loopy
-An infrastructure for music information retrieval focusing on electronic music, especially for data synthesis and annotation. Our home page is [here](https://loopy4edm.com/)
+An infrastructure for music information retrieval focusing on electronic music, especially for data synthesis and annotation. Our home page is [here](https://loopy4edm.com/). The paper is now under review by ICMR 2023.
 
 ## Important facts
 
