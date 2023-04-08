@@ -1,5 +1,6 @@
-from loopy.utils import parse_sig, find_preset
-from loopy import LoopyPatternCore, LoopyPreset
+from loopy.utils import parse_sig, find_preset, preview_wave
+from loopy.template import add_kick
+from loopy import LoopyPatternCore, LoopyPreset, LoopyTrack
 import matplotlib.pyplot as plt
 from matplotlib.collections import LineCollection
 import numpy as np
@@ -23,7 +24,7 @@ class LoopyRhythm():
         self._place_holders = []
         ### should contain pairs of (note_value, start_pos, end_pos)
 
-    def render(self, default_note='C5', default_preset='Ultrasonic-LD-Forever.wav'):
+    def preview(self, default_note='C5', default_preset='Ultrasonic-LD-Forever.wav'):
         temp_core = LoopyPatternCore(
             num_bars=self._num_bars,
             sig=self._sig,
@@ -40,7 +41,11 @@ class LoopyRhythm():
                 pos_in_pattern=place_holder[1],
                 generator=temp_gen,
             )
-        return temp_core.render()
+
+        temp_track = LoopyTrack(name='', length='00:7.5')
+        temp_track.add_pattern(temp_core, 0, 0)
+        add_kick(temp_track, num_bars=self._num_bars)
+        preview_wave(temp_track.render())
 
     def __dict__(self):
         return {
@@ -54,7 +59,6 @@ class LoopyRhythm():
     def save(self, save_dir):
         with open(os.path.join(save_dir, f'rhythm-{self._name}.json'), 'w') as f:
             json.dump(self.__dict__(), f)
-
 
     def generate(self,
         seed: int = 0,
@@ -84,19 +88,15 @@ class LoopyRhythm():
 
         if debug:
             print(self._place_holders)
-            segments = [((st_pos, 1), (ed_pos, 1)) for note_value, st_pos, ed_pos in self._place_holders]
+            segments = [((st_pos, j), (ed_pos, j)) for j, (note_value, st_pos, ed_pos) in enumerate(self._place_holders)]
             fig, ax = plt.subplots()
             ax.add_collection(LineCollection(segments))
             ax.autoscale()
 
             for i in range(total_beats):
                 plt.axvline(x=i, color='red', label='beat (kick)', ls=':')
+            plt.savefig('./tmp.jpg')
             plt.show()
             plt.close()
 
-
-if __name__ == '__main__':
-    for seed in range(10):
-        rhythm = LoopyRhythm(str(seed))
-        rhythm.generate(seed, debug=True, param={'lambda': 0.5})
-        rhythm.save('./')
+            

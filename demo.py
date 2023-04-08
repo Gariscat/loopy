@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from loopy import LoopyTrack, LoopyPreset, LoopyPatternCore, PRESET_DIR, DEFAULT_SR, preview_notes, LoopySidechain, LoopyBalance
 from loopy.utils import *
+from loopy.rhythm import LoopyRhythm
 import os
 import librosa
 from loopy.template import *
@@ -176,7 +177,7 @@ prog_track = prog_house(melody_line, chord_line, chord_sync=False, preview=False
 prog_track.save_audio(target_dir='D:\\Project 2023\\loopy', gain=6.5)
 """
 
-
+"""
 melody_line_1 = '84 84 84 00 84 84 00 91 91 00 84 84 84 00 84 84 83 83 83 00 84 84 00 91 91 00 83 83 83 00 83 83 84 84 84 00 84 84 00 91 91 00 84 84 83 83 84 84 95 95 95 00 96 96 00 91 91 00 84 84 89 89 88 88 '
 
 melody_line_2 = '81 81 81 00 81 81 00 88 88 00 81 81 81 00 81 81 83 83 83 00 84 84 00 91 91 00 83 83 83 00 83 83 84 84 84 00 84 84 00 91 91 00 84 84 84 00 91 91 101 101 100 100 96 96 91 91 91 00 89 89 88 88 86 86 '
@@ -196,3 +197,11 @@ chord_line += [5] * 16
 
 prog_track = prog_house(melody_line, chord_line, chord_sync=False, preview=False, style='Dubvision', name='dubvision', scale_root='A', root_area='3')
 prog_track.save_audio(target_dir='D:\\Project 2023\\loopy', gain=6.)
+
+"""
+
+seed = 264
+rhythm = LoopyRhythm(str(seed))
+rhythm.generate(seed, debug=True, param={'lambda': 0.5})
+# rhythm.save('./')
+rhythm.preview()
