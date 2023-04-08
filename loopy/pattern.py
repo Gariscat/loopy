@@ -27,12 +27,13 @@ class LoopyPatternCore():
         """
         self._bpm = bpm
         self._name = name
+        self._num_bars = num_bars
         self._sr = sr
         self._sig = sig
         self._beats_per_bar, self._beat_value = parse_sig(sig)
         self._generators = set()
         self._notes = []
-        self._tot_samples = int(num_bars * self._beats_per_bar * 60 * sr / bpm)
+        self._tot_samples = int(self._num_bars * self._beats_per_bar * 60 * sr / bpm)
         self._resolution = resolution
 
     def add_note(self,

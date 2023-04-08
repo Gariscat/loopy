@@ -223,6 +223,7 @@ def note_seq_parser(
         score += [(key_name, note_value, pos_in_pattern)]
         ### print(key_name, note_value.as_integer_ratio(), pos_in_pattern)
         i = j
+    ### print(score)
     return score
 
 

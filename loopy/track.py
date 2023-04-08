@@ -139,7 +139,7 @@ class LoopyTrack():
         target_path = os.path.join(target_dir, self._name+'.wav')
         sf.write(target_path, self.render(gain), self._sr)
 
-    def save(self):
+    def save(self, save_dir):
         info = {
             'name': self._name,
             'bpm': self._bpm,
@@ -152,6 +152,6 @@ class LoopyTrack():
             'channels': [channel.__dict__() for channel in self._channels],
         }
         # print(info)
-        with open(f'{self._name}.json', 'w') as f:
+        with open(os.path.join(save_dir, f'track-{self._name}.json'), 'w') as f:
             json.dump(info, f)
     
