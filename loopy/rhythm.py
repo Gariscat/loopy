@@ -98,5 +98,12 @@ class LoopyRhythm():
             plt.savefig('./tmp.jpg')
             plt.show()
             plt.close()
+            
+def gen_melody_from_rhythm(
+    scale_root: str = 'C',
+    scale_type: str = 'maj',
+    root_area: str = '5',
+):
+    pass
 
             
