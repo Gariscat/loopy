@@ -1,4 +1,4 @@
-from loopy.utils import parse_sig, find_preset, preview_wave
+from loopy.utils import parse_sig, find_preset, preview_wave, piano_id2piano_key, piano_key2piano_id
 from loopy.template import add_kick
 from loopy import LoopyPatternCore, LoopyPreset, LoopyTrack
 import matplotlib.pyplot as plt
@@ -99,11 +99,20 @@ class LoopyRhythm():
             plt.show()
             plt.close()
             
-def gen_melody_from_rhythm(
-    scale_root: str = 'C',
-    scale_type: str = 'maj',
-    root_area: str = '5',
-):
-    pass
+    def trivial_melody_from_rhythm(self,
+        seed: int = 0,
+        scale_root: str = 'C',
+        scale_type: str = 'maj',
+        root_area: str = '5',
+    ):
+        root_id = piano_key2piano_id(scale_root+root_area)
+        if scale_type == 'maj':
+            note_ids = [root_id+i for i in (0, 2, 4, 5, 7, 9, 11)]
+        else:
+            note_ids = [root_id+i for i in (0, 2, 3, 5, 7, 8, 10)]
 
-            
+        note_keys = [piano_id2piano_key(x) for x in note_ids]
+        
+        np.random.seed(seed)
+
+        return [(np.random.choice(note_keys), place_holder[0], place_holder[1]) for place_holder in self._place_holders]
