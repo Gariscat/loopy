@@ -200,8 +200,10 @@ prog_track.save_audio(target_dir='D:\\Project 2023\\loopy', gain=6.)
 
 """
 
-seed = 264
-rhythm = LoopyRhythm(str(seed))
-rhythm.generate(seed, debug=True, param={'lambda': 0.5})
+seed = 425
+rhythm = LoopyRhythm(seed, rep_bars=1)
+
+rhythm.generate_rhythm(mode='poisson', param={'lambda': 0.5})
+place_holders_8_bars = rhythm.repeat(8)
 # rhythm.save('./')
-rhythm.preview()
+rhythm.preview(tot_bars = 8, place_holders=place_holders_8_bars)

@@ -22,7 +22,7 @@ class LoopyTrack():
         Args:
             name (str): name of the track.
             bpm (int, optional): beats per minutes. Defaults to 128.
-            sr (int, optional): sapmle rate. Defaults to 44100.
+            sr (int, optional): sample rate. Defaults to 44100.
             sig (str, optional): signature. Defaults to '4/4'.
             length (str, optional): length in MM:SS. Defaults to "00:00".
         """

@@ -10,13 +10,24 @@ from typing import List
 
 class LoopyRhythm():
     def __init__(self,
-        name: str = '',
-        num_bars: int = 4,
+        seed: int = 0,
+        name: str = None,
+        rep_bars: int = 1,
         sig: str = '4/4',
         resolution: float = 1/16,
     ) -> None:
-        self._name = name
-        self._num_bars = num_bars
+        """A sequence of place holders as rhythm of an repetitive structures in patterns
+
+        Args:
+            seed (int, optional): random seed. Defaults to 0.
+            name (str, optional): name of the rhythm. Defaults to None.
+            rep_bars (int, optional): the longest number of bars during which the rhythm is repetitive. Defaults to 1.
+            sig (str, optional): signature. Defaults to '4/4'.
+            resolution (float, optional): length of the shortest note. Defaults to 1/16.
+        """
+        self._seed = seed
+        self._name = name if name else str(seed)
+        self._rep_bars = rep_bars
         self._sig = sig
         self._beats_per_bar, self._beat_value = parse_sig(sig)
         self._resolution = resolution
@@ -24,34 +35,33 @@ class LoopyRhythm():
         self._place_holders = []
         ### should contain pairs of (note_value, start_pos, end_pos)
 
-    def preview(self, default_note='C5', default_preset='Ultrasonic-LD-Forever.wav'):
-        temp_core = LoopyPatternCore(
-            num_bars=self._num_bars,
-            sig=self._sig,
-            resolution=self._resolution
-        )
+    def preview(self, default_preset='Ultrasonic-LD-Forever.wav', tot_bars: int = 8, place_holders: List = None):
+        if place_holders is None:
+            place_holders = self._place_holders
+        if len(place_holders) == 0:
+            raise FileExistsError("Please determine the rhythm by the place holders first")
+        temp_track = LoopyTrack(name='', length=f'00:{1.875*tot_bars}')
         temp_gen = LoopyPreset(
             source_path=find_preset(default_preset),
             name='',
         )
-        for place_holder in self._place_holders:
-            temp_core.add_note(
-                key_name=default_note,
-                note_value=place_holder[0],
-                pos_in_pattern=place_holder[1],
-                generator=temp_gen,
-            )
-
-        temp_track = LoopyTrack(name='', length='00:7.5')
+        temp_core = LoopyPatternCore(
+            num_bars=tot_bars,
+            sig=self._sig,
+            resolution=self._resolution
+        )
+        notes = self.trivial_melody_from_rhythm(place_holders)
+        temp_core.add_notes(notes=notes, generator=temp_gen)
         temp_track.add_pattern(temp_core, 0, 0)
-        add_kick(temp_track, num_bars=self._num_bars)
+
+        add_kick(temp_track, num_bars=tot_bars)
         preview_wave(temp_track.render())
 
     def __dict__(self):
         return {
             'name': self._name,
             'sig': self._sig,
-            'num_bars': self._num_bars,
+            'rep_bars': self._rep_bars,
             'resolution': self._resolution,
             'place_holders': self._place_holders
         }
@@ -60,8 +70,7 @@ class LoopyRhythm():
         with open(os.path.join(save_dir, f'rhythm-{self._name}.json'), 'w') as f:
             json.dump(self.__dict__(), f)
 
-    def generate(self,
-        seed: int = 0,
+    def generate_rhythm(self,
         note_values: List[int] = [i/16 for i in (2,3,4)],
         note_values_weight: List[int] = None,
         mode: str = 'poisson',
@@ -71,17 +80,17 @@ class LoopyRhythm():
         if mode != 'poisson':
             raise NotImplementedError('Distributions beside Poisson not implemented')
         
-        np.random.seed(seed)
+        np.random.seed(self._seed)
 
         st_pos, ed_pos = 0.0, 0.0
-        total_beats = self._num_bars * self._beats_per_bar
+        rep_beats = self._rep_bars * self._beats_per_bar
 
-        while ed_pos < total_beats:
+        while ed_pos < rep_beats:
             st_pos = ed_pos + np.random.poisson(param['lambda']) * self._resolution / self._beat_value
             note_value = np.random.choice(note_values, p=note_values_weight)
             ed_pos = st_pos + note_value / self._beat_value
             
-            if ed_pos > total_beats:
+            if ed_pos > rep_beats:
                 break
             
             self._place_holders.append((note_value, st_pos, ed_pos))
@@ -93,14 +102,32 @@ class LoopyRhythm():
             ax.add_collection(LineCollection(segments))
             ax.autoscale()
 
-            for i in range(total_beats):
+            for i in range(rep_beats):
                 plt.axvline(x=i, color='red', label='beat (kick)', ls=':')
             plt.savefig('./tmp.jpg')
             plt.show()
             plt.close()
+
+    def repeat(self, tot_bars: int):
+        """repeat the generated rhythm
+
+
+        Args:
+            tot_bars (int): total number of bars that contain this repetitive rhythm
+        Returns:
+            List: place holders
+        """
+        place_holders = []
+        for i in range(tot_bars//self._rep_bars):
+            delta = i * self._rep_bars * self._beats_per_bar
+            for note_value, st_pos, ed_pos in self._place_holders:
+                place_holders.append((note_value, st_pos+delta, ed_pos+delta))
+        return place_holders
+                
             
     def trivial_melody_from_rhythm(self,
-        seed: int = 0,
+        place_holders: List = None,
+        seed: int = None,
         scale_root: str = 'C',
         scale_type: str = 'maj',
         root_area: str = '5',
@@ -113,6 +140,9 @@ class LoopyRhythm():
 
         note_keys = [piano_id2piano_key(x) for x in note_ids]
         
-        np.random.seed(seed)
+        if seed is not None:
+            np.random.seed(seed)
+        if place_holders is None:
+            place_holders = self._place_holders
 
-        return [(np.random.choice(note_keys), place_holder[0], place_holder[1]) for place_holder in self._place_holders]
+        return [(np.random.choice(note_keys), place_holder[0], place_holder[1]) for place_holder in place_holders]
