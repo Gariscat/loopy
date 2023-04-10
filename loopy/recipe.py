@@ -1,6 +1,7 @@
 from loopy import LoopyTrack, LoopySampleCore, LoopyPatternCore, LoopySample, LoopyPattern, LoopyChannel, LoopyPreset
 from loopy.effect import *
 from loopy.utils import *
+from loopy.rhythm import LoopyRhythm, trivial_accomp
 from loopy import SAMPLE_DIR
 import os
 from typing import List, Tuple
@@ -295,3 +296,66 @@ class LoopyStyle2(LoopyStyle):
 
     def stylize(self):
         pass
+
+
+
+
+"""Generation begins!"""
+def generate_track(
+    name: str,
+    style: LoopyStyle,
+    bpm: int = 128,
+    sig: str = '4/4',
+    melody_rep_bars: int = 1,
+    melody_root_area: str = '5',
+    seed: int = 0,
+    chord_prog: List[List[int, float, float]] = None,
+    scale_root: str = 'C',
+    scale_type: str = 'maj',
+    chord_root_area: str = '4',  # C3, D3, E3......
+    del_second: bool = False,
+    decr_octave: bool = True,
+    incr_octave: bool = False,
+    decor_map: Dict[int, List[int]] = dict(),
+    chord_sync: bool = False,
+    preview: bool = False,
+):
+    np.random.seed(seed)
+    
+    if chord_prog is None:
+        chord_prog = np.random.choice(COMMON_CHORD_PROG)
+    rhythm = LoopyRhythm(seed, rep_bars=melody_rep_bars)
+    place_holders = rhythm.repeat(tot_bars=8)
+    lead_notes = rhythm.trivial_melody_from_rhythm(
+        place_holders=place_holders,
+        seed=seed,
+        scale_root=scale_root,
+        scale_type=scale_type,
+        root_area=melody_root_area,
+    )
+    chord_notes, bass_notes, sub_notes = trivial_accomp(
+        sig=sig,
+        place_holders=place_holders if chord_sync else [],
+        chord_prog=chord_prog,
+        scale_root=scale_root,
+        scale_type=scale_type,
+        root_area=chord_root_area,
+        del_second=del_second,
+        decr_octave=decr_octave,
+        incr_octave=incr_octave,
+        decor_map=decor_map,
+    )
+
+    track = style.compose(
+        name=name,
+        lead_notes=lead_notes,
+        chord_notes=chord_notes,
+        bass_notes=bass_notes,
+        sub_notes=sub_notes,
+        bpm=bpm,
+        sig=sig,
+        length='00:15',
+        preview=preview
+    )
+
+    return track
