@@ -1,4 +1,6 @@
-from loopy.utils import parse_sig, find_preset, preview_wave, piano_id2piano_key, piano_key2piano_id
+from loopy.utils import parse_sig, find_preset, preview_wave
+from loopy.utils import piano_id2piano_key, piano_key2piano_id
+from loopy.utils import get_chord_notes, octave_shift
 from loopy.template import add_kick
 from loopy import LoopyPatternCore, LoopyPreset, LoopyTrack
 import matplotlib.pyplot as plt
@@ -6,7 +8,7 @@ from matplotlib.collections import LineCollection
 import numpy as np
 import os
 import json
-from typing import List
+from typing import List, Dict
 
 class LoopyRhythm():
     def __init__(self,
@@ -146,3 +148,49 @@ class LoopyRhythm():
             place_holders = self._place_holders
 
         return [(np.random.choice(note_keys), place_holder[0], place_holder[1]) for place_holder in place_holders]
+    
+
+def trivial_accomp(
+    sig: str = '4/4',
+    place_holders: List = [],
+    chord_prog: List[List[int, float, float]] = None,
+    scale_root: str = 'C',
+    scale_type: str = 'maj',
+    root_area: str = '4',  # C3, D3, E3......
+    del_second: bool = False,
+    decr_octave: bool = True,
+    incr_octave: bool = False,
+    decor_map: Dict[int, List[int]] = dict(),
+    # [chord_id, start_global_pos, end_global_pos] 
+) -> List[List, List, List]:
+    # return 3 lists of notes, for chord, bass and subbass
+    beats_per_bar, beat_value = parse_sig(sig)
+    if place_holders == []: # uniform-rhythm chords
+        tot_bars = max(_[2] for _ in chord_prog)
+        for i in range(0, tot_bars * beats_per_bar, 1/4):
+            place_holders += [(1/4, i, i+1/4)]
+
+    score, roots, sub_roots = [], [], []
+    i, j = 0, 0
+    while i < len(place_holders):
+        note_value, st_pos, ed_pos = place_holders[i]
+        while chord_prog[j][2] * beats_per_bar < ed_pos and j < len(chord_prog):
+            j += 1
+        chord_id = chord_prog[j][0]
+        decor_notes = decor_map[chord_id] if chord_id in decor_map.keys() else []
+        key_names = get_chord_notes(
+            chord_id=chord_id,
+            scale_root=scale_root,
+            scale_type=scale_type,
+            root_area=root_area,
+            del_second=del_second,
+            decr_octave=decr_octave,
+            incr_octave=incr_octave,
+            decor_notes=decor_notes,
+        )
+        for key_name in key_names:
+            score += [(key_name, note_value, st_pos)]
+        roots += [(key_names[0], note_value, st_pos)]
+        sub_roots += [(key_name[0], note_value, st_pos)]
+
+    return score, roots, sub_roots

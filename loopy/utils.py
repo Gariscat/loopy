@@ -41,8 +41,8 @@ def octave_shift(key_name: Union[str, List[str]], delta: int):
         ret = []
         for x in key_name:
             target_area = int(x[-1]) + delta
-            if target_area <= 0:
-                print(x[-1], target_area)
+            """if target_area <= 0:
+                print(x[-1], target_area)"""
             assert target_area > 0
             ret += [x[0] + str(target_area)]
         return ret
@@ -269,7 +269,7 @@ def chord_seq_parser(
         if note_seq[i] == rest_id:
             i, j = i+1, i+1
             continue
-        # print(i, j, chord_seq[i:j])
+        ### print(i, j, chord_seq[i:j])
         note_value = resolution * (j - i)
         pos_in_pattern = resolution * i / beat_value
         decor_notes = decor_map[chord_seq[i]] if chord_seq[i] in decor_map.keys() else []
@@ -303,4 +303,19 @@ def pos2index(
     beats_per_bar, _ = parse_sig(sig)
     return int((global_pos * beats_per_bar + local_pos) * 60 * sr / bpm)
 
+# [chord_id, start_global_pos, end_global_pos]
+COMMON_CHORD_PROG = (
+    [[6, 0, 1], [4, 1, 2], [5, 2, 3], [1, 3, 4]],
+    [[6, 0, 1], [4, 1, 2], [1, 2, 3], [5, 3, 4]],
+    [[6, 0, 1], [4, 1, 2], [1, 2, 3], [3, 3, 4]],
+    [[4, 0, 1], [5, 1, 2], [6, 2, 3], [1, 3, 4]],
+    [[4, 0, 1], [1, 1, 2], [5, 2, 3], [6, 3, 4]],
+    [[5, 0, 1], [6, 1, 2], [4, 2, 3], [1, 3, 4]],
+    [[6, 0, 1], [4, 1, 2], [1, 2, 3], [3, 3, 4]]
+)
+# repeat for another 4 bars
+for progression in COMMON_CHORD_PROG:
+    for i in range(4):
+        progression.append([progression[i][0], progression[i][1]+4, progression[i][2]+4])
 
+### print(COMMON_CHORD_PROG)

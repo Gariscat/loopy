@@ -4,6 +4,7 @@ from loopy.utils import DEFAULT_SR, beat2index
 from pedalboard import HighpassFilter, LowpassFilter, Reverb, Gain
 from math import ceil
 import matplotlib.pylab as plt
+from typing import Dict
 
 
 class LoopyEffect():
@@ -149,3 +150,30 @@ class LoopyBalance(LoopyEffect):
 
     def reset(self):
         self.gain.reset()
+
+
+def dict2fx(info: Dict) -> LoopyEffect:
+    if info['type'] == 'highpass':
+        return LoopyHighpass(info['freq'])
+    elif info['type'] == 'lowpass':
+        return LoopyLowpass(info['freq'])
+    elif info['type'] == 'lowpass':
+        return LoopyReverb(
+            room_size=info['room_size'] if info.get('room_size') else 0.5,
+            damping=info['damping'] if info.get('damping') else 0.5,
+            wet_level=info['wet_level'] if info.get('wet_level') else 0.33,
+            dry_level=info['dry_level'] if info.get('dry_level') else 0.4,
+            width=info['width'] if info.get('width') else 1.0,
+        )
+    elif info['type'] == 'sidechain':
+        return LoopySidechain(
+            length=info['length'] if info.get('length') else 1.0,  # unit is beat
+            attain=info['attain'] if info.get('attain') else 0.125,  # unit is beat
+            interp_order=info['interp_order'] if info.get('interp_order') else 1,
+            mag=info['mag'] if info.get('mag') else 1,
+        )
+    elif info['type'] == 'balance':
+        return LoopyBalance(info['balance'])
+    else:
+        raise NotImplementedError("This effect is not implemented yet")
+    

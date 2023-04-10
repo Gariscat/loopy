@@ -5,6 +5,7 @@ import os
 import numpy as np
 from loopy.utils import sec2hhmmss, DEFAULT_SR, parse_sig
 from loopy.channel import LoopyChannel
+from loopy.effect import LoopyBalance
 
 
 SAMPLE_DIR = 'C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs'
@@ -21,6 +22,7 @@ class LoopySampleCore():
         sig: str = '4/4',
         name: str = None,
         truncate: int = None,
+        balance_db: float = 0,
     ) -> None:
         """
         Defines the skeleton of a sample.
@@ -37,6 +39,8 @@ class LoopySampleCore():
         self._beats_per_bar, self._beat_value = parse_sig(sig)
         self._source_path = source_path
         self._truncate = truncate
+        self._balance_db = balance_db
+        self._balance = LoopyBalance(balance_db)
 
         y, _ = librosa.load(source_path, sr=sr, mono=False)
         self._y = np.transpose(y, axes=(1, 0))
@@ -51,7 +55,8 @@ class LoopySampleCore():
         self._name = source_path if name is None else name
 
     def render(self):
-        return self._y
+        return self._balance(self._y)
+        # return self._y
 
     def __dict__(self):
         return {
