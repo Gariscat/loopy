@@ -5,6 +5,8 @@ from loopy import SAMPLE_DIR
 import os
 from typing import List
 from copy import deepcopy
+import warnings
+warnings.warn("the template module is deprecated and moved to the recipe", DeprecationWarning)
 
 ### CHANNELS
 DEFAULT_CHANNELS = dict()
