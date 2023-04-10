@@ -1,7 +1,7 @@
 from typing import Any
 import numpy as np
 from loopy.utils import DEFAULT_SR, beat2index
-from pedalboard import HighpassFilter, LowpassFilter, Reverb, Gain
+from pedalboard import HighpassFilter, LowpassFilter, Reverb, Gain, Limiter, Compressor, Distortion
 from math import ceil
 import matplotlib.pylab as plt
 from typing import Dict
@@ -152,12 +152,74 @@ class LoopyBalance(LoopyEffect):
         self.gain.reset()
 
 
+class LoopyLimiter(LoopyEffect):
+    def __init__(self,
+        thres: float = 0.0  # unit is dB
+    ) -> None:
+        super().__init__()
+        self.add_param('name', 'limiter')
+        self.add_param('thres', thres)
+    
+        self.limiter = Limiter(threshold_db=self._params['thres'])
+    
+    def forward(self, y: np.ndarray):
+        return self.limiter.process(y, sample_rate=DEFAULT_SR, reset=True)
+
+    def reset(self):
+        self.limiter.reset()
+
+
+class LoopyCompressor(LoopyEffect):
+    def __init__(self,
+        thres: float = 0.0,  # unit is dB,
+        ratio: float = 1.0,
+        attack_ms: float = 1.0,
+        release_ms: float = 100,
+    ) -> None:
+        super().__init__()
+        self.add_param('name', 'limiter')
+        self.add_param('thres', thres)
+        self.add_param('ratio', ratio)
+        self.add_param('attack', attack_ms)
+        self.add_param('release', release_ms)
+    
+        self.compressor = Compressor(
+            threshold_db=self._params['thres'],
+            ratio=self._params['ratio'],
+            attack_ms=self._params['attack'],
+            release_ms=self._params['release']
+        )
+    
+    def forward(self, y: np.ndarray):
+        return self.compressor.process(y, sample_rate=DEFAULT_SR, reset=True)
+
+    def reset(self):
+        self.limiter.reset()
+
+
+class LoopyDist(LoopyEffect):
+    def __init__(self,
+        drive: float = 25  # unit is dB
+    ) -> None:
+        super().__init__()
+        self.add_param('name', 'distortion')
+        self.add_param('drive', drive)
+    
+        self.dist = Distortion(drive_db=self._params['drive'])
+    
+    def forward(self, y: np.ndarray):
+        return self.dist.process(y, sample_rate=DEFAULT_SR, reset=True)
+
+    def reset(self):
+        self.gain.reset()
+
+
 def dict2fx(info: Dict) -> LoopyEffect:
     if info['type'] == 'highpass':
         return LoopyHighpass(info['freq'])
     elif info['type'] == 'lowpass':
         return LoopyLowpass(info['freq'])
-    elif info['type'] == 'lowpass':
+    elif info['type'] == 'reverb':
         return LoopyReverb(
             room_size=info['room_size'] if info.get('room_size') else 0.5,
             damping=info['damping'] if info.get('damping') else 0.5,
@@ -173,7 +235,18 @@ def dict2fx(info: Dict) -> LoopyEffect:
             mag=info['mag'] if info.get('mag') else 1,
         )
     elif info['type'] == 'balance':
-        return LoopyBalance(info['balance'])
+        return LoopyBalance(info['db'])
+    elif info['type'] == 'limiter':
+        return LoopyBalance(info['thres'])
+    elif info['type'] == 'compressor':
+        return LoopyCompressor(
+            thres=info['thres'] if info.get('thres') else 0,  # unit is beat
+            ratio=info['ratio'] if info.get('ratio') else 1,  # unit is beat
+            attack_ms=info['attack'] if info.get('attack') else 1.0,
+            release_ms=info['release'] if info.get('release') else 100,
+        )
+    elif info['type'] == 'distortion':
+        return LoopyBalance(info['drive'])
     else:
         raise NotImplementedError("This effect is not implemented yet")
     
