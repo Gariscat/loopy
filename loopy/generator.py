@@ -5,6 +5,7 @@ import os
 import numpy as np
 from typing import List
 import warnings
+from loopy.effect import LoopyBalance
 
 
 LOAD_BPM = 64
@@ -23,6 +24,7 @@ class LoopyPreset():
         sr: int = DEFAULT_SR,
         name: str = None,
         load_bpm: int = LOAD_BPM,
+        balance_db: float = 0,
     ) -> None:
         y, _ = librosa.load(source_path, sr=sr, mono=False)
         self._y = np.transpose(y, axes=(1, 0))
@@ -30,6 +32,8 @@ class LoopyPreset():
         self._source_path = source_path
         self._name = source_path if name is None else name
         self._load_bpm = load_bpm
+        self._balance_db = balance_db
+        self._balance = LoopyBalance(balance_db)
 
         self.parse()
 
@@ -103,6 +107,7 @@ class LoopyPreset():
         sig: str = '4/4',
         preview: bool = False,
         debug: bool = False,
+        balance_db: float = None,
     ):
         e, num_samples = self.envelope(attack, decay, sustain, release, note_value, bpm, sig)
         y = self._raw_notes[key_name][:num_samples, :]
@@ -119,7 +124,13 @@ class LoopyPreset():
             axs[2].plot(ret)
             plt.show()
             plt.close()
-        return ret
+
+        if balance_db is not None:
+            balance = LoopyBalance(balance_db)
+            return balance(ret)
+        else:
+            return self._balance(ret)
+        # return ret
 
     def __dict__(self):
         return {
@@ -127,8 +138,9 @@ class LoopyPreset():
             'sr': self._sr,
             'name': self._name,
             'load_bpm': self._load_bpm,
+            'balance_db': self._balance_db,
         }
-
+    
 
 class LoopyNote():
     def __init__(self,
@@ -154,6 +166,7 @@ class LoopyNote():
     def render(self,
         bpm: int,
         sig: str = '4/4',
+        balance_db: float = None,
     ):
         return self._generator.render(
             key_name=self._key_name,
@@ -163,6 +176,7 @@ class LoopyNote():
             sustain=self._sustain,
             release=self._release,
             bpm=bpm, sig=sig,
+            balance_db=balance_db,
         )
 
     def short_info(self):
