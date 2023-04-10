@@ -4,6 +4,7 @@ import soundfile as sf
 import numpy as np
 from typing import List, Tuple, Dict, Union
 import os
+import warnings
 
 PRESET_DIR = 'D:\\Project 2023\\presets'
 DEFAULT_SR = 44100
@@ -204,6 +205,8 @@ def note_seq_parser(
     Returns:
         score: (List[Tuple[str, float, float]]): a list of notes
     """
+    warnings.warn("check recipe.py since this function is deprecated", DeprecationWarning)
+
     _, beat_value = parse_sig(sig)
 
     assert input_id_type in ('midi', 'piano')
@@ -258,6 +261,8 @@ def chord_seq_parser(
         score (List[Tuple[str, float, float]]): a list of chord notes
         roots (List[Tuple[str, float, float]]): a list of root notes
     """
+    warnings.warn("check recipe.py since this function is deprecated", DeprecationWarning)
+    
     _, beat_value = parse_sig(sig)
     if note_seq is None:
         note_seq = [-1] * len(chord_seq)
