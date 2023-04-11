@@ -8,6 +8,7 @@ from math import ceil
 import os
 import soundfile as sf
 import json
+from typing import Dict
 
 class LoopyTrack():
     def __init__(self,
@@ -41,6 +42,8 @@ class LoopyTrack():
         self._channels = set()  # set of LoopyChannel
         self._generators = set()
         self._master_channel = LoopyChannel(name='master')
+
+        self._recipe = dict()
     
     def fit_pattern(self, pattern_type: LoopyPatternCore):
         """
@@ -150,8 +153,12 @@ class LoopyTrack():
             'patterns': [pattern.__dict__() for pattern in self._patterns],
             'samples': [sample.__dict__() for sample in self._samples],
             'channels': [channel.__dict__() for channel in self._channels],
+            'recipe': self._recipe
         }
         # print(info)
         with open(os.path.join(save_dir, f'track-{self._name}.json'), 'w') as f:
             json.dump(info, f)
     
+    def save_recipe(self, sound_sheet: Dict, inst_channel_sheet: Dict):
+        self._recipe['sound'] = sound_sheet
+        self._recipe['channel'] = inst_channel_sheet

@@ -5,7 +5,7 @@ from loopy.utils import *
 from loopy.rhythm import LoopyRhythm
 import os
 import librosa
-from loopy.template import *
+from loopy.recipe import *
 from tqdm import tqdm
 """
 lead = LoopyPreset(find_preset('Ultrasonic-LD-Stars.wav'))
@@ -207,3 +207,9 @@ rhythm.generate_rhythm(mode='poisson', param={'lambda': 0.5})
 place_holders_8_bars = rhythm.repeat(8)
 # rhythm.save('./')
 rhythm.preview(tot_bars = 8, place_holders=place_holders_8_bars)
+
+for i in range(10):
+    generate_track(
+        name=str(i),
+        style=LoopyStyle1,
+    )

@@ -8,7 +8,7 @@ from typing import List, Tuple
 from copy import deepcopy
 
 
-class LoopyStyle():
+class LoopyStyleBase():
     def __init__(self) -> None:
         self._sound_sheet = {
             'lead': [],
@@ -162,7 +162,7 @@ class LoopyStyle():
 
 
 
-class LoopyStyle1(LoopyStyle):
+class LoopyStyle1(LoopyStyleBase):
     def __init__(self) -> None:
         super().__init__()
         self._artist_name = ('Martin Garrix', 'Justin Mylo')
@@ -287,7 +287,7 @@ class LoopyStyle1(LoopyStyle):
             {'type': 'sidechain', 'attain': 0.25, 'order': 2, 'mag': 0.8},
         ]
 
-class LoopyStyle2(LoopyStyle):
+class LoopyStyle2(LoopyStyleBase):
     def __init__(self) -> None:
         super().__init__()
         self._artist_name = ('Tobu')
@@ -303,7 +303,7 @@ class LoopyStyle2(LoopyStyle):
 """Generation begins!"""
 def generate_track(
     name: str,
-    style: LoopyStyle,
+    style: LoopyStyleBase,
     bpm: int = 128,
     sig: str = '4/4',
     melody_rep_bars: int = 1,
@@ -357,5 +357,7 @@ def generate_track(
         length='00:15',
         preview=preview
     )
+
+    
 
     return track
