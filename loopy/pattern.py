@@ -80,14 +80,14 @@ class LoopyPatternCore():
             )
 
     def render(self):
-        self._y = np.zeros((self._tot_samples, 2))
+        y = np.zeros((self._tot_samples, 2))
         for note in self._notes:
             st_index = beat2index(note._pos_in_pattern, bpm=self._bpm, sr=self._sr)
             note_y = note.render(bpm=self._bpm, sig=self._sig)
             ### print(st_index, note_y.shape)
-            add_y(self._y, note_y, st_index)
+            add_y(y, note_y, st_index)
 
-        return self._y
+        return y
 
     def __dict__(self):
         return {'notes': [note.__dict__() for note in self._notes]}

@@ -6,7 +6,7 @@ from copy import deepcopy
 import os
 from typing import List, Tuple
 import random
-
+import matplotlib.pyplot as plt
 
 class LoopyStyleBase():
     def __init__(self) -> None:
@@ -42,7 +42,7 @@ def compose(
     preview: bool = False,
 ) -> LoopyTrack:
     track = LoopyTrack(name=name, bpm=bpm, sig=sig, length=length)
-
+    """"""
     beats_per_bar, beat_value = parse_sig(sig)
     num_beats = hhmmss2sec(length) * bpm / 60
     num_bars = int(num_beats / beats_per_bar)
@@ -104,11 +104,19 @@ def compose(
     for style_info in style.sound_sheet['fx']:
         add_fx(track, style_info)
 
+    """y_s = []
+    for _ in range(5):
+        y_s.append(track.render())
+    for i in range(len(y_s)-1):
+        print(np.sum(y_s[i]==y_s[i+1]), y_s[i].size)
+        assert np.sum(y_s[i]==y_s[i+1]) == y_s[i].size"""
+
     cores = {}
     cores['lead'] = LoopyPatternCore(num_bars)
     cores['chord'] = LoopyPatternCore(num_bars)
     cores['bass'] = LoopyPatternCore(num_bars)
     cores['sub'] = LoopyPatternCore(num_bars)
+
 
     for i, info in enumerate(style.sound_sheet['lead']):
         generator = LoopyPreset(
@@ -160,6 +168,9 @@ def compose(
 
     channels = {}
     for part in ('lead', 'chord', 'bass', 'sub'):
+        """preview_wave(cores[part].render())
+        exit()"""
+        ### preview_wave(track.render())
         channels[part] = LoopyChannel(name=part.upper())
         for effect_info in style.inst_channel_sheet[part]:
             channels[part].add_effect(dict2fx(effect_info))
@@ -170,8 +181,6 @@ def compose(
         preview_wave(track.render())
 
     return track
-
-
 
 
 class LoopyStyle1(LoopyStyleBase):
@@ -359,7 +368,10 @@ def generate_track(
         incr_octave=incr_octave,
         decor_map=decor_map,
     )
-    
+    print(lead_notes)
+    print(chord_notes)
+    print(bass_notes)
+    print(sub_notes)
     track = compose(
         style=style,
         name=name,

@@ -15,7 +15,9 @@ class LoopyEffect():
         self._params[k] = v
 
     def __call__(self, y: np.ndarray, *args: Any, **kwds: Any) -> np.ndarray:
-        return self.forward(y, *args, **kwds)
+        ret = self.forward(y, *args, **kwds)
+        # self.reset()
+        return ret
 
     def __str__(self) -> str:
         return self._params

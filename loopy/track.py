@@ -9,6 +9,7 @@ import os
 import soundfile as sf
 import json
 from typing import Dict
+import matplotlib.pyplot as plt
 
 class LoopyTrack():
     def __init__(self,
@@ -41,7 +42,6 @@ class LoopyTrack():
         self._samples = []  # list of LoopySample
         self._channels = set()  # set of LoopyChannel
         self._generators = set()
-        self._master_channel = LoopyChannel(name='master')
 
         self._recipe = dict()
     
@@ -102,7 +102,7 @@ class LoopyTrack():
         self._channels.add(channel)
         
     def render(self, gain: int = 6.0):
-        self._y = np.zeros((self._tot_samples, 2))
+        y = np.zeros((self._tot_samples, 2))
         
         for pattern in self._patterns:
             st_index = pos2index(
@@ -113,7 +113,7 @@ class LoopyTrack():
                 bpm=self._bpm
             )
             add_y(
-                target_y=self._y,
+                target_y=y,
                 source_y=pattern.render(),
                 st_index=st_index
             )
@@ -127,19 +127,22 @@ class LoopyTrack():
                 bpm=self._bpm,
             )
             add_y(
-                target_y=self._y,
+                target_y=y,
                 source_y=sample.render(),
                 st_index=st_index
             )
-        
-        self._master_channel.add_effect(LoopyBalance(gain))
-        return self._master_channel(self._y)
+
+        self._master_channel = LoopyChannel(
+            name='master',
+            effects=[LoopyBalance(gain)]
+        )
+        return self._master_channel(y)
 
     def add_channel(self, channel: LoopyChannel):
         self._channels.append(channel)
 
-    def save_audio(self, target_dir: str = os.getcwd(), gain: int = 6.):
-        target_path = os.path.join(target_dir, self._name+'.wav')
+    def save_audio(self, save_name: str = None, target_dir: str = os.getcwd(), gain: int = 6.):
+        target_path = os.path.join(target_dir, save_name+'.wav' if save_name else self._name+'.wav')
         sf.write(target_path, self.render(gain), self._sr)
 
     def save(self, save_dir):
