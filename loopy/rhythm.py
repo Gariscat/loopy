@@ -153,7 +153,7 @@ class LoopyRhythm():
 def trivial_accomp(
     sig: str = '4/4',
     place_holders: List = [],
-    chord_prog: List[List[int, float, float]] = None,
+    chord_prog: List[List] = None,
     scale_root: str = 'C',
     scale_type: str = 'maj',
     root_area: str = '4',  # C3, D3, E3......
@@ -162,12 +162,12 @@ def trivial_accomp(
     incr_octave: bool = False,
     decor_map: Dict[int, List[int]] = dict(),
     # [chord_id, start_global_pos, end_global_pos] 
-) -> List[List, List, List]:
+):
     # return 3 lists of notes, for chord, bass and subbass
     beats_per_bar, beat_value = parse_sig(sig)
     if place_holders == []: # uniform-rhythm chords
-        tot_bars = max(_[2] for _ in chord_prog)
-        for i in range(0, tot_bars * beats_per_bar, 1/4):
+        tot_bars = max(int(_[2]) for _ in chord_prog)
+        for i in np.arange(0, tot_bars * beats_per_bar, 1/4):
             place_holders += [(1/4, i, i+1/4)]
 
     score, roots, sub_roots = [], [], []
@@ -191,6 +191,8 @@ def trivial_accomp(
         for key_name in key_names:
             score += [(key_name, note_value, st_pos)]
         roots += [(key_names[0], note_value, st_pos)]
-        sub_roots += [(key_name[0], note_value, st_pos)]
+        sub_roots += [(key_names[0], note_value, st_pos)]
+
+        i += 1
 
     return score, roots, sub_roots

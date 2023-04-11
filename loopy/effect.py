@@ -194,7 +194,7 @@ class LoopyCompressor(LoopyEffect):
         return self.compressor.process(y, sample_rate=DEFAULT_SR, reset=True)
 
     def reset(self):
-        self.limiter.reset()
+        self.compressor.reset()
 
 
 class LoopyDist(LoopyEffect):
@@ -211,7 +211,7 @@ class LoopyDist(LoopyEffect):
         return self.dist.process(y, sample_rate=DEFAULT_SR, reset=True)
 
     def reset(self):
-        self.gain.reset()
+        self.dist.reset()
 
 
 def dict2fx(info: Dict) -> LoopyEffect:
@@ -235,7 +235,7 @@ def dict2fx(info: Dict) -> LoopyEffect:
             mag=info['mag'] if info.get('mag') else 1,
         )
     elif info['type'] == 'balance':
-        return LoopyBalance(info['db'])
+        return LoopyBalance(info['gain'])
     elif info['type'] == 'limiter':
         return LoopyBalance(info['thres'])
     elif info['type'] == 'compressor':

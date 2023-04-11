@@ -3,7 +3,7 @@ import soundfile as sf
 from playsound import playsound
 import os
 import numpy as np
-from loopy.utils import sec2hhmmss, DEFAULT_SR, parse_sig
+from loopy.utils import sec2hhmmss, DEFAULT_SR, parse_sig, find_preset
 from loopy.channel import LoopyChannel
 from loopy.effect import LoopyBalance
 
@@ -37,12 +37,12 @@ class LoopySampleCore():
         self._bpm = bpm
         self._sig = sig
         self._beats_per_bar, self._beat_value = parse_sig(sig)
-        self._source_path = source_path
+        self._source_path = find_preset(source_path, SAMPLE_DIR)
         self._truncate = truncate
         self._balance_db = balance_db
         self._balance = LoopyBalance(balance_db)
 
-        y, _ = librosa.load(source_path, sr=sr, mono=False)
+        y, _ = librosa.load(self._source_path, sr=sr, mono=False)
         self._y = np.transpose(y, axes=(1, 0))
 
         if truncate is not None:

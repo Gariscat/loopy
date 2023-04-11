@@ -1,6 +1,6 @@
 import librosa
 import soundfile as sf
-from loopy.utils import preview_wave, PIANO_KEYS, DEFAULT_SR, PRESET_DIR
+from loopy.utils import preview_wave, PIANO_KEYS, DEFAULT_SR, PRESET_DIR, find_preset
 import os
 import numpy as np
 from typing import List
@@ -26,10 +26,10 @@ class LoopyPreset():
         load_bpm: int = LOAD_BPM,
         balance_db: float = 0,
     ) -> None:
-        y, _ = librosa.load(source_path, sr=sr, mono=False)
-        self._y = np.transpose(y, axes=(1, 0))
         self._sr = sr
-        self._source_path = source_path
+        self._source_path = find_preset(source_path, PRESET_DIR)
+        y, _ = librosa.load(self._source_path, sr=sr, mono=False)
+        self._y = np.transpose(y, axes=(1, 0))
         self._name = source_path if name is None else name
         self._load_bpm = load_bpm
         self._balance_db = balance_db
