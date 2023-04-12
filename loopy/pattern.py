@@ -143,9 +143,9 @@ def preview_notes(
             pattern_type.add_note(key_name, note_value=1/4, pos_in_pattern=2, generator=ch, attack=50)
             pattern_type.add_note(key_name, note_value=1/4, pos_in_pattern=3, generator=ch, attack=50)
     else:
-        pattern_type = LoopyPatternCore(bpm=100, num_bars=ceil(len(key_name_list)/2))
+        pattern_type = LoopyPatternCore(bpm=128, num_bars=ceil(len(key_name_list)/4))
         for (i, key_name) in enumerate(key_name_list):
-            pattern_type.add_note(key_name, note_value=1/2, pos_in_pattern=i/2, generator=ch)
+            pattern_type.add_note(key_name, note_value=1/4, pos_in_pattern=i, generator=ch)
     y = pattern_type.render()
     if play_now:
         preview_wave(y)

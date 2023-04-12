@@ -1,4 +1,5 @@
 from loopy import LoopyTrack, LoopySampleCore, LoopyPatternCore, LoopySample, LoopyPattern, LoopyChannel, LoopyPreset
+from loopy.pattern import preview_notes
 from loopy.effect import *
 from loopy.utils import *
 from loopy.rhythm import LoopyRhythm, trivial_accomp
@@ -97,19 +98,13 @@ def compose(
             channel=channel
         )
 
+    """"""
     for style_info in style.sound_sheet['kick']:
         add_kick(track, style_info)
     for style_info in style.sound_sheet['top']:
         add_top(track, style_info)
     for style_info in style.sound_sheet['fx']:
         add_fx(track, style_info)
-
-    """y_s = []
-    for _ in range(5):
-        y_s.append(track.render())
-    for i in range(len(y_s)-1):
-        print(np.sum(y_s[i]==y_s[i+1]), y_s[i].size)
-        assert np.sum(y_s[i]==y_s[i+1]) == y_s[i].size"""
 
     cores = {}
     cores['lead'] = LoopyPatternCore(num_bars)
@@ -152,6 +147,9 @@ def compose(
         notes = deepcopy(bass_notes)
         if delta is not None:
             notes = [(octave_shift(x, delta), y, z) for x, y, z in notes]
+        ### print(notes)
+        ### print(info['source_path'], set([x for x,y,z in notes]))
+        ### preview_notes(set([x for x,y,z in notes]), preset_name=info['source_path'])
         cores['bass'].add_notes(notes, generator)
 
     for i, info in enumerate(style.sound_sheet['sub']):
@@ -166,17 +164,15 @@ def compose(
             notes = [(octave_shift(x, delta), y, z) for x, y, z in notes]
         cores['sub'].add_notes(notes, generator)
 
-    channels = {}
+    channels = dict()
     for part in ('lead', 'chord', 'bass', 'sub'):
-        """preview_wave(cores[part].render())
-        exit()"""
-        ### preview_wave(track.render())
         channels[part] = LoopyChannel(name=part.upper())
+        # print(len(channels[part]))
+        # assert len(channels[part]) == 0
         for effect_info in style.inst_channel_sheet[part]:
             channels[part].add_effect(dict2fx(effect_info))
-
         track.add_pattern(cores[part], 0, 0, channels[part])
-
+    
     if preview:
         preview_wave(track.render())
 
@@ -284,28 +280,29 @@ class LoopyStyle1(LoopyStyleBase):
         """--------lead--------"""
         self.inst_channel_sheet['lead'] += [
             {'type': 'highpass', 'freq': 300},
-            {'type': 'sidechain', 'attain': 0.25, 'order': 2, 'mag': 0.6},
-            {'type': 'reverb', 'wet_level': 0.8},
+            {'type': 'sidechain', 'attain': 0.2, 'order': 1, 'mag': 0.4},
+            {'type': 'reverb', 'wet_level': 0.75},
             {'type': 'limiter', 'thres': -6.0},
             {'type': 'balance', 'gain': 1.5},
         ]
         self.inst_channel_sheet['chord'] += [
             {'type': 'highpass', 'freq': 300},
+            {'type': 'lowpass', 'freq': 1000},
             {'type': 'compressor', 'thres': -15, 'ratio': 26, 'attack': 0, 'release': 200},
-            {'type': 'sidechain', 'attain': 0.25, 'order': 2, 'mag': 0.8},
+            {'type': 'sidechain', 'attain': 0.2, 'order': 1, 'mag': 0.6},
         ]
         self.inst_channel_sheet['bass'] += [
             {'type': 'highpass', 'freq': 100},
-            {'type': 'lowpass', 'freq': 250},
+            {'type': 'lowpass', 'freq': 500},
             {'type': 'balance', 'gain': 8.3},
-            {'type': 'sidechain', 'attain': 0.25, 'order': 2, 'mag': 0.8},
+            {'type': 'sidechain', 'attain': 0.2, 'order': 1, 'mag': 0.6},
         ]
         self.inst_channel_sheet['sub'] += [
             {'type': 'highpass', 'freq': 35},
             {'type': 'lowpass', 'freq': 100},
             {'type': 'compressor', 'thres': -11.3, 'ratio': 29, 'attack': 0, 'release': 200},
             {'type': 'balance', 'gain': 3.0},
-            {'type': 'sidechain', 'attain': 0.25, 'order': 2, 'mag': 0.8},
+            {'type': 'sidechain', 'attain': 0.2, 'order': 1, 'mag': 0.8},
         ]
 
 class LoopyStyle2(LoopyStyleBase):
@@ -328,12 +325,12 @@ def generate_track(
     bpm: int = 128,
     sig: str = '4/4',
     melody_rep_bars: int = 1,
-    melody_root_area: str = '5',
+    melody_root_area: str = '4',
     seed: int = 0,
     chord_prog: List[List] = None,
     scale_root: str = 'C',
     scale_type: str = 'maj',
-    chord_root_area: str = '4',  # C3, D3, E3......
+    chord_root_area: str = '3',  # C3, D3, E3......
     del_second: bool = False,
     decr_octave: bool = True,
     incr_octave: bool = False,
@@ -368,10 +365,8 @@ def generate_track(
         incr_octave=incr_octave,
         decor_map=decor_map,
     )
-    print(lead_notes)
-    print(chord_notes)
-    print(bass_notes)
-    print(sub_notes)
+
+    """"""
     track = compose(
         style=style,
         name=name,

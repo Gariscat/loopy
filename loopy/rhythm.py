@@ -167,8 +167,8 @@ def trivial_accomp(
     beats_per_bar, beat_value = parse_sig(sig)
     if place_holders == []: # uniform-rhythm chords
         tot_bars = max(int(_[2]) for _ in chord_prog)
-        for i in np.arange(0, tot_bars * beats_per_bar, 1/4):
-            place_holders += [(1/4, i, i+1/4)]
+        for i in np.arange(0, tot_bars * beats_per_bar, 1):
+            place_holders += [(1/beats_per_bar, i, i+1)]
 
     score, roots, sub_roots = [], [], []
     i, j = 0, 0
@@ -178,7 +178,7 @@ def trivial_accomp(
             j += 1
         chord_id = chord_prog[j][0]
         decor_notes = decor_map[chord_id] if chord_id in decor_map.keys() else []
-        key_names = get_chord_notes(
+        key_names, root_name = get_chord_notes(
             chord_id=chord_id,
             scale_root=scale_root,
             scale_type=scale_type,
@@ -190,8 +190,8 @@ def trivial_accomp(
         )
         for key_name in key_names:
             score += [(key_name, note_value, st_pos)]
-        roots += [(key_names[0], note_value, st_pos)]
-        sub_roots += [(key_names[0], note_value, st_pos)]
+        roots += [(root_name, note_value, st_pos)]
+        sub_roots += [(root_name, note_value, st_pos)]
 
         i += 1
 

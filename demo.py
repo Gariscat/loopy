@@ -208,8 +208,10 @@ place_holders_8_bars = rhythm.repeat(8)
 # rhythm.save('./')
 rhythm.preview(tot_bars = 8, place_holders=place_holders_8_bars)"""
 
-generate_track(
-    name='5',
-    style=LoopyStyle1(),
-    preview=True,
-)
+for i in (1,):
+    generate_track(
+        name=str(i),
+        seed=i,
+        style=LoopyStyle1(),
+        preview=True,
+    )

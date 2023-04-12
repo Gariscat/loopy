@@ -161,6 +161,10 @@ def get_chord_notes(
     chord_type = SCALE2CHORD_TYPES[scale_type][chord_id-1]
     delta = piano_key2midi_id(scale_root+root_area) + SCALE2STEPS[scale_type][chord_id-1]
     midi_indices = (np.array(CHORD2POS[chord_type]) + delta).tolist()
+    
+    root = midi_id2piano_key(midi_indices[0])
+    # root = octave_shift(root, +1)
+
     if del_second:
         midi_indices.pop(1)
     if decr_octave:
@@ -179,7 +183,7 @@ def get_chord_notes(
     midi_indices.sort()
     ### print(midi_indices)
     notes = [midi_id2piano_key(id) for id in midi_indices]
-    return notes
+    return notes, root
 
 
 def note_seq_parser(

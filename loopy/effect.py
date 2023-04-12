@@ -3,8 +3,9 @@ import numpy as np
 from loopy.utils import DEFAULT_SR, beat2index
 from pedalboard import HighpassFilter, LowpassFilter, Reverb, Gain, Limiter, Compressor, Distortion
 from math import ceil
-import matplotlib.pylab as plt
+import matplotlib.pyplot as plt
 from typing import Dict
+from copy import deepcopy
 
 
 class LoopyEffect():
@@ -20,10 +21,10 @@ class LoopyEffect():
         return ret
 
     def __str__(self) -> str:
-        return self._params
+        return str(self._params)
 
     def __dict__(self):
-        return self.__str__()
+        return self._params
 
     def reset(self):
         pass
@@ -217,12 +218,13 @@ class LoopyDist(LoopyEffect):
 
 
 def dict2fx(info: Dict) -> LoopyEffect:
+    ret = LoopyEffect()
     if info['type'] == 'highpass':
-        return LoopyHighpass(info['freq'])
+        ret = LoopyHighpass(info['freq'])
     elif info['type'] == 'lowpass':
-        return LoopyLowpass(info['freq'])
+        ret = LoopyLowpass(info['freq'])
     elif info['type'] == 'reverb':
-        return LoopyReverb(
+        ret = LoopyReverb(
             room_size=info['room_size'] if info.get('room_size') else 0.5,
             damping=info['damping'] if info.get('damping') else 0.5,
             wet_level=info['wet_level'] if info.get('wet_level') else 0.33,
@@ -230,25 +232,25 @@ def dict2fx(info: Dict) -> LoopyEffect:
             width=info['width'] if info.get('width') else 1.0,
         )
     elif info['type'] == 'sidechain':
-        return LoopySidechain(
+        ret = LoopySidechain(
             length=info['length'] if info.get('length') else 1.0,  # unit is beat
             attain=info['attain'] if info.get('attain') else 0.125,  # unit is beat
             interp_order=info['interp_order'] if info.get('interp_order') else 1,
             mag=info['mag'] if info.get('mag') else 1,
         )
     elif info['type'] == 'balance':
-        return LoopyBalance(info['gain'])
+        ret = LoopyBalance(info['gain'])
     elif info['type'] == 'limiter':
-        return LoopyBalance(info['thres'])
+        ret = LoopyBalance(info['thres'])
     elif info['type'] == 'compressor':
-        return LoopyCompressor(
+        ret = LoopyCompressor(
             thres=info['thres'] if info.get('thres') else 0,  # unit is beat
             ratio=info['ratio'] if info.get('ratio') else 1,  # unit is beat
             attack_ms=info['attack'] if info.get('attack') else 1.0,
             release_ms=info['release'] if info.get('release') else 100,
         )
     elif info['type'] == 'distortion':
-        return LoopyBalance(info['drive'])
+        ret = LoopyBalance(info['drive'])
     else:
         raise NotImplementedError("This effect is not implemented yet")
-    
+    return ret
