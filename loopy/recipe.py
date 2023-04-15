@@ -114,6 +114,8 @@ def compose(
 
 
     for i, info in enumerate(style.sound_sheet['lead']):
+        if info.get('mute'):
+            continue
         generator = LoopyPreset(
             source_path=info['source_path'],
             name=info['name'] if info.get('name') else f'LEAD-{i}',
@@ -126,6 +128,8 @@ def compose(
         cores['lead'].add_notes(notes, generator)
 
     for i, info in enumerate(style.sound_sheet['chord']):
+        if info.get('mute'):
+            continue
         generator = LoopyPreset(
             source_path=info['source_path'],
             name=info['name'] if info.get('name') else f'CHORD-{i}',
@@ -138,6 +142,8 @@ def compose(
         cores['chord'].add_notes(notes, generator)
 
     for i, info in enumerate(style.sound_sheet['bass']):
+        if info.get('mute'):
+            continue
         generator = LoopyPreset(
             source_path=info['source_path'],
             name=info['name'] if info.get('name') else f'BASS-{i}',
@@ -153,6 +159,8 @@ def compose(
         cores['bass'].add_notes(notes, generator)
 
     for i, info in enumerate(style.sound_sheet['sub']):
+        if info.get('mute'):
+            continue
         generator = LoopyPreset(
             source_path=info['source_path'],
             name=info['name'] if info.get('name') else f'SUB-{i}',
@@ -166,6 +174,7 @@ def compose(
 
     channels = dict()
     for part in ('lead', 'chord', 'bass', 'sub'):
+    # for part in ('lead', ):
         channels[part] = LoopyChannel(name=part.upper())
         # print(len(channels[part]))
         # assert len(channels[part]) == 0
@@ -182,8 +191,8 @@ def compose(
 class LoopyStyle1(LoopyStyleBase):
     def __init__(self) -> None:
         super().__init__()
-        self._artist_name = ('Martin Garrix', 'Justin Mylo')
-        self._song_name = 'Find You'
+        self._artist_name = ('DubVision')
+        self._song_name = 'P.R.O.G.'
         self.stylize()
 
     def stylize(self):
@@ -193,31 +202,37 @@ class LoopyStyle1(LoopyStyleBase):
             'source_path': 'Ultrasonic-LD-Dream.wav',
             'gain': -10.7,
             'octave_shift': 1,
+            'mute': 0,
         })
         self.sound_sheet['lead'].append({
             'source_path': 'Ultrasonic-LD-Blue.wav',
             'gain': -11.3,
             'octave_shift': 1,
+            'mute': 0,
         })
         self.sound_sheet['lead'].append({
             'source_path': 'Ultrasonic-LD-Forever.wav',
-            'gain': -7.9,
-            'name': 'main'
+            'gain': -10.9,
+            'name': 'main',
+            'mute': 0,
         })
         self.sound_sheet['lead'].append({
             'source_path': 'Ultrasonic-LD-Forever.wav',
             'gain': -21.1,
-            'octave_shift': 1
+            'octave_shift': 1,
+            'mute': 0,
         })
         self.sound_sheet['lead'].append({
             'source_path': 'Ultrasonic-LD-Follow.wav',
             'gain': -22.1,
             'octave_shift': 1,
+            'mute': 0,
         })
         self.sound_sheet['lead'].append({
             'source_path': 'Ultrasonic-LD-SweetDivine.wav',
             'gain': -32.4,
             'octave_shift': 1,
+            'mute': 0,
         })
         """--------chord--------"""
         self.sound_sheet['chord'].append({
@@ -262,7 +277,7 @@ class LoopyStyle1(LoopyStyleBase):
         """--------top--------"""
         self.sound_sheet['top'].append({
             'source_path': 'OXO Progressive House Essential Drums\\OXO - Claps\\Progressive House Essential - Drop Claps 09.wav',
-            'gain': -33.3,
+            'gain': -32.3,
             'blank_every': 8,
             'highpass': 500
         })
@@ -280,29 +295,31 @@ class LoopyStyle1(LoopyStyleBase):
         """--------lead--------"""
         self.inst_channel_sheet['lead'] += [
             {'type': 'highpass', 'freq': 300},
-            {'type': 'sidechain', 'attain': 0.2, 'order': 1, 'mag': 0.4},
-            {'type': 'reverb', 'wet_level': 0.75},
+            {'type': 'sidechain', 'attain': 0.5, 'interp_order': 3, 'mag': 0.66},
+            {'type': 'reverb', 'dry_level': 0.5, 'wet_level': 0.8},
+            # {'type': 'reverb', 'wet_level': 0.3},
+            {'type': 'balance', 'gain': -1.5},
             {'type': 'limiter', 'thres': -6.0},
-            {'type': 'balance', 'gain': 1.5},
         ]
         self.inst_channel_sheet['chord'] += [
-            {'type': 'highpass', 'freq': 300},
+            {'type': 'highpass', 'freq': 250},
             {'type': 'lowpass', 'freq': 1000},
             {'type': 'compressor', 'thres': -15, 'ratio': 26, 'attack': 0, 'release': 200},
-            {'type': 'sidechain', 'attain': 0.2, 'order': 1, 'mag': 0.6},
+            {'type': 'balance', 'gain': -2.0},
+            {'type': 'sidechain', 'attain': 0.5, 'interp_order': 3, 'mag': 0.75},
         ]
         self.inst_channel_sheet['bass'] += [
             {'type': 'highpass', 'freq': 100},
-            {'type': 'lowpass', 'freq': 500},
+            {'type': 'lowpass', 'freq': 250},
             {'type': 'balance', 'gain': 8.3},
-            {'type': 'sidechain', 'attain': 0.2, 'order': 1, 'mag': 0.6},
+            {'type': 'sidechain', 'attain': 0.5, 'interp_order': 6, 'mag': 0.8},
         ]
         self.inst_channel_sheet['sub'] += [
             {'type': 'highpass', 'freq': 35},
             {'type': 'lowpass', 'freq': 100},
             {'type': 'compressor', 'thres': -11.3, 'ratio': 29, 'attack': 0, 'release': 200},
-            {'type': 'balance', 'gain': 3.0},
-            {'type': 'sidechain', 'attain': 0.2, 'order': 1, 'mag': 0.8},
+            {'type': 'balance', 'gain': 4.5},
+            {'type': 'sidechain', 'attain': 0.5, 'interp_order': 9, 'mag': 1},
         ]
 
 class LoopyStyle2(LoopyStyleBase):
@@ -314,8 +331,6 @@ class LoopyStyle2(LoopyStyleBase):
 
     def stylize(self):
         pass
-
-
 
 
 """Generation begins!"""

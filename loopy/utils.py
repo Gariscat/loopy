@@ -7,6 +7,7 @@ import os
 import warnings
 
 PRESET_DIR = 'D:\\Project 2023\\presets'
+SAMPLE_DIR = 'D:\\Project 2023\\samples'
 DEFAULT_SR = 44100
 # https://www.inspiredacoustics.com/en/MIDI_note_numbers_and_center_frequencies
 PIANO_KEYS = ['A0', 'A#0', 'B0', 'C0']
@@ -37,7 +38,7 @@ def octave_shift(key_name: Union[str, List[str]], delta: int):
     if isinstance(key_name, str):
         target_area = int(key_name[-1]) + delta
         assert target_area > 0
-        return key_name[0] + str(target_area)
+        return key_name[:-1] + str(target_area)
     elif isinstance(key_name, list):
         ret = []
         for x in key_name:
@@ -45,7 +46,7 @@ def octave_shift(key_name: Union[str, List[str]], delta: int):
             """if target_area <= 0:
                 print(x[-1], target_area)"""
             assert target_area > 0
-            ret += [x[0] + str(target_area)]
+            ret += [x[:-1] + str(target_area)]
         return ret
 
 def key_shift(key_name: Union[str, List[str]], delta: int):

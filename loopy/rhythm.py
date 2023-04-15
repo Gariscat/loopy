@@ -141,6 +141,7 @@ class LoopyRhythm():
             note_ids = [root_id+i for i in (0, 2, 3, 5, 7, 8, 10)]
 
         note_keys = [piano_id2piano_key(x) for x in note_ids]
+        # print(note_keys)
         
         if seed is not None:
             np.random.seed(seed)

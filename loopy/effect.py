@@ -110,7 +110,6 @@ class LoopySidechain(LoopyEffect):
         bpm: int = 128,
         sr: int = DEFAULT_SR,
         debug: bool = False,
-        
     ):
         # construct envelope (unit) for one cycle
         envelope_unit = np.ones(beat2index(self._params['length'], bpm, sr), dtype=float)
