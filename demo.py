@@ -7,6 +7,7 @@ import os
 import librosa
 from loopy.recipe import *
 from tqdm import tqdm, trange
+import random
 """
 lead = LoopyPreset(find_preset('Ultrasonic-LD-Stars.wav'))
 # preset.preview('A5')
@@ -208,13 +209,15 @@ place_holders_8_bars = rhythm.repeat(8)
 # rhythm.save('./')
 rhythm.preview(tot_bars = 8, place_holders=place_holders_8_bars)"""
 
+random.seed(2711694897)
 for i in trange(5, 25):
+    scale_root = random.choice(['C', 'D', 'E'])
     track = generate_track(
         name=str(i),
         seed=i,
         style=LoopyStyle1(),
         melody_rep_bars=1,
-        scale_root='E',
+        scale_root=scale_root,
         preview=False,
     )
     track.save_audio(save_name=f'prog_{i}', target_dir='../renders')

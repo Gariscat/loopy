@@ -359,16 +359,16 @@ class LoopyStyle1(LoopyStyleBase):
             'type': 'sub-fill',
             'dir': os.path.join(SAMPLE_DIR, 'sub-fill'),
             'highpass': 500,
-            'gain': -15,
+            'gain': -18,
             'intensity': self.config['intensity']
         })
         self.sound_sheet['fx'].append({
             'type': 'downlifter',
             'dir': os.path.join(SAMPLE_DIR, 'downlifter'),
             'highpass': 500,
-            'gain': -24,
+            'gain': -26,
             'every': 4,
-            'num': 2,
+            'num': 3,
         })
         self.sound_sheet['fx'].append({
             'type': 'loop',

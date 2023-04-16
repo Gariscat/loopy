@@ -137,8 +137,12 @@ class LoopyRhythm():
         root_id = piano_key2piano_id(scale_root+root_area)
         if scale_type == 'maj':
             note_ids = [root_id+i for i in (0, 2, 4, 5, 7, 9, 11)]
+            prob = np.array([3., 1., 3., 3., 3., 3., 1.])
+            prob /= prob.sum()
         else:
             note_ids = [root_id+i for i in (0, 2, 3, 5, 7, 8, 10)]
+            prob = np.array([2., 2., 2., 2., 2., 2., 2.])
+            prob /= prob.sum()
 
         note_keys = [piano_id2piano_key(x) for x in note_ids]
         # print(note_keys)
@@ -148,7 +152,7 @@ class LoopyRhythm():
         if place_holders is None:
             place_holders = self._place_holders
 
-        return [(np.random.choice(note_keys), place_holder[0], place_holder[1]) for place_holder in place_holders]
+        return [(np.random.choice(note_keys, p=prob), place_holder[0], place_holder[1]) for place_holder in place_holders]
     
 
 def trivial_accomp(
