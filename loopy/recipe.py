@@ -18,7 +18,7 @@ class LoopyStyleBase():
             'sub': [],
             'kick': [],
             'top': [],  # claps, hats, etc.
-            'fx': dict(),
+            'fx': [],
         }
         self.inst_channel_sheet = {
             'lead': [],
@@ -105,7 +105,8 @@ def compose(
             )
             f = lambda n:n&-n  # find the largest power of 2 that divides global_pos
             for global_pos in range(num_bars):
-                if global_pos % f(global_pos) == 0 and random.uniform(0, 1) > style_info['intensity'] * f(global_pos):
+                _ = global_pos + 1
+                if _ % f(_) == 0 and random.uniform(0, 1) > style_info['intensity'] * f(_):
                     continue
                 source_name = random.choice(os.listdir(style_info['dir']))
                 source_path = os.path.join(style_info['dir'], source_name)
@@ -122,34 +123,35 @@ def compose(
                 name='downlifter',
                 effects=[LoopyHighpass(style_info['highpass']), LoopyBalance(style_info['gain'])]
             )
+            source_names = random.sample(os.listdir(style_info['dir']), style_info['num'])
             for i in range(0, num_bars, style_info['every']):
-                source_names = random.sample(os.listdir(style_info['dir']), style_info['num'])
                 for source_name in source_names:
                     source_path = os.path.join(style_info['dir'], source_name)
                     core = LoopySampleCore(source_path, truncate=beats_per_bar*style_info['every'])  # 4 beats as a whole
                     track.add_sample(
                         sample_type=core,
-                        global_pos=global_pos,
-                        local_pos=i,
+                        global_pos=i,
+                        local_pos=0,
                         channel=channel
                     )
                 
         elif style_info['type'] == 'loop':
             if style_info.get('part') != 'B':  # only add additional loops to part B of the drop
                 return
+            # print('here')
             channel = LoopyChannel(
                 name='loop',
                 effects=[LoopyHighpass(style_info['highpass']), LoopyBalance(style_info['gain'])]
             )
+            source_names = random.sample(os.listdir(style_info['dir']), style_info['num'])
             for i in range(num_bars):
-                source_names = random.sample(os.listdir(style_info['dir']), style_info['num'])
                 for source_name in source_names:
                     source_path = os.path.join(style_info['dir'], source_name)
                     core = LoopySampleCore(source_path, truncate=beats_per_bar)  # 4 beats as a whole
                     track.add_sample(
                         sample_type=core,
-                        global_pos=global_pos,
-                        local_pos=i,
+                        global_pos=i,
+                        local_pos=0,
                         channel=channel
                     )
 
@@ -159,7 +161,7 @@ def compose(
     for style_info in style.sound_sheet['top']:
         add_top(track, style_info)
     for style_info in style.sound_sheet['fx']:
-        add_fx(track, style.sound_sheet['fx'])
+        add_fx(track, style_info)
 
     cores = {}
     cores['lead'] = LoopyPatternCore(num_bars)
@@ -229,10 +231,8 @@ def compose(
 
     channels = dict()
     for part in ('lead', 'chord', 'bass', 'sub'):
-    # for part in ('lead', ):
+    # for part in []:
         channels[part] = LoopyChannel(name=part.upper())
-        # print(len(channels[part]))
-        # assert len(channels[part]) == 0
         for effect_info in style.inst_channel_sheet[part]:
             channels[part].add_effect(dict2fx(effect_info))
         track.add_pattern(cores[part], 0, 0, channels[part])
@@ -352,29 +352,30 @@ class LoopyStyle1(LoopyStyleBase):
             'type': 'main-fill',
             'dir': os.path.join(SAMPLE_DIR, 'main-fill'),
             'highpass': 250,
-            'gain': -10,
+            'gain': -12,
             'every': 8,
         })
         self.sound_sheet['fx'].append({
             'type': 'sub-fill',
             'dir': os.path.join(SAMPLE_DIR, 'sub-fill'),
             'highpass': 500,
-            'gain': -10,
+            'gain': -15,
             'intensity': self.config['intensity']
         })
         self.sound_sheet['fx'].append({
             'type': 'downlifter',
             'dir': os.path.join(SAMPLE_DIR, 'downlifter'),
             'highpass': 500,
-            'gain': -10,
+            'gain': -24,
             'every': 4,
             'num': 2,
         })
         self.sound_sheet['fx'].append({
             'type': 'loop',
+            'part': self.config['part'],
             'dir': os.path.join(SAMPLE_DIR, 'loop'),
             'highpass': 500,
-            'gain': -10,
+            'gain': -27,
             'num': 3,
         })
         """----------------Channel----------------"""
@@ -384,7 +385,7 @@ class LoopyStyle1(LoopyStyleBase):
             {'type': 'sidechain', 'attain': 0.5, 'interp_order': 3, 'mag': 0.66},
             {'type': 'reverb', 'dry_level': 0.5, 'wet_level': 0.8},
             # {'type': 'reverb', 'wet_level': 0.3},
-            {'type': 'balance', 'gain': -1.5},
+            {'type': 'balance', 'gain': 1.5},
             {'type': 'limiter', 'thres': -6.0},
         ]
         self.inst_channel_sheet['chord'] += [
