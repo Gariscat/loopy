@@ -87,20 +87,47 @@ def compose(
                 name='main-fill',
                 effects=[LoopyHighpass(style_info['highpass']), LoopyBalance(style_info['gain'])]
             )
-            source_name = random.choice(os.listdir(style_info['dir']))
-            source_path = os.path.join(style_info['dir'], source_name)
-            core = LoopySampleCore(source_path, truncate=4)  # 4 beats as a whole
-            track.add_sample(
-                sample_type=core,
-                global_pos=8,
-                local_pos=0,
-                channel=channel
-            )
+            for i in range(numbars//8):
+                source_name = random.choice(os.listdir(style_info['dir']))
+                source_path = os.path.join(style_info['dir'], source_name)
+                core = LoopySampleCore(source_path, truncate=4)  # 4 beats as a whole
+                track.add_sample(
+                    sample_type=core,
+                    global_pos=8*(i+1),
+                    local_pos=0,
+                    channel=channel
+                )
+
         elif style_info['type'] == 'sub-fill':
-            pass
+            channel = LoopyChannel(
+                name='sub-fill',
+                effects=[LoopyHighpass(style_info['highpass']), LoopyBalance(style_info['gain'])]
+            )
+            f = lambda n:n&-n  # find the largest power of 2 that divides global_pos
+            for global_pos in range(numbars):
+                if global_pos % f(global_pos) == 0 and random.uniform(0, 1) > style_info['intensity'] * f(global_pos):
+                    continue
+                source_name = random.choice(os.listdir(style_info['dir']))
+                source_path = os.path.join(style_info['dir'], source_name)
+                core = LoopySampleCore(source_path, truncate=4)  # 4 beats as a whole
+                track.add_sample(
+                    sample_type=core,
+                    global_pos=global_pos,
+                    local_pos=0,
+                    channel=channel
+                )
+
         elif style_info['type'] == 'downlifter':
+            channel = LoopyChannel(
+                name='downlifter',
+                effects=[LoopyHighpass(style_info['highpass']), LoopyBalance(style_info['gain'])]
+            )
             pass
         elif style_info['type'] == 'loop':
+            channel = LoopyChannel(
+                name='loop',
+                effects=[LoopyHighpass(style_info['highpass']), LoopyBalance(style_info['gain'])]
+            )
             pass
 
     """"""
@@ -194,7 +221,7 @@ def compose(
 
 
 class LoopyStyle1(LoopyStyleBase):
-    def __init__(self, intensity: float=0.5, part: str='B') -> None:
+    def __init__(self, intensity: float=0.25, part: str='B') -> None:
         super().__init__()
         self._artist_name = ('DubVision')
         self._song_name = 'P.R.O.G.'
@@ -308,7 +335,8 @@ class LoopyStyle1(LoopyStyleBase):
             'type': 'sub-fill',
             'dir': os.path.join(SAMPLE_DIR, 'sub-fill'),
             'highpass': 500,
-            'gain': -10
+            'gain': -10,
+            'intensity': self.config['intensity']
         })
         self.sound_sheet['fx'].append({
             'type': 'downlifter',
