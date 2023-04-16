@@ -18,7 +18,7 @@ class LoopyStyleBase():
             'sub': [],
             'kick': [],
             'top': [],  # claps, hats, etc.
-            'fx': [],
+            'fx': dict(),
         }
         self.inst_channel_sheet = {
             'lead': [],
@@ -82,21 +82,26 @@ def compose(
             )
 
     def add_fx(track: LoopyTrack, style_info: Dict, ):
-        core = LoopySampleCore(style_info['source_path'], truncate=4)
-        channel = LoopyChannel(
-            name=style_info['source_path'],
-            effects=[
-                LoopyLowpass(style_info['lowpass']),
-                LoopyHighpass(style_info['highpass']),
-                LoopyBalance(style_info['gain'])
-            ]
-        )
-        track.add_sample(
-            sample_type=core,
-            global_pos=style_info['global_pos'],
-            local_pos=style_info['local_pos'],
-            channel=channel
-        )
+        if style_info['type'] == 'main-fill':
+            channel = LoopyChannel(
+                name='main-fill',
+                effects=[LoopyHighpass(style_info['highpass']), LoopyBalance(style_info['gain'])]
+            )
+            source_name = random.choice(os.listdir(style_info['dir']))
+            source_path = os.path.join(style_info['dir'], source_name)
+            core = LoopySampleCore(source_path, truncate=4)  # 4 beats as a whole
+            track.add_sample(
+                sample_type=core,
+                global_pos=8,
+                local_pos=0,
+                channel=channel
+            )
+        elif style_info['type'] == 'sub-fill':
+            pass
+        elif style_info['type'] == 'downlifter':
+            pass
+        elif style_info['type'] == 'loop':
+            pass
 
     """"""
     for style_info in style.sound_sheet['kick']:
@@ -104,7 +109,7 @@ def compose(
     for style_info in style.sound_sheet['top']:
         add_top(track, style_info)
     for style_info in style.sound_sheet['fx']:
-        add_fx(track, style_info)
+        add_fx(track, style.sound_sheet['fx'])
 
     cores = {}
     cores['lead'] = LoopyPatternCore(num_bars)
@@ -189,10 +194,14 @@ def compose(
 
 
 class LoopyStyle1(LoopyStyleBase):
-    def __init__(self) -> None:
+    def __init__(self, intensity: float=0.5, part: str='B') -> None:
         super().__init__()
         self._artist_name = ('DubVision')
         self._song_name = 'P.R.O.G.'
+        self.config = {
+            'intensity': 0.5,
+            'part': part
+        }
         self.stylize()
 
     def stylize(self):
@@ -289,8 +298,30 @@ class LoopyStyle1(LoopyStyleBase):
         })
         """--------fx--------"""
         # put fills, transitions, etc. here
-        pass
-        
+        self.sound_sheet['fx'].append({
+            'type': 'main-fill',
+            'dir': os.path.join(SAMPLE_DIR, 'main-fill'),
+            'highpass': 250,
+            'gain': -10
+        })
+        self.sound_sheet['fx'].append({
+            'type': 'sub-fill',
+            'dir': os.path.join(SAMPLE_DIR, 'sub-fill'),
+            'highpass': 500,
+            'gain': -10
+        })
+        self.sound_sheet['fx'].append({
+            'type': 'downlifter',
+            'dir': os.path.join(SAMPLE_DIR, 'downlifter'),
+            'highpass': 500,
+            'gain': -10
+        })
+        self.sound_sheet['fx'].append({
+            'type': 'loop',
+            'dir': os.path.join(SAMPLE_DIR, 'loop'),
+            'highpass': 500,
+            'gain': -10
+        })
         """----------------Channel----------------"""
         """--------lead--------"""
         self.inst_channel_sheet['lead'] += [
