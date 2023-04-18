@@ -210,7 +210,7 @@ place_holders_8_bars = rhythm.repeat(8)
 rhythm.preview(tot_bars = 8, place_holders=place_holders_8_bars)"""
 
 random.seed(2711694897)
-for i in trange(5, 25):
+for i in trange(0, 200):
     scale_root = random.choice(['C', 'D', 'E'])
     track = generate_track(
         name=str(i),
@@ -221,3 +221,4 @@ for i in trange(5, 25):
         preview=False,
     )
     track.save_audio(save_name=f'prog_{i}', target_dir='../renders')
+    track.save('../data')

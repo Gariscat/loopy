@@ -156,9 +156,9 @@ class LoopyTrack():
             'patterns': [pattern.__dict__() for pattern in self._patterns],
             'samples': [sample.__dict__() for sample in self._samples],
             'channels': [channel.__dict__() for channel in self._channels],
-            'recipe': self._recipe
+            # 'recipe': self._recipe
         }
-        # print(info)
+        # print(self._patterns[1].__dict__())
         with open(os.path.join(save_dir, f'track-{self._name}.json'), 'w') as f:
             json.dump(info, f)
     

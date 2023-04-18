@@ -183,7 +183,7 @@ class LoopyNote():
         note_info_short = {
             'key_name': self._key_name,
             'note_value': self._note_value,
-            'pos_in_pattern': self._pos_in_pattern,
+            'pos_in_pattern': float(self._pos_in_pattern),
             'generator': self._generator._name,
         }
         return note_info_short
