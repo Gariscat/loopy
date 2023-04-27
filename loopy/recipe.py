@@ -246,8 +246,8 @@ def compose(
 class LoopyStyle1(LoopyStyleBase):
     def __init__(self, intensity: float=0.25, part: str='B') -> None:
         super().__init__()
-        self._artist_name = ('DubVision')
-        self._song_name = 'P.R.O.G.'
+        self._artist_name = ('Alesso')
+        self._song_name = 'If I Lose Myself'
         self.config = {
             'intensity': 0.5,
             'part': part
@@ -279,6 +279,12 @@ class LoopyStyle1(LoopyStyleBase):
             'source_path': 'Ultrasonic-LD-Forever.wav',
             'gain': -21.1,
             'octave_shift': 1,
+            'mute': 0,
+        })
+        self.sound_sheet['lead'].append({
+            'source_path': 'Ultrasonic-LD-Follow.wav',
+            'gain': -20.1,
+            'octave_shift': 0,
             'mute': 0,
         })
         self.sound_sheet['lead'].append({
@@ -359,7 +365,7 @@ class LoopyStyle1(LoopyStyleBase):
             'type': 'sub-fill',
             'dir': os.path.join(SAMPLE_DIR, 'sub-fill'),
             'highpass': 500,
-            'gain': -18,
+            'gain': -20,
             'intensity': self.config['intensity']
         })
         self.sound_sheet['fx'].append({
@@ -383,9 +389,8 @@ class LoopyStyle1(LoopyStyleBase):
         self.inst_channel_sheet['lead'] += [
             {'type': 'highpass', 'freq': 300},
             {'type': 'sidechain', 'attain': 0.5, 'interp_order': 3, 'mag': 0.66},
-            {'type': 'reverb', 'dry_level': 0.5, 'wet_level': 0.8},
-            # {'type': 'reverb', 'wet_level': 0.3},
-            {'type': 'balance', 'gain': 1.5},
+            {'type': 'reverb', 'dry_level': 0.75, 'wet_level': 1},
+            {'type': 'balance', 'gain': 2.0},
             {'type': 'limiter', 'thres': -6.0},
         ]
         self.inst_channel_sheet['chord'] += [

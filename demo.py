@@ -208,9 +208,19 @@ rhythm.generate_rhythm(mode='poisson', param={'lambda': 0.5})
 place_holders_8_bars = rhythm.repeat(8)
 # rhythm.save('./')
 rhythm.preview(tot_bars = 8, place_holders=place_holders_8_bars)"""
-
+"""
+track = generate_track(
+    name=str(-1),
+    seed=3,
+    style=LoopyStyle1(),
+    melody_rep_bars=1,
+    scale_root='D',
+    preview=True,
+)
+exit()
+"""
 random.seed(2711694897)
-for i in trange(0, 200):
+for i in trange(0, 32):
     scale_root = random.choice(['C', 'D', 'E'])
     track = generate_track(
         name=str(i),
