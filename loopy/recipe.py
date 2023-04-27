@@ -365,7 +365,7 @@ class LoopyStyle1(LoopyStyleBase):
             'type': 'sub-fill',
             'dir': os.path.join(SAMPLE_DIR, 'sub-fill'),
             'highpass': 500,
-            'gain': -20,
+            'gain': -16,
             'intensity': self.config['intensity']
         })
         self.sound_sheet['fx'].append({

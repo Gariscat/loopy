@@ -101,7 +101,7 @@ class LoopyTrack():
         self._samples.append(sample)
         self._channels.add(channel)
         
-    def render(self, gain: int = 6.0):
+    def render(self, gain: int = 7.5):
         y = np.zeros((self._tot_samples, 2))
         
         for pattern in self._patterns:
