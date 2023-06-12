@@ -230,5 +230,6 @@ for i in trange(0, 32):
         scale_root=scale_root,
         preview=False,
     )
-    track.save_audio(save_name=f'prog_{i}', target_dir='../renders')
+    track.save_audio(save_name=f'{i}', target_dir='../renders')
     track.save('../data')
+    track.get_mel(st_bar=0, ed_bar=8, save_dir='../data')

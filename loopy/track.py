@@ -10,6 +10,8 @@ import soundfile as sf
 import json
 from typing import Dict
 import matplotlib.pyplot as plt
+import librosa
+from librosa import display
 
 class LoopyTrack():
     def __init__(self,
@@ -165,3 +167,16 @@ class LoopyTrack():
     def save_recipe(self, sound_sheet: Dict, inst_channel_sheet: Dict):
         self._recipe['sound'] = sound_sheet
         self._recipe['channel'] = inst_channel_sheet
+        
+    def get_mel(self, st_bar: int, ed_bar: int, save_dir: str):
+        st_idx = st_bar * self._beats_per_bar * 60 * self._sr // self._bpm
+        ed_idx = ed_bar * self._beats_per_bar * 60 * self._sr // self._bpm
+        y = np.transpose(self.render()[st_idx:ed_idx])
+        ### print(y.shape)
+        sr = self._sr
+        for i, part in enumerate(('left', 'right')):
+            mel_spec = librosa.feature.melspectrogram(y=y[i], sr=sr)
+            display.specshow(librosa.power_to_db(mel_spec, ref=np.max), sr=sr)
+            plt.savefig(os.path.join(save_dir, self._name+f'_{part}.jpg'))
+            ### plt.show()
+            plt.close()
