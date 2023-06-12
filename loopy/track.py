@@ -176,7 +176,9 @@ class LoopyTrack():
         sr = self._sr
         for i, part in enumerate(('left', 'right')):
             mel_spec = librosa.feature.melspectrogram(y=y[i], sr=sr)
-            display.specshow(librosa.power_to_db(mel_spec, ref=np.max), sr=sr)
-            plt.savefig(os.path.join(save_dir, self._name+f'_{part}.jpg'))
+            # plt.subplots_adjust(top=1, bottom=0, right=1, left=0, hspace=0, wspace=0)
+            plt.imshow(librosa.power_to_db(mel_spec, ref=np.max))
+            plt.axis('off')
+            plt.savefig(os.path.join(save_dir, self._name+f'_{part}.jpg'), dpi=600, bbox_inches='tight', pad_inches=0)
             ### plt.show()
             plt.close()
