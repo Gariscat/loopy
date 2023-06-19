@@ -11,7 +11,7 @@ import json
 from typing import Dict
 import matplotlib.pyplot as plt
 import librosa
-from librosa import display
+from PIL import Image
 
 class LoopyTrack():
     def __init__(self,
@@ -177,8 +177,14 @@ class LoopyTrack():
         for i, part in enumerate(('left', 'right')):
             mel_spec = librosa.feature.melspectrogram(y=y[i], sr=sr)
             # plt.subplots_adjust(top=1, bottom=0, right=1, left=0, hspace=0, wspace=0)
-            plt.imshow(librosa.power_to_db(mel_spec, ref=np.max))
+            mel_spec = librosa.power_to_db(mel_spec, ref=np.max)
+            plt.imshow(mel_spec)
             plt.axis('off')
-            plt.savefig(os.path.join(save_dir, self._name+f'_{part}.jpg'), dpi=600, bbox_inches='tight', pad_inches=0)
+            plt.savefig('tmp.jpg', dpi=600, bbox_inches='tight', pad_inches=0)
             ### plt.show()
             plt.close()
+            
+            tmp_img = Image.open('tmp.jpg')
+            img = tmp_img.resize((2*128, 256))
+            img.save(os.path.join(save_dir, self._name+f'_{part}.jpg'))
+            

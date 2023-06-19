@@ -220,7 +220,7 @@ track = generate_track(
 exit()
 """
 random.seed(2711694897)
-for i in trange(0, 32):
+for i in trange(0, 1024):
     scale_root = random.choice(['C', 'D', 'E'])
     track = generate_track(
         name=str(i),
@@ -231,5 +231,5 @@ for i in trange(0, 32):
         preview=False,
     )
     track.save_audio(save_name=f'{i}', target_dir='../renders')
-    track.save('../data')
+    track.save_json('../data')
     track.get_mel(st_bar=0, ed_bar=8, save_dir='../data')
