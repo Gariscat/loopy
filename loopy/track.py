@@ -12,7 +12,7 @@ from typing import Dict
 import matplotlib.pyplot as plt
 from matplotlib.collections import LineCollection
 import librosa
-from PIL import Image
+from PIL import Image, ImageOps
 
 class LoopyTrack():
     def __init__(self,
@@ -187,6 +187,7 @@ class LoopyTrack():
             
             tmp_img = Image.open('tmp.jpg')
             img = tmp_img.resize((2*128, 256))
+            img = ImageOps.flip(img)
             img.save(os.path.join(save_dir, self._name+f'_{part}.jpg'))
     
     def print_melody(self):
@@ -208,5 +209,5 @@ class LoopyTrack():
             m[i] = midi_id2piano_key(int(m[i]))
         ax.set_yticklabels(m)
         plt.savefig(f'../data/{self._name}-melody.jpg')
-        plt.show()
+        # plt.show()
         plt.close()

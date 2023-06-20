@@ -41,6 +41,7 @@ def compose(
     sig: str = '4/4',
     length: str = '00:15',
     preview: bool = False,
+    muted_parts: List[str] = None,
 ) -> LoopyTrack:
     track = LoopyTrack(name=name, bpm=bpm, sig=sig, length=length)
     """"""
@@ -157,10 +158,16 @@ def compose(
 
     """"""
     for style_info in style.sound_sheet['kick']:
+        if 'kick' in muted_parts:
+            continue
         add_kick(track, style_info)
     for style_info in style.sound_sheet['top']:
+        if 'top' in muted_parts:
+            continue
         add_top(track, style_info)
     for style_info in style.sound_sheet['fx']:
+        if 'fx' in muted_parts:
+            continue
         add_fx(track, style_info)
 
     cores = {}
@@ -231,7 +238,8 @@ def compose(
 
     channels = dict()
     for part in ('lead', 'chord', 'bass', 'sub'):
-    # for part in []:
+        if part in muted_parts:
+            continue
         channels[part] = LoopyChannel(name=part.upper())
         for effect_info in style.inst_channel_sheet[part]:
             channels[part].add_effect(dict2fx(effect_info))
@@ -444,6 +452,7 @@ def generate_track(
     decor_map: Dict[int, List[int]] = dict(),
     chord_sync: bool = False,
     preview: bool = False,
+    muted_parts: List[str] = None,
 ):
     np.random.seed(seed)
     random.seed(seed)
@@ -484,7 +493,8 @@ def generate_track(
         bpm=bpm,
         sig=sig,
         length='00:15',
-        preview=preview
+        preview=preview,
+        muted_parts=muted_parts
     )
 
     return track

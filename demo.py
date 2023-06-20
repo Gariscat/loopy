@@ -231,6 +231,7 @@ for i in trange(0, 1024):
         melody_rep_bars=1,
         scale_root=scale_root,
         preview=False,
+        muted_parts=['chord', 'bass', 'sub']
     )
     track.save_audio(save_name=f'{i}', target_dir='../renders')
     track.save_json('../data')
