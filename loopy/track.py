@@ -1,4 +1,4 @@
-from loopy.utils import hhmmss2sec, parse_sig, DEFAULT_SR, pos2index, add_y
+from loopy.utils import hhmmss2sec, parse_sig, DEFAULT_SR, pos2index, add_y, piano_key2midi_id, midi_id2piano_key, PIANO_KEYS
 from loopy.channel import LoopyChannel
 from loopy.pattern import LoopyPatternCore, LoopyPattern
 from loopy.sample import LoopySampleCore, LoopySample
@@ -10,6 +10,7 @@ import soundfile as sf
 import json
 from typing import Dict
 import matplotlib.pyplot as plt
+from matplotlib.collections import LineCollection
 import librosa
 from PIL import Image
 
@@ -147,7 +148,7 @@ class LoopyTrack():
         target_path = os.path.join(target_dir, save_name+'.wav' if save_name else self._name+'.wav')
         sf.write(target_path, self.render(gain), self._sr)
 
-    def save(self, save_dir):
+    def save_json(self, save_dir):
         info = {
             'name': self._name,
             'bpm': self._bpm,
@@ -187,4 +188,25 @@ class LoopyTrack():
             tmp_img = Image.open('tmp.jpg')
             img = tmp_img.resize((2*128, 256))
             img.save(os.path.join(save_dir, self._name+f'_{part}.jpg'))
-            
+    
+    def print_melody(self):
+        notes = self._patterns[0]._core._notes
+        # segments = [((st_pos, j), (ed_pos, j)) for j, (note_value, st_pos, ed_pos) in enumerate(self._place_holders)]
+        segments = []
+        for note in notes:
+            if note._generator._name != 'main':
+                continue
+            st = note._pos_in_pattern
+            ed = note._pos_in_pattern + note._note_value / self._beat_value
+            h = piano_key2midi_id(note._key_name)
+            segments += [((st, h), (ed, h))]
+        fig, ax = plt.subplots()
+        ax.add_collection(LineCollection(segments))
+        ax.autoscale()
+        m = ax.get_yticks().tolist()
+        for i in range(len(m)):
+            m[i] = midi_id2piano_key(int(m[i]))
+        ax.set_yticklabels(m)
+        plt.savefig(f'../data/{self._name}-melody.jpg')
+        plt.show()
+        plt.close()

@@ -244,12 +244,12 @@ def compose(
 
 
 class LoopyStyle1(LoopyStyleBase):
-    def __init__(self, intensity: float=0.25, part: str='B') -> None:
+    def __init__(self, intensity: float=0.5, part: str='B') -> None:
         super().__init__()
         self._artist_name = ('Alesso')
         self._song_name = 'If I Lose Myself'
         self.config = {
-            'intensity': 0.5,
+            'intensity': intensity,
             'part': part
         }
         self.stylize()
