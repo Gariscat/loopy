@@ -12,6 +12,7 @@ from typing import Dict
 import matplotlib.pyplot as plt
 from matplotlib.collections import LineCollection
 import librosa
+from librosa import display
 from PIL import Image, ImageOps
 
 class LoopyTrack():
@@ -179,6 +180,10 @@ class LoopyTrack():
             mel_spec = librosa.feature.melspectrogram(y=y[i], sr=sr)
             # plt.subplots_adjust(top=1, bottom=0, right=1, left=0, hspace=0, wspace=0)
             mel_spec = librosa.power_to_db(mel_spec, ref=np.max)
+            """display.specshow(mel_spec, sr=sr)
+            plt.show()
+            plt.close()"""
+            
             plt.imshow(mel_spec)
             plt.axis('off')
             plt.savefig('tmp.jpg', dpi=600, bbox_inches='tight', pad_inches=0)

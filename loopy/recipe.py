@@ -456,7 +456,8 @@ def generate_track(
 ):
     np.random.seed(seed)
     random.seed(seed)
-    
+    if muted_parts is None:
+        muted_parts = list()
     if chord_prog is None:
         chord_prog = random.choice(COMMON_CHORD_PROG)
     rhythm = LoopyRhythm(seed, rep_bars=melody_rep_bars)
