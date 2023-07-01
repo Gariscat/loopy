@@ -177,22 +177,20 @@ class LoopyTrack():
         ### print(y.shape)
         sr = self._sr
         for i, part in enumerate(('left', 'right')):
-            mel_spec = librosa.feature.melspectrogram(y=y[i], sr=sr)
-            # plt.subplots_adjust(top=1, bottom=0, right=1, left=0, hspace=0, wspace=0)
-            mel_spec = librosa.power_to_db(mel_spec, ref=np.max)
-            """display.specshow(mel_spec, sr=sr)
-            plt.show()
-            plt.close()"""
-            
-            plt.imshow(mel_spec)
+            """mel_spec = librosa.feature.melspectrogram(y=y[i], sr=sr)
+            mel_spec = librosa.power_to_db(mel_spec, ref=np.max)"""
+            S = np.abs(librosa.stft(y[i], n_fft=4096))**2
+            fig, ax = plt.subplots(nrows=1, sharex=True)
+            img = librosa.display.specshow(librosa.amplitude_to_db(S, ref=np.max),
+                               y_axis='log', x_axis='time', ax=ax)
             plt.axis('off')
             plt.savefig('tmp.jpg', dpi=600, bbox_inches='tight', pad_inches=0)
             ### plt.show()
             plt.close()
             
             tmp_img = Image.open('tmp.jpg')
-            img = tmp_img.resize((2*128, 256))
-            img = ImageOps.flip(img)
+            img = tmp_img.resize((512, 512))
+            # img = ImageOps.flip(img)
             img.save(os.path.join(save_dir, self._name+f'_{part}.jpg'))
     
     def print_melody(self):

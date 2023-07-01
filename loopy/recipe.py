@@ -310,15 +310,15 @@ class LoopyStyle1(LoopyStyleBase):
         """--------chord--------"""
         self.sound_sheet['chord'].append({
             'source_path': 'Ultrasonic-PD-MG.wav',
-            'gain': -25.8,
+            'gain': -15.8,
         })
         self.sound_sheet['chord'].append({
             'source_path': 'Ultrasonic-PD-Lonely.wav',
-            'gain': -25.2,
+            'gain': -15.2,
         })
         self.sound_sheet['chord'].append({
             'source_path': 'Ultrasonic-PD-LoveMe.wav',
-            'gain': -19.7,
+            'gain': -16.7,
         })
         """--------bass--------"""
         self.sound_sheet['bass'].append({
@@ -403,7 +403,7 @@ class LoopyStyle1(LoopyStyleBase):
         ]
         self.inst_channel_sheet['chord'] += [
             {'type': 'highpass', 'freq': 250},
-            {'type': 'lowpass', 'freq': 1000},
+            {'type': 'lowpass', 'freq': 5000},
             {'type': 'compressor', 'thres': -15, 'ratio': 26, 'attack': 0, 'release': 200},
             {'type': 'balance', 'gain': -2.0},
             {'type': 'sidechain', 'attain': 0.5, 'interp_order': 3, 'mag': 0.75},
