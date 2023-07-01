@@ -208,6 +208,7 @@ class LoopyTrack():
         ax.add_collection(LineCollection(segments))
         ax.autoscale()
         m = ax.get_yticks().tolist()
+        ax.set_yticks(m)
         for i in range(len(m)):
             m[i] = midi_id2piano_key(int(m[i]))
         ax.set_yticklabels(m)
