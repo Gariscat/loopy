@@ -209,8 +209,7 @@ class LoopyTrack():
         ax.autoscale()
         m = ax.get_yticks().tolist()
         ax.set_yticks(m)
-        for i in range(len(m)):
-            m[i] = midi_id2piano_key(int(m[i]))
+        m = [midi_id2piano_key(int(x)) for x in m]
         ax.set_yticklabels(m)
         plt.savefig(f'../data/{self._name}-melody.jpg')
         # plt.show()
