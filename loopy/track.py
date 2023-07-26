@@ -174,12 +174,13 @@ class LoopyTrack():
         st_idx = st_bar * self._beats_per_bar * 60 * self._sr // self._bpm
         ed_idx = ed_bar * self._beats_per_bar * 60 * self._sr // self._bpm
         y = np.transpose(self.render()[st_idx:ed_idx])
+        sr = self._sr
         if part == 'lead':
             import pedalboard
             high_pass = pedalboard.HighpassFilter(cutoff_frequency_hz=1000)
             y = high_pass.process(input_array=y, sample_rate=sr)
         ### print(y.shape)
-        sr = self._sr
+        
         for i, part in enumerate(('left', 'right')):
             """mel_spec = librosa.feature.melspectrogram(y=y[i], sr=sr)
             mel_spec = librosa.power_to_db(mel_spec, ref=np.max)"""
