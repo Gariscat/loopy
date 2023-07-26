@@ -8,6 +8,7 @@ import librosa
 from loopy.recipe import *
 from tqdm import tqdm, trange
 import random
+import pedalboard
 """
 lead = LoopyPreset(find_preset('Ultrasonic-LD-Stars.wav'))
 # preset.preview('A5')
@@ -219,21 +220,32 @@ track = generate_track(
 )
 exit()
 """
+cutoff = 1000
+high_pass = pedalboard.HighpassFilter(cutoff_frequency_hz=cutoff)
+name = 'high-on-life'
+y, sr = librosa.load(f'{name}.wav', sr=44100, mono=False)
+y = high_pass.process(input_array=y, sample_rate=sr)
+sf.write(f'{name}-hp-{cutoff}.wav', np.transpose(y, (1,0)), sr)
+print(y.shape)
+S = np.abs(librosa.stft(y[0], n_fft=4096))**2
+fig, ax = plt.subplots(nrows=1, sharex=True)
+""""""
+img = librosa.display.specshow(librosa.amplitude_to_db(S, ref=np.max),
+    y_axis='log', x_axis='time', ax=ax
+)
+# plt.axis('off')
+plt.savefig(f'{name}.jpg', dpi=600, bbox_inches='tight', pad_inches=0)
+plt.close()
 
 
-random.seed(2711694897)
-for i in trange(0, 1024):
-    scale_root = random.choice(['C', 'D', 'E'])
-    track = generate_track(
-        name=str(i),
-        seed=i,
-        style=LoopyStyle1(),
-        melody_rep_bars=1,
-        scale_root=scale_root,
-        preview=False,
-        # muted_parts=['lead', 'bass', 'sub']
-    )
-    track.save_audio(save_name=f'{i}', target_dir='../renders')
-    # track.save_json('../data')
-    # track.get_mel(st_bar=0, ed_bar=8, save_dir='../data')
-    # track.print_melody()
+
+"""S = librosa.feature.melspectrogram(y=y[0], sr=sr, n_mels=128,
+                                    fmax=8000)
+fig, ax = plt.subplots()
+S_dB = librosa.power_to_db(S, ref=np.max)
+img = librosa.display.specshow(S_dB, x_axis='time',
+                         y_axis='mel', sr=sr,
+                         fmax=8000, ax=ax)
+fig.colorbar(img, ax=ax, format='%+2.0f dB')
+ax.set(title='Mel-frequency spectrogram')
+plt.show()"""

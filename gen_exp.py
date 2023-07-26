@@ -9,10 +9,11 @@ from loopy.recipe import *
 from tqdm import trange
 import random
 
-
-random.seed(2711694897)
+SCALE_ROOTS = ['B', 'C', 'C#', 'D', 'D#', 'E']
+SEED = 488184230
+random.seed(SEED)
 for i in trange(0, 1024):
-    scale_root = random.choice(['C', 'D', 'E'])
+    scale_root = random.choice(SCALE_ROOTS)
     track = generate_track(
         name=str(i),
         seed=i,
@@ -20,7 +21,7 @@ for i in trange(0, 1024):
         melody_rep_bars=1,
         scale_root=scale_root,
         preview=False,
-        muted_parts=['lead', 'bass', 'sub']
+        # muted_parts=['lead', 'bass', 'sub']
     )
     track.save_audio(save_name=f'{i}', target_dir='../renders')
     track.save_json('../data')

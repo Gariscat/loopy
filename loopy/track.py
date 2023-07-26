@@ -170,10 +170,14 @@ class LoopyTrack():
         self._recipe['sound'] = sound_sheet
         self._recipe['channel'] = inst_channel_sheet
         
-    def get_mel(self, st_bar: int, ed_bar: int, save_dir: str):
+    def get_mel(self, st_bar: int, ed_bar: int, save_dir: str, part: str = 'lead'):
         st_idx = st_bar * self._beats_per_bar * 60 * self._sr // self._bpm
         ed_idx = ed_bar * self._beats_per_bar * 60 * self._sr // self._bpm
         y = np.transpose(self.render()[st_idx:ed_idx])
+        if part == 'lead':
+            import pedalboard
+            high_pass = pedalboard.HighpassFilter(cutoff_frequency_hz=1000)
+            y = high_pass.process(input_array=y, sample_rate=sr)
         ### print(y.shape)
         sr = self._sr
         for i, part in enumerate(('left', 'right')):
