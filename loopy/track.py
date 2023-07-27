@@ -170,7 +170,7 @@ class LoopyTrack():
         self._recipe['sound'] = sound_sheet
         self._recipe['channel'] = inst_channel_sheet
         
-    def get_mel(self, st_bar: int, ed_bar: int, save_dir: str, part: str = 'lead'):
+    def get_mel(self, st_bar: int, ed_bar: int, save_dir: str, part: str):
         st_idx = st_bar * self._beats_per_bar * 60 * self._sr // self._bpm
         ed_idx = ed_bar * self._beats_per_bar * 60 * self._sr // self._bpm
         y = np.transpose(self.render()[st_idx:ed_idx])
