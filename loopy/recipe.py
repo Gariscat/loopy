@@ -235,6 +235,9 @@ def compose(
         if delta is not None:
             notes = [(octave_shift(x, delta), y, z) for x, y, z in notes]
         cores['sub'].add_notes(notes, generator)
+        """print(notes)
+        preview_wave(cores['sub'].render())
+        exit()"""
 
     channels = dict()
     for part in ('lead', 'chord', 'bass', 'sub'):
@@ -267,25 +270,13 @@ class LoopyStyle0(LoopyStyleBase):
         """--------lead--------"""
         self.sound_sheet['lead'].append({
             'source_path': 'Heroes-LD07.wav',
-            'gain': -10.7,
-            'octave_shift': 1,
-            'mute': 0,
-        })
-        self.sound_sheet['lead'].append({
-            'source_path': 'Heroes-LD07.wav',
-            'gain': -11.3,
-            'octave_shift': 1,
-            'mute': 0,
-        })
-        self.sound_sheet['lead'].append({
-            'source_path': 'Heroes-LD13.wav',
-            'gain': -10.9,
+            'gain': -9,
             'name': 'main',
             'mute': 0,
         })
         self.sound_sheet['lead'].append({
-            'source_path': 'Heroes-LD02.wav',
-            'gain': -21.1,
+            'source_path': 'Heroes-LD13.wav',
+            'gain': -21,
             'octave_shift': 1,
             'mute': 0,
         })
@@ -314,7 +305,8 @@ class LoopyStyle0(LoopyStyleBase):
         """--------sub--------"""
         self.sound_sheet['sub'].append({
             'source_path': 'Heroes-SB02.wav',
-            'gain': -5.2,
+            'gain': -6,
+            'octave_shift': -2
         })
 
         """----------------Drum&FX----------------"""
@@ -379,9 +371,10 @@ class LoopyStyle0(LoopyStyleBase):
         self.inst_channel_sheet['lead'] += [
             {'type': 'highpass', 'freq': 300},
             {'type': 'sidechain', 'attain': 0.3, 'interp_order': 1, 'mag': 0.4},
-            {'type': 'reverb', 'dry_level': 0.55, 'wet_level': 0.92},
+            {'type': 'reverb', 'dry_level': 0.7, 'wet_level': 1},
+            {'type': 'delay', 'delay_seconds': 0.3, 'feedback': 0.5, 'mix': 0.15},
             {'type': "compressor", 'thres': -9, 'ratio': 18, 'attack': 0},
-            # {'type': 'balance', 'gain': 9.0},
+            {'type': 'balance', 'gain': 3.0},
             # {'type': 'limiter', 'thres': -6.0},
         ]
         self.inst_channel_sheet['chord'] += [
@@ -398,11 +391,11 @@ class LoopyStyle0(LoopyStyleBase):
             {'type': 'sidechain', 'attain': 0.3, 'interp_order': 1, 'mag': 0.8},
         ]
         self.inst_channel_sheet['sub'] += [
-            {'type': 'highpass', 'freq': 40},
+            {'type': 'highpass', 'freq': 35},
             {'type': 'lowpass', 'freq': 120},
             # {'type': 'compressor', 'thres': -11.3, 'ratio': 29, 'attack': 0, 'release': 200},
             # {'type': 'balance', 'gain': 4.5},
-            {'type': 'sidechain', 'attain': 0.5, 'interp_order': 16, 'mag': 0.8},
+            {'type': 'sidechain', 'attain': 0.5, 'interp_order': 16, 'mag': 0.75},
         ]
 
 

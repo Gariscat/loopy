@@ -10,7 +10,7 @@ from tqdm import trange
 import random
 
 SCALE_ROOTS = ['B', 'C', 'C#', 'D', 'D#', 'E']
-SEED = 42231
+SEED = 431
 random.seed(SEED)
 for i in trange(0, 1):
     scale_root = random.choice(SCALE_ROOTS)
@@ -21,7 +21,7 @@ for i in trange(0, 1):
         melody_rep_bars=2,
         scale_root=scale_root,
         preview=False,
-        # muted_parts=['lead', 'bass', 'sub']
+        muted_parts=['chord', 'bass', 'lead']
     )
     track.save_audio(save_name=f'{i}', target_dir='C:\\Users\\CA7AX\\LooPy\\renders')
     track.save_json('C:\\Users\\CA7AX\\LooPy\\data')
