@@ -102,7 +102,11 @@ def compose(
         elif style_info['type'] == 'sub-fill':
             channel = LoopyChannel(
                 name='sub-fill',
-                effects=[LoopyHighpass(style_info['highpass']), LoopyBalance(style_info['gain'])]
+                effects=[
+                    LoopyHighpass(style_info['highpass']),
+                    LoopyBalance(style_info['gain']),
+                    LoopyReverb(dry_level=style_info['dry'], wet_level=style_info['dry'])
+                ]
             )
             f = lambda n:n&-n  # find the largest power of 2 that divides global_pos
             for global_pos in range(num_bars):
@@ -275,37 +279,43 @@ class LoopyStyle0(LoopyStyleBase):
             'mute': 0,
         })
         self.sound_sheet['lead'].append({
+            'source_path': 'Heroes-LD06.wav',
+            'gain': -15,
+            'octave_shift': 0,
+            'mute': 0,
+        })
+        self.sound_sheet['lead'].append({
             'source_path': 'Heroes-LD13.wav',
-            'gain': -21,
+            'gain': -22,
             'octave_shift': 1,
             'mute': 0,
         })
         """--------chord--------"""
         self.sound_sheet['chord'].append({
             'source_path': 'Heroes-CH01.wav',
-            'gain': -15.8,
+            'gain': -18,
         })
         self.sound_sheet['chord'].append({
             'source_path': 'Heroes-CH02.wav',
-            'gain': -15.2,
+            'gain': -18,
         })
         self.sound_sheet['chord'].append({
             'source_path': 'Heroes-CH10.wav',
-            'gain': -16.7,
+            'gain': -12,
         })
         """--------bass--------"""
         self.sound_sheet['bass'].append({
             'source_path': 'Heroes-BS08.wav',
-            'gain': -13.3,
+            'gain': -18,
         })
         self.sound_sheet['bass'].append({
             'source_path': 'Heroes-BS10.wav',
-            'gain': -19.0,
+            'gain': -21,
         })
         """--------sub--------"""
         self.sound_sheet['sub'].append({
             'source_path': 'Heroes-SB02.wav',
-            'gain': -6,
+            'gain': -5.5,
             'octave_shift': -2
         })
 
@@ -313,24 +323,24 @@ class LoopyStyle0(LoopyStyleBase):
         """--------kick--------"""
         self.sound_sheet['kick'].append({
             'source_path': '(Martin Garrix)Ultrasonic - Sample Pack\\Ultrasonic - Kicks\\Ultrasonic - Kick 02.wav',
-            'gain': -9.8,
+            'gain': -10,
             'blank_every': 8,
         })
         self.sound_sheet['kick'].append({
             'source_path': 'Splice Sounds - Sounds of KSHMR Vol.3\\KSHMR_Drums\\KSHMR_Kicks\\KSHMR_Top_Kicks\\KSHMR_Top_Kick_03.wav',
-            'gain': -21.1,
+            'gain': -21,
             'blank_every': 8,
         })
         """--------top--------"""
         self.sound_sheet['top'].append({
             'source_path': 'OXO Progressive House Essential Drums\\OXO - Claps\\Progressive House Essential - Drop Claps 09.wav',
-            'gain': -32.3,
+            'gain': -18,
             'blank_every': 8,
             'highpass': 500
         })
         self.sound_sheet['top'].append({
-            'source_path': 'OXO Progressive House Essential Drums\\OXO - Cymbals\\Progressive House Essential - Hi-hat Loop 04.wav',
-            'gain': -28.4,
+            'source_path': 'OXO Progressive House Essential Drums\\OXO - Cymbals\\Progressive House Essential - Hi-hat Loop 05.wav',
+            'gain': -12,
             'blank_every': 8,
             'highpass': 500
         })
@@ -347,34 +357,36 @@ class LoopyStyle0(LoopyStyleBase):
             'type': 'sub-fill',
             'dir': os.path.join(SAMPLE_DIR, 'sub-fill'),
             'highpass': 500,
-            'gain': -16,
+            'gain': -18,
+            'dry': 0.7,
+            'wet': 0.5,
             'intensity': self.config['intensity']
         })
         self.sound_sheet['fx'].append({
             'type': 'downlifter',
             'dir': os.path.join(SAMPLE_DIR, 'downlifter'),
             'highpass': 500,
-            'gain': -26,
+            'gain': -21,
             'every': 4,
             'num': 3,
         })
-        self.sound_sheet['fx'].append({
+        """self.sound_sheet['fx'].append({
             'type': 'loop',
             'part': self.config['part'],
             'dir': os.path.join(SAMPLE_DIR, 'loop'),
             'highpass': 500,
             'gain': -27,
             'num': 3,
-        })
+        })"""
         """----------------Channel----------------"""
         """--------lead--------"""
         self.inst_channel_sheet['lead'] += [
             {'type': 'highpass', 'freq': 300},
             {'type': 'sidechain', 'attain': 0.3, 'interp_order': 1, 'mag': 0.4},
-            {'type': 'reverb', 'dry_level': 0.7, 'wet_level': 1},
+            {'type': 'reverb', 'dry_level': 0.75, 'wet_level': 0.8},
             {'type': 'delay', 'delay_seconds': 0.3, 'feedback': 0.5, 'mix': 0.15},
             {'type': "compressor", 'thres': -9, 'ratio': 18, 'attack': 0},
-            {'type': 'balance', 'gain': 3.0},
+            {'type': 'balance', 'gain': 1.5},
             # {'type': 'limiter', 'thres': -6.0},
         ]
         self.inst_channel_sheet['chord'] += [
@@ -400,7 +412,7 @@ class LoopyStyle0(LoopyStyleBase):
 
 
 class LoopyStyle1(LoopyStyleBase):
-    def __init__(self, intensity: float=0.5, part: str='B') -> None:
+    def __init__(self, intensity: float=0.5, part: str='A') -> None:
         super().__init__()
         self._artist_name = ('Alesso')
         self._song_name = 'If I Lose Myself'
@@ -532,14 +544,14 @@ class LoopyStyle1(LoopyStyleBase):
             'every': 4,
             'num': 3,
         })
-        self.sound_sheet['fx'].append({
+        """self.sound_sheet['fx'].append({
             'type': 'loop',
             'part': self.config['part'],
             'dir': os.path.join(SAMPLE_DIR, 'loop'),
             'highpass': 500,
             'gain': -27,
             'num': 3,
-        })
+        })"""
         """----------------Channel----------------"""
         """--------lead--------"""
         self.inst_channel_sheet['lead'] += [

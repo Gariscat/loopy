@@ -18,10 +18,10 @@ for i in trange(0, 1):
         name=str(i),
         seed=i,
         style=LoopyStyle0(),
-        melody_rep_bars=2,
+        melody_rep_bars=1,
         scale_root=scale_root,
         preview=False,
-        muted_parts=['chord', 'bass', 'lead']
+        # muted_parts=['lead', 'sub', 'bass']
     )
     track.save_audio(save_name=f'{i}', target_dir='C:\\Users\\CA7AX\\LooPy\\renders')
     track.save_json('C:\\Users\\CA7AX\\LooPy\\data')
