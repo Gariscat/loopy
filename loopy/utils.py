@@ -6,8 +6,8 @@ from typing import List, Tuple, Dict, Union
 import os
 import warnings
 
-PRESET_DIR = 'D:\\Project 2023\\presets'
-SAMPLE_DIR = 'D:\\Project 2023\\samples'
+PRESET_DIR = 'C:\\Users\\CA7AX\\LooPy\\presets'
+SAMPLE_DIR = 'C:\\Users\\CA7AX\\LooPy\\samples'
 DEFAULT_SR = 44100
 # https://www.inspiredacoustics.com/en/MIDI_note_numbers_and_center_frequencies
 PIANO_KEYS = ['A0', 'A#0', 'B0', 'C0']

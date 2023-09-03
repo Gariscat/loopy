@@ -251,6 +251,161 @@ def compose(
     return track
 
 
+class LoopyStyle0(LoopyStyleBase):
+    def __init__(self, intensity: float=0.5, part: str='B') -> None:
+        super().__init__()
+        self._artist_name = ('Martin Garrix', 'Sentinel')
+        self._song_name = 'Hurricane'
+        self.config = {
+            'intensity': intensity,
+            'part': part
+        }
+        self.stylize()
+
+    def stylize(self):
+        """----------------Instrument----------------"""
+        """--------lead--------"""
+        self.sound_sheet['lead'].append({
+            'source_path': 'Heroes-LD07.wav',
+            'gain': -10.7,
+            'octave_shift': 1,
+            'mute': 0,
+        })
+        self.sound_sheet['lead'].append({
+            'source_path': 'Heroes-LD07.wav',
+            'gain': -11.3,
+            'octave_shift': 1,
+            'mute': 0,
+        })
+        self.sound_sheet['lead'].append({
+            'source_path': 'Heroes-LD13.wav',
+            'gain': -10.9,
+            'name': 'main',
+            'mute': 0,
+        })
+        self.sound_sheet['lead'].append({
+            'source_path': 'Heroes-LD02.wav',
+            'gain': -21.1,
+            'octave_shift': 1,
+            'mute': 0,
+        })
+        """--------chord--------"""
+        self.sound_sheet['chord'].append({
+            'source_path': 'Heroes-CH01.wav',
+            'gain': -15.8,
+        })
+        self.sound_sheet['chord'].append({
+            'source_path': 'Heroes-CH02.wav',
+            'gain': -15.2,
+        })
+        self.sound_sheet['chord'].append({
+            'source_path': 'Heroes-CH10.wav',
+            'gain': -16.7,
+        })
+        """--------bass--------"""
+        self.sound_sheet['bass'].append({
+            'source_path': 'Heroes-BS08.wav',
+            'gain': -13.3,
+        })
+        self.sound_sheet['bass'].append({
+            'source_path': 'Heroes-BS10.wav',
+            'gain': -19.0,
+        })
+        """--------sub--------"""
+        self.sound_sheet['sub'].append({
+            'source_path': 'Heroes-SB02.wav',
+            'gain': -5.2,
+        })
+
+        """----------------Drum&FX----------------"""
+        """--------kick--------"""
+        self.sound_sheet['kick'].append({
+            'source_path': '(Martin Garrix)Ultrasonic - Sample Pack\\Ultrasonic - Kicks\\Ultrasonic - Kick 02.wav',
+            'gain': -9.8,
+            'blank_every': 8,
+        })
+        self.sound_sheet['kick'].append({
+            'source_path': 'Splice Sounds - Sounds of KSHMR Vol.3\\KSHMR_Drums\\KSHMR_Kicks\\KSHMR_Top_Kicks\\KSHMR_Top_Kick_03.wav',
+            'gain': -21.1,
+            'blank_every': 8,
+        })
+        """--------top--------"""
+        self.sound_sheet['top'].append({
+            'source_path': 'OXO Progressive House Essential Drums\\OXO - Claps\\Progressive House Essential - Drop Claps 09.wav',
+            'gain': -32.3,
+            'blank_every': 8,
+            'highpass': 500
+        })
+        self.sound_sheet['top'].append({
+            'source_path': 'OXO Progressive House Essential Drums\\OXO - Cymbals\\Progressive House Essential - Hi-hat Loop 04.wav',
+            'gain': -28.4,
+            'blank_every': 8,
+            'highpass': 500
+        })
+        """--------fx--------"""
+        # put fills, transitions, etc. here
+        self.sound_sheet['fx'].append({
+            'type': 'main-fill',
+            'dir': os.path.join(SAMPLE_DIR, 'main-fill'),
+            'highpass': 250,
+            'gain': -12,
+            'every': 8,
+        })
+        self.sound_sheet['fx'].append({
+            'type': 'sub-fill',
+            'dir': os.path.join(SAMPLE_DIR, 'sub-fill'),
+            'highpass': 500,
+            'gain': -16,
+            'intensity': self.config['intensity']
+        })
+        self.sound_sheet['fx'].append({
+            'type': 'downlifter',
+            'dir': os.path.join(SAMPLE_DIR, 'downlifter'),
+            'highpass': 500,
+            'gain': -26,
+            'every': 4,
+            'num': 3,
+        })
+        self.sound_sheet['fx'].append({
+            'type': 'loop',
+            'part': self.config['part'],
+            'dir': os.path.join(SAMPLE_DIR, 'loop'),
+            'highpass': 500,
+            'gain': -27,
+            'num': 3,
+        })
+        """----------------Channel----------------"""
+        """--------lead--------"""
+        self.inst_channel_sheet['lead'] += [
+            {'type': 'highpass', 'freq': 300},
+            {'type': 'sidechain', 'attain': 0.3, 'interp_order': 1, 'mag': 0.4},
+            {'type': 'reverb', 'dry_level': 0.55, 'wet_level': 0.92},
+            {'type': "compressor", 'thres': -9, 'ratio': 18, 'attack': 0},
+            # {'type': 'balance', 'gain': 9.0},
+            # {'type': 'limiter', 'thres': -6.0},
+        ]
+        self.inst_channel_sheet['chord'] += [
+            {'type': 'highpass', 'freq': 280},
+            {'type': 'lowpass', 'freq': 10000},
+            {'type': 'compressor', 'thres': -15, 'ratio': 20, 'attack': 0},
+            {'type': 'balance', 'gain': -3.0},
+            {'type': 'sidechain', 'attain': 0.3, 'interp_order': 1, 'mag': 0.6},
+        ]
+        self.inst_channel_sheet['bass'] += [
+            {'type': 'highpass', 'freq': 100},
+            {'type': 'lowpass', 'freq': 5000},
+            # {'type': 'balance', 'gain': 8.3},
+            {'type': 'sidechain', 'attain': 0.3, 'interp_order': 1, 'mag': 0.8},
+        ]
+        self.inst_channel_sheet['sub'] += [
+            {'type': 'highpass', 'freq': 40},
+            {'type': 'lowpass', 'freq': 120},
+            # {'type': 'compressor', 'thres': -11.3, 'ratio': 29, 'attack': 0, 'release': 200},
+            # {'type': 'balance', 'gain': 4.5},
+            {'type': 'sidechain', 'attain': 0.5, 'interp_order': 16, 'mag': 0.8},
+        ]
+
+
 class LoopyStyle1(LoopyStyleBase):
     def __init__(self, intensity: float=0.5, part: str='B') -> None:
         super().__init__()

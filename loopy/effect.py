@@ -1,7 +1,7 @@
 from typing import Any
 import numpy as np
 from loopy.utils import DEFAULT_SR, beat2index
-from pedalboard import HighpassFilter, LowpassFilter, Reverb, Gain, Limiter, Compressor, Distortion
+from pedalboard import HighpassFilter, LowpassFilter, Reverb, Gain, Limiter, Compressor, Distortion, Delay
 from math import ceil
 import matplotlib.pyplot as plt
 from typing import Dict
@@ -214,6 +214,28 @@ class LoopyDist(LoopyEffect):
 
     def reset(self):
         self.dist.reset()
+        
+
+
+class LoopyDelay(LoopyEffect):
+    def __init__(self,
+        delay_seconds: float = 0.5,
+        feedback: float = 0.0,
+        mix: float = 0.5
+    ) -> None:
+        super().__init__()
+        self.add_param('name', 'delay')
+        self.add_param('delay_seconds', delay_seconds)
+        self.add_param('feedback', feedback)
+        self.add_param('mix', mix)
+    
+        self.delay = Delay(delay_seconds=delay_seconds, feedback=feedback, mix=mix)
+    
+    def forward(self, y: np.ndarray):
+        return self.delay.process(y, sample_rate=DEFAULT_SR, reset=True)
+
+    def reset(self):
+        self.delay.reset()
 
 
 def dict2fx(info: Dict) -> LoopyEffect:
@@ -240,7 +262,7 @@ def dict2fx(info: Dict) -> LoopyEffect:
     elif info['type'] == 'balance':
         ret = LoopyBalance(info['gain'])
     elif info['type'] == 'limiter':
-        ret = LoopyBalance(info['thres'])
+        ret = LoopyLimiter(info['thres'])
     elif info['type'] == 'compressor':
         ret = LoopyCompressor(
             thres=info['thres'] if info.get('thres') else 0,  # unit is beat
@@ -249,7 +271,13 @@ def dict2fx(info: Dict) -> LoopyEffect:
             release_ms=info['release'] if info.get('release') else 100,
         )
     elif info['type'] == 'distortion':
-        ret = LoopyBalance(info['drive'])
+        ret = LoopyDist(info['drive'])
+    elif info['type'] == 'delay':
+        ret = LoopyDelay(
+            delay_seconds=info['delay_seconds'] if info.get('delay_seconds') else 0.5,  # unit is beat
+            feedback=info['feedback'] if info.get('feedback') else 0,  # unit is beat
+            mix=info['mix'] if info.get('mix') else 0.5,
+        )
     else:
         raise NotImplementedError("This effect is not implemented yet")
     return ret

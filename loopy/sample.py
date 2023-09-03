@@ -8,7 +8,7 @@ from loopy.channel import LoopyChannel
 from loopy.effect import LoopyBalance
 
 
-SAMPLE_DIR = 'C:\\Program Files\\Image-Line\\FL Studio 20\\Data\\Patches\\Packs'
+SAMPLE_DIR = 'C:\\Program Files\\Image-Line\\FL Studio 21\\Data\\Patches\\Packs\\Old Packs'
 
 """def modify_sample_dir(target_dir: str):
     print(f'Cautious: the sample folder path has been changed from {SAMPLE_DIR} to {target_dir}')
