@@ -7,3 +7,4 @@ An infrastructure for music information retrieval focusing on electronic music, 
 
 1. To maintain the quality of sounds, we use high sample rate 44100 instead of 22050.
 2. For the same reason, we recommend using stereo wave (2D np.ndarray) instead of mono wave (1D).
+3. The mel-spectrogram should be rendered with sr=44100 instead of 22050 (the current version didn't specify this argument). This should be fixed asap.
