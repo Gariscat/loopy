@@ -3,6 +3,8 @@
 # loopy
 An infrastructure for music information retrieval focusing on electronic music, especially for data synthesis and annotation. Our home page is [here](https://loopy4edm.com/). The paper is now under review by a multimedia venue. Essential components of this project (presets, samples) are available on [Google Drive](https://drive.google.com/drive/folders/1X-jArl_6DsBxZdXGL7wzgaVI4m6f8wiy)
 
+P.S. Since the home page has expired, some demo are available on [SoundCloud](https://soundcloud.com/ca7ax-81464132/loopy-edm-data-generator-demo?si=491f9c07bdd14593a6b92405cc1dcb1d&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing)
+
 ## Important facts
 
 1. To maintain the quality of sounds, we use high sample rate 44100 instead of 22050.
